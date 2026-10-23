@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="ru" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Элина Пасечник — Поэзия, согревающая сердце</title>
+  <meta name="description" content="Официальный сайт поэтессы Элины Пасечник. Концерты при свечах, авторская книга стихов с автографом, колода карт «Оракул».">
+
+  <!-- Шрифты: благородный поэтический Cormorant Garamond и чистый Montserrat -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            wine: '#3D131E',
+            wineDark: '#260B12',
+            gold: '#C5A059',
+            goldLight: '#E8D3A7',
+            warmCream: '#FAF6F0',
+            warmBeige: '#F3ECE1',
+            charcoal: '#2B2625'
+          },
+          fontFamily: {
+            serif: ['"Cormorant Garamond"', 'serif'],
+            sans: ['"Montserrat"', 'sans-serif']
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    .gold-gradient-text {
+      background: linear-gradient(135deg, #C5A059 0%, #E8D3A7 50%, #B38B42 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .candle-shadow {
+      box-shadow: 0 15px 35px -5px rgba(61, 19, 30, 0.12), 0 5px 15px rgba(197, 160, 89, 0.08);
+    }
+  </style>
+</head>
+<body class="bg-warmCream text-charcoal font-sans antialiased selection:bg-goldLight selection:text-wineDark">
+
+  <!-- Шапка сайта -->
+  <header class="sticky top-0 z-40 bg-warmCream/95 backdrop-blur border-b border-gold/20 shadow-xs">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 py-4 flex items-center justify-between">
+      <a href="#" class="flex flex-col">
+        <span class="font-serif text-2xl sm:text-3xl text-wine font-semibold tracking-wider">Элина Пасечник</span>
+        <span class="text-[10px] sm:text-xs text-gold uppercase tracking-[0.25em] font-medium">Поэзия • Концерты • Оракул</span>
+      </a>
+
+      <nav class="hidden md:flex items-center gap-7 text-xs uppercase tracking-widest text-charcoal/80 font-medium">
+        <a href="#about" class="hover:text-gold transition">О поэтессе</a>
+        <a href="#concerts" class="hover:text-gold transition">Концерты</a>
+        <a href="#book" class="hover:text-gold transition">Книга стихов</a>
+        <a href="#oracle" class="hover:text-gold transition">Оракул</a>
+        <a href="#reviews" class="hover:text-gold transition">Отзывы</a>
+      </nav>
+
+      <button onclick="openModal('Общий вопрос / Заказ')" class="border border-gold text-wine hover:bg-gold hover:text-white px-5 py-2.5 rounded-full text-xs uppercase tracking-widest transition duration-300">
+        Прикоснуться
+      </button>
+    </div>
+  </header>
+
+  <!-- Первый экран -->
+  <section class="relative py-16 sm:py-24 overflow-hidden bg-gradient-to-b from-warmBeige/40 via-warmCream to-warmCream border-b border-gold/15">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 grid lg:grid-cols-12 gap-12 items-center">
+      
+      <div class="lg:col-span-7 space-y-6 text-center lg:text-left">
+        <div class="inline-flex items-center gap-2 bg-white/80 border border-gold/30 px-4 py-1.5 rounded-full text-xs text-wine font-medium">
+          <span class="text-gold">✦</span>
+          <span>Член Союза писателей России • Номинант премии «Поэт года»</span>
+        </div>
+
+        <h1 class="font-serif text-4xl sm:text-6xl text-wine leading-[1.15] font-normal">
+          Стихи, в которых <br class="hidden sm:inline">
+          <span class="italic font-semibold gold-gradient-text">каждая женщина</span> <br>
+          узнает свою историю
+        </h1>
+
+        <p class="text-base sm:text-lg text-charcoal/75 font-light leading-relaxed max-w-xl mx-auto lg:mx-0">
+          О любви, которая возрождает. Об испытаниях, делающих нас глубже. О тихом женском счастье и нежности, которой так не хватает в суете дней.
+        </p>
+
+        <!-- 3 ключевых действия для посетительницы -->
+        <div class="pt-4 flex flex-wrap justify-center lg:justify-start gap-3.5">
+          <a href="#concerts" class="bg-wine hover:bg-wineDark text-white px-7 py-3.5 rounded-full text-xs uppercase tracking-widest transition shadow-md">
+            Концерт при свечах
+          </a>
+          <a href="#book" class="bg-white border border-gold text-wine hover:bg-goldLight/30 px-6 py-3.5 rounded-full text-xs uppercase tracking-widest transition">
+            Книга с автографом
+          </a>
+          <a href="#oracle" class="bg-warmBeige hover:bg-gold/20 text-charcoal px-6 py-3.5 rounded-full text-xs uppercase tracking-widest transition">
+            Карты-Оракул
+          </a>
+        </div>
+      </div>
+
+      <!-- Главное видео (ВК Видео с плеером) -->
+      <div class="lg:col-span-5">
+        <div class="relative bg-white p-3.5 rounded-2xl candle-shadow border border-gold/30">
+          <div class="aspect-video rounded-xl overflow-hidden bg-black relative">
+            <iframe 
+              src="https://vk.ru/video_ext.php?oid=462652209&id=456239282&autoplay=0" 
+              class="w-full h-full"
+              style="background-color: #000" 
+              allow="autoplay; encrypted-media; fullscreen; picture-in-picture; screen-wake-lock;" 
+              frameborder="0" 
+              allowfullscreen>
+            </iframe>
+          </div>
+          <p class="text-center font-serif italic text-sm text-wine/80 mt-3">
+            «Свидание при свечах» — вечер, возвращающий вкус к жизни
+          </p>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Три дара для души (Карточки главных продуктов) -->
+  <section class="py-16 sm:py-24 max-w-6xl mx-auto px-4 sm:px-6">
+    <div class="text-center max-w-2xl mx-auto mb-16">
+      <span class="text-gold text-xs uppercase tracking-[0.3em] font-medium">Творчество как диалог</span>
+      <h2 class="font-serif text-3xl sm:text-5xl text-wine mt-2 font-normal">Три пространства вдохновения</h2>
+      <div class="w-16 h-0.5 bg-gold/50 mx-auto mt-4"></div>
+    </div>
+
+    <div class="grid md:grid-cols-3 gap-8">
+      
+      <!-- Карточка 1: Концерт -->
+      <div id="concerts" class="bg-white rounded-2xl p-8 border border-gold/20 candle-shadow flex flex-col justify-between card-hover text-center sm:text-left">
+        <div>
+          <span class="text-3xl mb-4 inline-block">🕯️</span>
+          <span class="text-[11px] uppercase tracking-widest text-gold font-semibold block mb-1">Живое событие</span>
+          <h3 class="font-serif text-2xl text-wine font-semibold mb-3">Концерт «Свидание при свечах»</h3>
+          <p class="text-sm text-charcoal/70 leading-relaxed font-light">
+            Камерный вечер при мерцании сотен свечей. Проникновенная лирика Элины под аккомпанемент гитариста-виртуоза, номинанта премии Grammy <strong>Михаила Савичева</strong> (легендарное трио «Лойко»).
+          </p>
+        </div>
+        <div class="pt-6 mt-6 border-t border-warmBeige space-y-2">
+          <p class="text-xs text-wine font-medium">✨ Ближайшие показы и частные вечера</p>
+          <button onclick="openModal('Билет на концерт «Свидание при свечах»')" class="w-full bg-wine hover:bg-wineDark text-white py-3 rounded-full text-xs uppercase tracking-widest transition">
+            Выбрать вечер
+          </button>
+        </div>
+      </div>
+
+      <!-- Карточка 2: Книга стихов -->
+      <div id="book" class="bg-white rounded-2xl p-8 border border-gold/40 candle-shadow flex flex-col justify-between card-hover text-center sm:text-left relative overflow-hidden">
+        <div class="absolute top-0 right-0 bg-gold text-white text-[10px] uppercase tracking-widest px-4 py-1 rounded-bl-lg font-medium">
+          С автографом
+        </div>
+        <div>
+          <span class="text-3xl mb-4 inline-block">📖</span>
+          <span class="text-[11px] uppercase tracking-widest text-gold font-semibold block mb-1">Книга на прикроватный столик</span>
+          <h3 class="font-serif text-2xl text-wine font-semibold mb-3">Сборник авторских стихов</h3>
+          <p class="text-sm text-charcoal/70 leading-relaxed font-light">
+            Изящное подарочное издание. Стихи, к которым возвращаешься в минуты грусти, надежды или тихого вечернего чая. Каждая книга подписывается поэтессой лично для вас с добрым пожеланием.
+          </p>
+        </div>
+        <div class="pt-6 mt-6 border-t border-warmBeige space-y-2">
+          <p class="text-xs text-wine font-medium">📦 Доставка почтой по всей России</p>
+          <button onclick="openModal('Заказ книги стихов с автографом')" class="w-full bg-gold hover:bg-yellow-600 text-white py-3 rounded-full text-xs uppercase tracking-widest transition">
+            Заказать книгу с автографом
+          </button>
+        </div>
+      </div>
+
+      <!-- Карточка 3: Оракул -->
+      <div id="oracle" class="bg-white rounded-2xl p-8 border border-gold/20 candle-shadow flex flex-col justify-between card-hover text-center sm:text-left">
+        <div>
+          <span class="text-3xl mb-4 inline-block">🔮</span>
+          <span class="text-[11px] uppercase tracking-widest text-gold font-semibold block mb-1">Диалог с интуицией</span>
+          <h3 class="font-serif text-2xl text-wine font-semibold mb-3">Оракул Элины Пасечник</h3>
+          <p class="text-sm text-charcoal/70 leading-relaxed font-light">
+            Авторская метафорическая колода карт с поэтическими посланиями. Помогает найти внутренний покой, услышать подсказку сердца в сложной ситуации и настроиться на гармоничный день.
+          </p>
+        </div>
+        <div class="pt-6 mt-6 border-t border-warmBeige space-y-2">
+          <p class="text-xs text-wine font-medium">✨ Подходит и новичкам, и практикам</p>
+          <button onclick="openModal('Заказ колоды «Оракул Элины Пасечник»')" class="w-full bg-wine hover:bg-wineDark text-white py-3 rounded-full text-xs uppercase tracking-widest transition">
+            Заказать колоду Оракула
+          </button>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Об авторе (Элина Пасечник) -->
+  <section id="about" class="py-16 sm:py-20 bg-warmBeige/40 border-y border-gold/20">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 grid md:grid-cols-12 gap-10 items-center">
+      
+      <div class="md:col-span-5 text-center">
+        <div class="bg-white p-3 rounded-2xl candle-shadow inline-block">
+          <div class="w-64 h-80 sm:w-72 sm:h-96 rounded-xl bg-warmCream overflow-hidden border border-gold/30 flex items-center justify-center relative">
+            <!-- Сюда вставляется ссылка на фото Элины из ВК -->
+            <img 
+              id="authorPhoto" 
+              src="https://sun9-85.vkuserphoto.ru/s/v1/ig2/3TdZG54QnqcccfgUqTTEDKV2ydJOGXU2Ed1j-4UHq0T4eaeU1zJrYMMn9KR84y21pLKvcOt5qoOlQRcSVH6v8YDl.jpg?quality=95&as=32x44,48x65,72x98,108x147,160x218,240x327,360x491,480x654,540x736,640x872,720x981,1080x1472,1280x1744,1440x1962,1585x2160&from=bu&u=UQP7vyGwR1_46Mo7yYpKj7lMdG-uPWM8f1aRTjX_EWQ&cs=1585x0" 
+              alt="Элина Пасечник" 
+              class="w-full h-full object-cover"
+              referrerpolicy="no-referrer"
+            >
+          </div>
+        </div>
+      </div>
+
+      <div class="md:col-span-7 space-y-5">
+        <span class="text-gold text-xs uppercase tracking-[0.25em] font-medium">Голос женского сердца</span>
+        <h2 class="font-serif text-3xl sm:text-4xl text-wine font-normal">Элина Пасечник</h2>
+        
+        <p class="text-sm sm:text-base text-charcoal/80 font-light leading-relaxed">
+          Поэтесса, член Союза писателей России, актриса театра и кино. Включена в число авторов многотомного издания «Антология русской поэзии». 
+        </p>
+
+        <p class="text-sm sm:text-base text-charcoal/80 font-light leading-relaxed">
+          Награждена государственными и общественными литературными медалями Анны Ахматовой, Александра Блока, Антона Чехова, Афанасия Фета, Александра Пушкина и медалью «Святая Русь», а также лауреат литературной премии «Наследие».
+        </p>
+
+        <blockquote class="border-l-2 border-gold pl-4 py-1 italic font-serif text-lg text-wine/90">
+          «Мои стихи — это не просто рифмы. Это объятие для тех, кто устал быть сильной, и напоминание о том, как прекрасна женская душа в своей искренности».
+        </blockquote>
+
+        <div class="pt-2">
+          <button onclick="openModal('Пригласить на частное мероприятие / вечер')" class="text-xs uppercase tracking-widest text-wine hover:text-gold font-semibold underline underline-offset-8 transition">
+            Пригласить на закрытый вечер или квартирник →
+          </button>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Видео-отзывы зрителей -->
+  <section id="reviews" class="py-16 sm:py-24 max-w-5xl mx-auto px-4 sm:px-6 text-center">
+    <span class="text-gold text-xs uppercase tracking-[0.3em] font-medium">Искренние эмоции</span>
+    <h2 class="font-serif text-3xl sm:text-5xl text-wine mt-2 mb-4 font-normal">Что чувствуют зрительницы</h2>
+    <p class="text-sm sm:text-base text-charcoal/70 max-w-2xl mx-auto mb-10 font-light">
+      Слезы очищения, улыбки и ощущение, будто груз забот спадает с плеч уже после первых строк.
+    </p>
+
+    <!-- Второе видео: Отзывы из ВК -->
+    <div class="bg-white p-3.5 rounded-2xl candle-shadow border border-gold/25 max-w-3xl mx-auto">
+      <div class="aspect-video rounded-xl overflow-hidden bg-black relative">
+        <iframe 
+          src="https://vk.ru/video_ext.php?oid=-212533657&id=456239043&autoplay=0" 
+          class="w-full h-full"
+          style="background-color: #000" 
+          allow="autoplay; encrypted-media; fullscreen; picture-in-picture; screen-wake-lock;" 
+          frameborder="0" 
+          allowfullscreen>
+        </iframe>
+      </div>
+      <p class="font-serif italic text-sm text-wine mt-3">
+        Живые отзывы после концерта «Свидание при свечах»
+      </p>
+    </div>
+  </section>
+
+  <!-- Подвал сайта -->
+  <footer class="bg-wineDark text-warmCream py-12 border-t border-gold/30">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 flex flex-col sm:flex-row items-center justify-between gap-6 text-center sm:text-left">
+      <div>
+        <p class="font-serif text-2xl text-goldLight font-medium">Элина Пасечник</p>
+        <p class="text-xs text-warmCream/60 mt-1">Официальный сайт поэтессы • Санкт-Петербург / Москва</p>
+        <p class="text-[11px] text-warmCream/40 mt-1">По вопросам организации вечеров и заказов: +7 (995) 005-68-20</p>
+      </div>
+
+      <div class="flex items-center gap-4 text-xs tracking-wider">
+        <a href="https://t.me/" target="_blank" rel="noopener" class="border border-gold/40 hover:border-gold px-4 py-2 rounded-full text-goldLight transition">
+          Написать в Telegram
+        </a>
+        <button onclick="openModal('Связь с поэтессой')" class="bg-gold hover:bg-yellow-600 text-wineDark font-medium px-5 py-2 rounded-full transition">
+          Оставить пожелание
+        </button>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Модальное окно для заявок -->
+  <div id="modal" class="fixed inset-0 z-50 hidden bg-wineDark/70 backdrop-blur-xs flex items-center justify-center p-4">
+    <div class="bg-warmCream rounded-2xl border border-gold/40 max-w-md w-full p-6 sm:p-8 relative candle-shadow">
+      <button onclick="closeModal()" class="absolute top-4 right-4 text-charcoal/50 hover:text-wine text-2xl leading-none">&times;</button>
+      
+      <span class="text-[11px] uppercase tracking-widest text-gold font-semibold block mb-1">С любовью и вниманием</span>
+      <h3 class="font-serif text-2xl sm:text-3xl text-wine font-semibold mb-4" id="modalTitle">Оставить заявку</h3>
+      
+      <form id="orderForm" onsubmit="handleFormSubmit(event)" class="space-y-4">
+        <div>
+          <label class="block text-xs font-medium text-charcoal/70 mb-1">Что вас интересует</label>
+          <input type="text" id="targetInput" readonly class="w-full bg-warmBeige/50 border border-gold/30 rounded-lg px-3.5 py-2.5 text-xs text-wine font-medium">
+        </div>
+        <div>
+          <label class="block text-xs font-medium text-charcoal/70 mb-1">Ваше имя</label>
+          <input type="text" id="nameInput" required placeholder="Как к вам обращаться?" class="w-full bg-white border border-gold/30 rounded-lg px-3.5 py-2.5 text-sm text-charcoal focus:border-gold outline-hidden">
+        </div>
+        <div>
+          <label class="block text-xs font-medium text-charcoal/70 mb-1">Телефон или WhatsApp / Telegram</label>
+          <input type="text" id="phoneInput" required placeholder="+7 (999) 000-00-00" class="w-full bg-white border border-gold/30 rounded-lg px-3.5 py-2.5 text-sm text-charcoal focus:border-gold outline-hidden">
+        </div>
+        <button type="submit" class="w-full bg-wine hover:bg-wineDark text-white py-3.5 rounded-full text-xs uppercase tracking-widest transition shadow-sm font-medium">
+          Отправить
+        </button>
+      </form>
+
+      <div id="modalSuccess" class="hidden text-center py-6 space-y-3">
+        <span class="text-3xl">🕊️</span>
+        <h4 class="font-serif text-2xl text-wine">Благодарим вас от всего сердца!</h4>
+        <p class="text-xs text-charcoal/70">Мы свяжемся с вами в течение дня, чтобы бережно уточнить все детали.</p>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    function openModal(title) {
+      document.getElementById('targetInput').value = title;
+      document.getElementById('modalTitle').innerText = title.includes('Билет') ? 'Заказ билетов' : 'Оформить заказ';
+      document.getElementById('orderForm').classList.remove('hidden');
+      document.getElementById('modalSuccess').classList.add('hidden');
+      document.getElementById('modal').classList.remove('hidden');
+    }
+
+    function closeModal() {
+      document.getElementById('modal').classList.add('hidden');
+    }
+
+    function handleFormSubmit(e) {
+      e.preventDefault();
+      const target = document.getElementById('targetInput').value;
+      const name = document.getElementById('nameInput').value;
+      const phone = document.getElementById('phoneInput').value;
+
+      // Мгновенный переход в мессенджер с готовым текстом (100% доходимость)
+      const text = encodeURIComponent(`Здравствуйте! Меня интересует: ${target}.\nМоё имя: ${name}\nТелефон: ${phone}`);
+      window.open(`https://t.me/share/url?url=&text=${text}`, '_blank');
+
+      document.getElementById('orderForm').classList.add('hidden');
+      document.getElementById('modalSuccess').classList.remove('hidden');
+    }
+  </script>
+</body>
+</html>
