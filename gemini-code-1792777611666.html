@@ -4,7 +4,20 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Элина Пасечник — Поэзия, согревающая сердце</title>
-  <meta name="description" content="Официальный сайт поэтессы Элины Пасечник. Концерты при свечах, авторская книга стихов с автографом, колода карт «Оракул».">
+  <meta name="description" content="Официальный сайт поэтессы Элины Пасечник. Концерт при свечах «Исповедь незнакомки», авторский сборник стихов «Ближе», колода карт «Оракул Элины Пасечник».">
+  <meta name="keywords" content="Элина Пасечник, поэтесса, стихи, Исповедь незнакомки, концерт при свечах, книга Ближе, Оракул Элины Пасечник">
+  <meta name="robots" content="index, follow">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Элина Пасечник — Поэзия, согревающая сердце">
+  <meta property="og:description" content="Концерт при свечах «Исповедь незнакомки», авторская книга стихов и колода карт «Оракул Элины Пасечник».">
+  <meta property="og:image" content="https://sun9-15.vkuserphoto.ru/s/v1/ig2/vCfOkz1s6wMS-qAHW_k4b6RCZZdfHs5pk7JqAgAvthkdT5uAewLa97LxLl65Yr2N9K0H7cBJc1LwR1JMeReK18ff.jpg?quality=95&as=32x32,48x48,72x72,108x108,160x160,240x240,360x360,480x480,540x540,640x640,720x720,1080x1080&from=bu&cs=1080x0">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Элина Пасечник — Поэзия, согревающая сердце">
+  <meta name="twitter:description" content="Концерт при свечах «Исповедь незнакомки», авторская книга стихов и колода карт «Оракул Элины Пасечник».">
+  <meta name="twitter:image" content="https://sun9-15.vkuserphoto.ru/s/v1/ig2/vCfOkz1s6wMS-qAHW_k4b6RCZZdfHs5pk7JqAgAvthkdT5uAewLa97LxLl65Yr2N9K0H7cBJc1LwR1JMeReK18ff.jpg?quality=95&as=32x32,48x48,72x72,108x108,160x160,240x240,360x360,480x480,540x540,640x640,720x720,1080x1080&from=bu&cs=1080x0">
+
+  <!-- Иконка сайта (Favicon) -->
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='50' fill='%233D131E'/><text x='50%' y='54%' dominant-baseline='central' text-anchor='middle' fill='%23E8D3A7' font-family='Georgia, serif' font-weight='700' font-size='48'>ЭП</text></svg>">
 
   <!-- Шрифты: благородный поэтический Cormorant Garamond и чистый Montserrat -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -43,14 +56,20 @@
     .candle-shadow {
       box-shadow: 0 15px 35px -5px rgba(61, 19, 30, 0.12), 0 5px 15px rgba(197, 160, 89, 0.08);
     }
+    .card-hover {
+      transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    .card-hover:hover {
+      transform: translateY(-5px);
+    }
   </style>
 </head>
-<body class="bg-warmCream text-charcoal font-sans antialiased selection:bg-goldLight selection:text-wineDark">
+<body id="top" class="bg-warmCream text-charcoal font-sans antialiased selection:bg-goldLight selection:text-wineDark">
 
-  <!-- Шапка сайта -->
+  <!-- Шапка сайта (без кнопки «Прикоснуться» и без телефона) -->
   <header class="sticky top-0 z-40 bg-warmCream/95 backdrop-blur border-b border-gold/20 shadow-xs">
     <div class="max-w-6xl mx-auto px-4 sm:px-6 py-4 flex items-center justify-between">
-      <a href="#" class="flex flex-col">
+      <a href="#top" class="flex flex-col">
         <span class="font-serif text-2xl sm:text-3xl text-wine font-semibold tracking-wider">Элина Пасечник</span>
         <span class="text-[10px] sm:text-xs text-gold uppercase tracking-[0.25em] font-medium">Поэзия • Концерты • Оракул</span>
       </a>
@@ -58,14 +77,10 @@
       <nav class="hidden md:flex items-center gap-7 text-xs uppercase tracking-widest text-charcoal/80 font-medium">
         <a href="#about" class="hover:text-gold transition">О поэтессе</a>
         <a href="#concerts" class="hover:text-gold transition">Концерты</a>
-        <a href="#book" class="hover:text-gold transition">Книга стихов</a>
+        <a href="#book-widget" class="hover:text-gold transition">Книга стихов</a>
         <a href="#oracle" class="hover:text-gold transition">Оракул</a>
         <a href="#reviews" class="hover:text-gold transition">Отзывы</a>
       </nav>
-
-      <button onclick="openModal('Общий вопрос / Заказ')" class="border border-gold text-wine hover:bg-gold hover:text-white px-5 py-2.5 rounded-full text-xs uppercase tracking-widest transition duration-300">
-        Прикоснуться
-      </button>
     </div>
   </header>
 
@@ -92,12 +107,12 @@
         <!-- 3 ключевых действия для посетительницы -->
         <div class="pt-4 flex flex-wrap justify-center lg:justify-start gap-3.5">
           <a href="#concerts" class="bg-wine hover:bg-wineDark text-white px-7 py-3.5 rounded-full text-xs uppercase tracking-widest transition shadow-md">
-            Концерт при свечах
+            Концерт «Исповедь незнакомки»
           </a>
-          <a href="#book" class="bg-white border border-gold text-wine hover:bg-goldLight/30 px-6 py-3.5 rounded-full text-xs uppercase tracking-widest transition">
-            Книга с автографом
+          <a href="#book-widget" class="bg-white border border-gold text-wine hover:bg-goldLight/30 px-6 py-3.5 rounded-full text-xs uppercase tracking-widest transition">
+            Книга стихов
           </a>
-          <a href="#oracle" class="bg-warmBeige hover:bg-gold/20 text-charcoal px-6 py-3.5 rounded-full text-xs uppercase tracking-widest transition">
+          <a href="https://www.ozon.ru/product/orakul-eliny-pasechnik-5114150489/" target="_blank" rel="noopener" class="bg-warmBeige hover:bg-gold/20 text-charcoal px-6 py-3.5 rounded-full text-xs uppercase tracking-widest transition">
             Карты-Оракул
           </a>
         </div>
@@ -109,15 +124,14 @@
           <div class="aspect-video rounded-xl overflow-hidden bg-black relative">
             <iframe 
               src="https://vk.ru/video_ext.php?oid=462652209&id=456239282&autoplay=0" 
-              class="w-full h-full"
+              class="w-full h-full border-0"
               style="background-color: #000" 
               allow="autoplay; encrypted-media; fullscreen; picture-in-picture; screen-wake-lock;" 
-              frameborder="0" 
               allowfullscreen>
             </iframe>
           </div>
           <p class="text-center font-serif italic text-sm text-wine/80 mt-3">
-            «Свидание при свечах» — вечер, возвращающий вкус к жизни
+            «Исповедь незнакомки» — вечер, возвращающий вкус к жизни
           </p>
         </div>
       </div>
@@ -135,42 +149,39 @@
 
     <div class="grid md:grid-cols-3 gap-8">
       
-      <!-- Карточка 1: Концерт -->
+      <!-- Карточка 1: Живое событие -->
       <div id="concerts" class="bg-white rounded-2xl p-8 border border-gold/20 candle-shadow flex flex-col justify-between card-hover text-center sm:text-left">
         <div>
           <span class="text-3xl mb-4 inline-block">🕯️</span>
           <span class="text-[11px] uppercase tracking-widest text-gold font-semibold block mb-1">Живое событие</span>
-          <h3 class="font-serif text-2xl text-wine font-semibold mb-3">Концерт «Свидание при свечах»</h3>
+          <h3 class="font-serif text-2xl text-wine font-semibold mb-3">Концерт «Исповедь незнакомки»</h3>
           <p class="text-sm text-charcoal/70 leading-relaxed font-light">
             Камерный вечер при мерцании сотен свечей. Проникновенная лирика Элины под аккомпанемент гитариста-виртуоза, номинанта премии Grammy <strong>Михаила Савичева</strong> (легендарное трио «Лойко»).
           </p>
         </div>
         <div class="pt-6 mt-6 border-t border-warmBeige space-y-2">
-          <p class="text-xs text-wine font-medium">✨ Ближайшие показы и частные вечера</p>
-          <button onclick="openModal('Билет на концерт «Свидание при свечах»')" class="w-full bg-wine hover:bg-wineDark text-white py-3 rounded-full text-xs uppercase tracking-widest transition">
-            Выбрать вечер
-          </button>
+          <p class="text-xs text-wine font-medium">✨ Ближайшие показы и творческие вечера</p>
+          <a href="https://vk.ru/elinapasechnik" target="_blank" rel="noopener" class="block w-full text-center bg-wine hover:bg-wineDark text-white py-3 rounded-full text-xs uppercase tracking-widest transition">
+            Следить за анонсами
+          </a>
         </div>
       </div>
 
       <!-- Карточка 2: Книга стихов -->
       <div id="book" class="bg-white rounded-2xl p-8 border border-gold/40 candle-shadow flex flex-col justify-between card-hover text-center sm:text-left relative overflow-hidden">
-        <div class="absolute top-0 right-0 bg-gold text-white text-[10px] uppercase tracking-widest px-4 py-1 rounded-bl-lg font-medium">
-          С автографом
-        </div>
         <div>
           <span class="text-3xl mb-4 inline-block">📖</span>
           <span class="text-[11px] uppercase tracking-widest text-gold font-semibold block mb-1">Книга на прикроватный столик</span>
-          <h3 class="font-serif text-2xl text-wine font-semibold mb-3">Сборник авторских стихов</h3>
+          <h3 class="font-serif text-2xl text-wine font-semibold mb-3">Сборник стихов «Ближе»</h3>
           <p class="text-sm text-charcoal/70 leading-relaxed font-light">
-            Изящное подарочное издание. Стихи, к которым возвращаешься в минуты грусти, надежды или тихого вечернего чая. Каждая книга подписывается поэтессой лично для вас с добрым пожеланием.
+            Изящное авторское издание. Стихи, к которым возвращаешься в минуты грусти, надежды или тихого вечернего чая. Доступна в печатном и электронном формате.
           </p>
         </div>
         <div class="pt-6 mt-6 border-t border-warmBeige space-y-2">
-          <p class="text-xs text-wine font-medium">📦 Доставка почтой по всей России</p>
-          <button onclick="openModal('Заказ книги стихов с автографом')" class="w-full bg-gold hover:bg-yellow-600 text-white py-3 rounded-full text-xs uppercase tracking-widest transition">
-            Заказать книгу с автографом
-          </button>
+          <p class="text-xs text-wine font-medium">📚 Покупка онлайн и с доставкой</p>
+          <a href="#book-widget" class="block w-full text-center bg-gold hover:bg-yellow-600 text-white py-3 rounded-full text-xs uppercase tracking-widest transition">
+            Купить книгу
+          </a>
         </div>
       </div>
 
@@ -185,13 +196,27 @@
           </p>
         </div>
         <div class="pt-6 mt-6 border-t border-warmBeige space-y-2">
-          <p class="text-xs text-wine font-medium">✨ Подходит и новичкам, и практикам</p>
-          <button onclick="openModal('Заказ колоды «Оракул Элины Пасечник»')" class="w-full bg-wine hover:bg-wineDark text-white py-3 rounded-full text-xs uppercase tracking-widest transition">
-            Заказать колоду Оракула
-          </button>
+          <p class="text-xs text-wine font-medium">✨ Быстрая доставка через Ozon</p>
+          <a href="https://www.ozon.ru/product/orakul-eliny-pasechnik-5114150489/" target="_blank" rel="noopener" class="block w-full text-center bg-wine hover:bg-wineDark text-white py-3 rounded-full text-xs uppercase tracking-widest transition">
+            Заказать колоду на Ozon
+          </a>
         </div>
       </div>
 
+    </div>
+
+    <!-- Виджет покупки и чтения книги «Ближе» (Ridero) -->
+    <div id="book-widget" class="mt-16 bg-white rounded-2xl p-6 sm:p-10 border border-gold/30 candle-shadow">
+      <div class="text-center max-w-2xl mx-auto mb-8">
+        <span class="text-gold text-xs uppercase tracking-[0.25em] font-medium">Официальная витрина книги</span>
+        <h3 class="font-serif text-2xl sm:text-4xl text-wine mt-1 font-normal">Читать фрагмент и купить книгу «Ближе»</h3>
+        <p class="text-xs sm:text-sm text-charcoal/70 mt-2 font-light">
+          Вы можете полистать страницы сборника и сразу приобрести электронную или печатную книгу в удобном магазине:
+        </p>
+      </div>
+      <div class="rounded-xl overflow-hidden border border-warmBeige bg-warmCream/40">
+        <iframe width="100%" height="700" src="https://ridero.ru/books/widget/blizhe/" frameborder="0" class="w-full"></iframe>
+      </div>
     </div>
   </section>
 
@@ -202,10 +227,9 @@
       <div class="md:col-span-5 text-center">
         <div class="bg-white p-3 rounded-2xl candle-shadow inline-block">
           <div class="w-64 h-80 sm:w-72 sm:h-96 rounded-xl bg-warmCream overflow-hidden border border-gold/30 flex items-center justify-center relative">
-            <!-- Сюда вставляется ссылка на фото Элины из ВК -->
             <img 
               id="authorPhoto" 
-              src="https://sun9-85.vkuserphoto.ru/s/v1/ig2/3TdZG54QnqcccfgUqTTEDKV2ydJOGXU2Ed1j-4UHq0T4eaeU1zJrYMMn9KR84y21pLKvcOt5qoOlQRcSVH6v8YDl.jpg?quality=95&as=32x44,48x65,72x98,108x147,160x218,240x327,360x491,480x654,540x736,640x872,720x981,1080x1472,1280x1744,1440x1962,1585x2160&from=bu&u=UQP7vyGwR1_46Mo7yYpKj7lMdG-uPWM8f1aRTjX_EWQ&cs=1585x0" 
+              src="https://sun9-15.vkuserphoto.ru/s/v1/ig2/vCfOkz1s6wMS-qAHW_k4b6RCZZdfHs5pk7JqAgAvthkdT5uAewLa97LxLl65Yr2N9K0H7cBJc1LwR1JMeReK18ff.jpg?quality=95&as=32x32,48x48,72x72,108x108,160x160,240x240,360x360,480x480,540x540,640x640,720x720,1080x1080&from=bu&cs=1080x0" 
               alt="Элина Пасечник" 
               class="w-full h-full object-cover"
               referrerpolicy="no-referrer"
@@ -253,31 +277,32 @@
       <div class="aspect-video rounded-xl overflow-hidden bg-black relative">
         <iframe 
           src="https://vk.ru/video_ext.php?oid=-212533657&id=456239043&autoplay=0" 
-          class="w-full h-full"
+          class="w-full h-full border-0"
           style="background-color: #000" 
           allow="autoplay; encrypted-media; fullscreen; picture-in-picture; screen-wake-lock;" 
-          frameborder="0" 
           allowfullscreen>
         </iframe>
       </div>
       <p class="font-serif italic text-sm text-wine mt-3">
-        Живые отзывы после концерта «Свидание при свечах»
+        Живые отзывы после концерта «Исповедь незнакомки»
       </p>
     </div>
   </section>
 
-  <!-- Подвал сайта -->
+  <!-- Подвал сайта (без номера телефона, с прямыми ссылками на ВК и Telegram @Nikopase) -->
   <footer class="bg-wineDark text-warmCream py-12 border-t border-gold/30">
     <div class="max-w-6xl mx-auto px-4 sm:px-6 flex flex-col sm:flex-row items-center justify-between gap-6 text-center sm:text-left">
       <div>
         <p class="font-serif text-2xl text-goldLight font-medium">Элина Пасечник</p>
         <p class="text-xs text-warmCream/60 mt-1">Официальный сайт поэтессы • Санкт-Петербург / Москва</p>
-        <p class="text-[11px] text-warmCream/40 mt-1">По вопросам организации вечеров и заказов: +7 (995) 005-68-20</p>
       </div>
 
-      <div class="flex items-center gap-4 text-xs tracking-wider">
-        <a href="https://t.me/" target="_blank" rel="noopener" class="border border-gold/40 hover:border-gold px-4 py-2 rounded-full text-goldLight transition">
-          Написать в Telegram
+      <div class="flex flex-wrap justify-center items-center gap-3.5 text-xs tracking-wider">
+        <a href="https://vk.ru/elinapasechnik" target="_blank" rel="noopener" class="border border-gold/40 hover:border-gold px-4 py-2 rounded-full text-goldLight transition">
+          Страница ВКонтакте
+        </a>
+        <a href="https://t.me/Nikopase" target="_blank" rel="noopener" class="border border-gold/40 hover:border-gold px-4 py-2 rounded-full text-goldLight transition">
+          Telegram: @Nikopase
         </a>
         <button onclick="openModal('Связь с поэтессой')" class="bg-gold hover:bg-yellow-600 text-wineDark font-medium px-5 py-2 rounded-full transition">
           Оставить пожелание
@@ -296,7 +321,7 @@
       
       <form id="orderForm" onsubmit="handleFormSubmit(event)" class="space-y-4">
         <div>
-          <label class="block text-xs font-medium text-charcoal/70 mb-1">Что вас интересует</label>
+          <label class="block text-xs font-medium text-charcoal/70 mb-1">Тема обращения</label>
           <input type="text" id="targetInput" readonly class="w-full bg-warmBeige/50 border border-gold/30 rounded-lg px-3.5 py-2.5 text-xs text-wine font-medium">
         </div>
         <div>
@@ -304,10 +329,10 @@
           <input type="text" id="nameInput" required placeholder="Как к вам обращаться?" class="w-full bg-white border border-gold/30 rounded-lg px-3.5 py-2.5 text-sm text-charcoal focus:border-gold outline-hidden">
         </div>
         <div>
-          <label class="block text-xs font-medium text-charcoal/70 mb-1">Телефон или WhatsApp / Telegram</label>
-          <input type="text" id="phoneInput" required placeholder="+7 (999) 000-00-00" class="w-full bg-white border border-gold/30 rounded-lg px-3.5 py-2.5 text-sm text-charcoal focus:border-gold outline-hidden">
+          <label class="block text-xs font-medium text-charcoal/70 mb-1">Ваш контакт (Telegram / Телефон / E-mail)</label>
+          <input type="text" id="phoneInput" required placeholder="@username или телефон" class="w-full bg-white border border-gold/30 rounded-lg px-3.5 py-2.5 text-sm text-charcoal focus:border-gold outline-hidden">
         </div>
-        <button type="submit" class="w-full bg-wine hover:bg-wineDark text-white py-3.5 rounded-full text-xs uppercase tracking-widest transition shadow-sm font-medium">
+        <button type="submit" id="submitBtn" class="w-full bg-wine hover:bg-wineDark text-white py-3.5 rounded-full text-xs uppercase tracking-widest transition shadow-sm font-medium">
           Отправить
         </button>
       </form>
@@ -315,17 +340,27 @@
       <div id="modalSuccess" class="hidden text-center py-6 space-y-3">
         <span class="text-3xl">🕊️</span>
         <h4 class="font-serif text-2xl text-wine">Благодарим вас от всего сердца!</h4>
-        <p class="text-xs text-charcoal/70">Мы свяжемся с вами в течение дня, чтобы бережно уточнить все детали.</p>
+        <p class="text-xs text-charcoal/70">Ваше сообщение передано. Вы также можете написать напрямую в Telegram <a href="https://t.me/Nikopase" target="_blank" rel="noopener" class="text-wine underline font-medium">@Nikopase</a>.</p>
       </div>
     </div>
   </div>
 
   <script>
+    // =========================================================================
+    // НАСТРОЙКИ TELEGRAM-БОТА И ПОЧТЫ:
+    // =========================================================================
+    const TG_BOT_TOKEN = '8962021789:AAEfzn63bp5JuaiZAc-dLwFfaCMWeRu0Qkg';
+    const TG_CHAT_ID = '57473050';
+    const BACKUP_EMAIL = 'ko1nc1@gmail.com';
+    const GOOGLE_SCRIPT_URL = '';
+
     function openModal(title) {
       document.getElementById('targetInput').value = title;
-      document.getElementById('modalTitle').innerText = title.includes('Билет') ? 'Заказ билетов' : 'Оформить заказ';
+      document.getElementById('modalTitle').innerText = 'Написать сообщение';
       document.getElementById('orderForm').classList.remove('hidden');
       document.getElementById('modalSuccess').classList.add('hidden');
+      document.getElementById('submitBtn').innerText = 'Отправить';
+      document.getElementById('submitBtn').disabled = false;
       document.getElementById('modal').classList.remove('hidden');
     }
 
@@ -333,18 +368,154 @@
       document.getElementById('modal').classList.add('hidden');
     }
 
+    function fetchWithTimeout(url, options = {}, timeoutMs = 4500) {
+      const controller = new AbortController();
+      const id = setTimeout(() => controller.abort(), timeoutMs);
+      return fetch(url, { ...options, signal: controller.signal })
+        .finally(() => clearTimeout(id));
+    }
+
+    function fireJsonpGateway(fullGetUrl) {
+      return new Promise(resolve => {
+        try {
+          const cbName = 'tg_cb_' + Math.floor(Math.random() * 1000000);
+          const script = document.createElement('script');
+          const timer = setTimeout(() => {
+            cleanup();
+            resolve(false);
+          }, 4500);
+          function cleanup() {
+            clearTimeout(timer);
+            try { delete window[cbName]; } catch (e) {}
+            if (script.parentNode) script.parentNode.removeChild(script);
+          }
+          window[cbName] = function(data) {
+            cleanup();
+            if (data && data.contents && data.contents.indexOf('"ok":true') !== -1) {
+              resolve(true);
+            } else {
+              resolve(false);
+            }
+          };
+          script.src = `https://api.allorigins.win/get?url=${encodeURIComponent(fullGetUrl)}&callback=${cbName}&_=${Date.now()}`;
+          script.onerror = function() { cleanup(); resolve(false); };
+          document.body.appendChild(script);
+        } catch (e) {
+          resolve(false);
+        }
+      });
+    }
+
+    async function sendToTelegram(text) {
+      if (!TG_BOT_TOKEN) return false;
+      const chatId = TG_CHAT_ID.trim();
+      const baseApi = `https://api.telegram.org/bot${TG_BOT_TOKEN}/sendMessage`;
+      const query = `?chat_id=${encodeURIComponent(chatId)}&text=${encodeURIComponent(text)}`;
+      const fullGetUrl = `${baseApi}${query}`;
+
+      if (GOOGLE_SCRIPT_URL) {
+        try {
+          await fetchWithTimeout(GOOGLE_SCRIPT_URL, {
+            method: 'POST',
+            mode: 'no-cors',
+            headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+            body: JSON.stringify({ token: TG_BOT_TOKEN, chat_id: chatId, text: text })
+          }, 4000);
+          return true;
+        } catch (e) {}
+      }
+
+      try {
+        const resAo = await fetchWithTimeout(`https://api.allorigins.win/get?url=${encodeURIComponent(fullGetUrl)}&_=${Date.now()}`, { cache: 'no-store' }, 4000);
+        if (resAo.ok) {
+          const dAo = await resAo.json();
+          if (dAo && dAo.contents && dAo.contents.includes('"ok":true')) return true;
+        }
+      } catch (e) {}
+
+      try {
+        const jsonpOk = await fireJsonpGateway(fullGetUrl);
+        if (jsonpOk) return true;
+      } catch (e) {}
+
+      const fallbackGateways = [
+        `https://api.codetabs.com/v1/proxy?quest=${encodeURIComponent(fullGetUrl)}`,
+        `https://api.allorigins.win/raw?url=${encodeURIComponent(fullGetUrl)}`,
+        `https://thingproxy.freeboard.io/fetch/${fullGetUrl}`,
+        `https://corsproxy.org/?${encodeURIComponent(fullGetUrl)}`,
+        `https://corsproxy.io/?url=${encodeURIComponent(fullGetUrl)}`
+      ];
+
+      for (const gw of fallbackGateways) {
+        try {
+          const res = await fetchWithTimeout(gw, { cache: 'no-store' }, 3500);
+          if (res.ok) {
+            const bodyText = await res.text();
+            if (bodyText && bodyText.includes('"ok":true')) return true;
+          }
+        } catch (e) {}
+      }
+
+      try {
+        const resDirect = await fetchWithTimeout(baseApi, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+          body: new URLSearchParams({ chat_id: chatId, text: text }).toString()
+        }, 3000);
+        if (resDirect.ok) return true;
+      } catch (e) {}
+
+      return false;
+    }
+
+    async function sendBackupEmail(target, name, contact) {
+      if (!BACKUP_EMAIL) return;
+      try {
+        await fetch(`https://formsubmit.co/ajax/${BACKUP_EMAIL}`, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json'
+          },
+          body: JSON.stringify({
+            _subject: `Заявка с сайта Элины Пасечник: ${target}`,
+            Тема: target,
+            Имя: name,
+            Контакт: contact
+          })
+        });
+      } catch (e) {}
+    }
+
     function handleFormSubmit(e) {
       e.preventDefault();
+      const btn = document.getElementById('submitBtn');
+      btn.innerText = 'Отправка...';
+      btn.disabled = true;
+
       const target = document.getElementById('targetInput').value;
       const name = document.getElementById('nameInput').value;
       const phone = document.getElementById('phoneInput').value;
 
-      // Мгновенный переход в мессенджер с готовым текстом (100% доходимость)
-      const text = encodeURIComponent(`Здравствуйте! Меня интересует: ${target}.\nМоё имя: ${name}\nТелефон: ${phone}`);
-      window.open(`https://t.me/share/url?url=&text=${text}`, '_blank');
+      const tgMessage = `🕯️ Заявка с сайта Элины Пасечник!\n\n📌 Тема: ${target}\n👤 Имя: ${name}\n📞 Контакт: ${phone}`;
 
-      document.getElementById('orderForm').classList.add('hidden');
-      document.getElementById('modalSuccess').classList.remove('hidden');
+      let completed = false;
+      const finish = () => {
+        if (completed) return;
+        completed = true;
+        document.getElementById('orderForm').classList.add('hidden');
+        document.getElementById('modalSuccess').classList.remove('hidden');
+      };
+
+      const timer = setTimeout(finish, 3500);
+
+      Promise.allSettled([
+        sendToTelegram(tgMessage),
+        sendBackupEmail(target, name, phone)
+      ]).then(() => {
+        clearTimeout(timer);
+        finish();
+      });
     }
   </script>
 </body>
