@@ -105,6 +105,12 @@
   </script>
 
   <style>
+    /* Защита от горизонтального скролла и вылезания текста на мобильных */
+    html, body {
+      max-width: 100vw;
+      overflow-x: hidden;
+    }
+
     .gold-gradient-text {
       background: linear-gradient(135deg, #C5A059 0%, #E8D3A7 50%, #B38B42 100%);
       -webkit-background-clip: text;
@@ -120,19 +126,19 @@
       transform: translateY(-5px);
     }
 
-    /* 3D-ритуал вытягивания карты Оракула */
+    /* 3D-ритуал вытягивания карты Оракула (укороченная пропорция 1:1.365 без черных полос) */
     .oracle-deck-stage {
       perspective: 1400px;
-      width: 280px;
-      height: 450px;
+      width: 100%;
+      max-width: 255px;
+      aspect-ratio: 255 / 348;
       margin: 0 auto;
       cursor: pointer;
       position: relative;
     }
     @media (min-width: 640px) {
       .oracle-deck-stage {
-        width: 310px;
-        height: 495px;
+        max-width: 288px;
       }
     }
     .oracle-card-body {
@@ -145,7 +151,7 @@
       box-shadow: 0 20px 45px rgba(38, 11, 18, 0.55), 0 0 28px rgba(197, 160, 89, 0.3);
     }
     .oracle-deck-stage:hover .oracle-card-body:not(.flipped) {
-      transform: translateY(-6px) scale(1.015);
+      transform: translateY(-5px) scale(1.015);
       box-shadow: 0 25px 55px rgba(38, 11, 18, 0.7), 0 0 38px rgba(232, 211, 167, 0.5);
     }
     .oracle-card-body.flipped {
@@ -173,7 +179,7 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      background: #120609;
+      background: #1a080d;
     }
 
     /* Невидимая ловушка для ботов */
@@ -216,10 +222,10 @@
 
   <!-- Шапка сайта -->
   <header class="sticky top-0 z-40 bg-warmCream/95 backdrop-blur border-b border-gold/20 shadow-xs">
-    <div class="max-w-6xl mx-auto px-4 sm:px-6 py-4 flex items-center justify-between">
-      <a href="#top" class="flex flex-col">
-        <span class="font-serif text-2xl sm:text-3xl text-wine font-semibold tracking-wider">Элина Пасечник</span>
-        <span class="text-[10px] sm:text-xs text-gold uppercase tracking-[0.25em] font-medium">Поэзия • Концерты • Оракул</span>
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 py-3.5 sm:py-4 flex items-center justify-between">
+      <a href="#top" class="flex flex-col min-w-0">
+        <span class="font-serif text-2xl sm:text-3xl text-wine font-semibold tracking-wider truncate">Элина Пасечник</span>
+        <span class="text-[10px] sm:text-xs text-gold uppercase tracking-[0.2em] sm:tracking-[0.25em] font-medium">Поэзия • Концерты • Оракул</span>
       </a>
 
       <nav class="hidden md:flex items-center gap-7 text-xs uppercase tracking-widest text-charcoal/80 font-medium">
@@ -233,42 +239,42 @@
   </header>
 
   <!-- Первый экран -->
-  <section class="relative py-16 sm:py-24 overflow-hidden bg-gradient-to-b from-warmBeige/40 via-warmCream to-warmCream border-b border-gold/15">
-    <div class="max-w-6xl mx-auto px-4 sm:px-6 grid lg:grid-cols-12 gap-12 items-center">
+  <section class="relative py-12 sm:py-24 overflow-hidden bg-gradient-to-b from-warmBeige/40 via-warmCream to-warmCream border-b border-gold/15">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 grid lg:grid-cols-12 gap-8 sm:gap-12 items-center">
       
-      <div class="lg:col-span-7 space-y-6 text-center lg:text-left">
-        <div class="inline-flex items-center gap-2 bg-white/80 border border-gold/30 px-4 py-1.5 rounded-full text-xs text-wine font-medium">
+      <div class="lg:col-span-7 min-w-0 space-y-5 sm:space-y-6 text-center lg:text-left">
+        <div class="inline-flex flex-wrap justify-center lg:justify-start items-center gap-1.5 sm:gap-2 bg-white/80 border border-gold/30 px-3.5 sm:px-4 py-1.5 rounded-2xl sm:rounded-full text-[11px] sm:text-xs text-wine font-medium max-w-full">
           <span class="text-gold">✦</span>
           <span>Член Союза писателей России • Номинант премии «Поэт года»</span>
         </div>
 
-        <h1 class="font-serif text-4xl sm:text-6xl text-wine leading-[1.15] font-normal">
+        <h1 class="font-serif text-3xl sm:text-6xl text-wine leading-[1.15] font-normal break-words">
           Стихи, в которых <br class="hidden sm:inline">
           <span class="italic font-semibold gold-gradient-text">каждая женщина</span> <br>
           узнает свою историю
         </h1>
 
-        <p class="text-base sm:text-lg text-charcoal/75 font-light leading-relaxed max-w-xl mx-auto lg:mx-0">
+        <p class="text-sm sm:text-lg text-charcoal/75 font-light leading-relaxed max-w-xl mx-auto lg:mx-0">
           О любви, которая возрождает. Об испытаниях, делающих нас глубже. О тихом женском счастье и нежности, которой так не хватает в суете дней.
         </p>
 
         <!-- 3 ключевых действия для посетительницы -->
-        <div class="pt-4 flex flex-wrap justify-center lg:justify-start gap-3.5">
-          <a href="#oracle" class="bg-wine hover:bg-wineDark text-white px-7 py-3.5 rounded-full text-xs uppercase tracking-widest transition shadow-md">
+        <div class="pt-2 sm:pt-4 flex flex-col sm:flex-row flex-wrap justify-center lg:justify-start gap-3">
+          <a href="#oracle" class="bg-wine hover:bg-wineDark text-white px-6 py-3.5 rounded-full text-xs uppercase tracking-widest transition shadow-md text-center">
             Карты «Оракул Элины Пасечник»
           </a>
-          <a href="#book" class="bg-white border border-gold text-wine hover:bg-goldLight/30 px-6 py-3.5 rounded-full text-xs uppercase tracking-widest transition">
+          <a href="#book" class="bg-white border border-gold text-wine hover:bg-goldLight/30 px-6 py-3.5 rounded-full text-xs uppercase tracking-widest transition text-center">
             Книга стихов «Ближе»
           </a>
-          <a href="#concerts" class="bg-warmBeige hover:bg-gold/20 text-charcoal px-6 py-3.5 rounded-full text-xs uppercase tracking-widest transition">
+          <a href="#concerts" class="bg-warmBeige hover:bg-gold/20 text-charcoal px-6 py-3.5 rounded-full text-xs uppercase tracking-widest transition text-center">
             Концерт при свечах
           </a>
         </div>
       </div>
 
       <!-- Главное видео (ВК Видео с плеером) -->
-      <div class="lg:col-span-5">
-        <div class="relative bg-white p-3.5 rounded-2xl candle-shadow border border-gold/30">
+      <div class="lg:col-span-5 min-w-0 w-full">
+        <div class="relative bg-white p-2.5 sm:p-3.5 rounded-2xl candle-shadow border border-gold/30">
           <div class="aspect-video rounded-xl overflow-hidden bg-black relative">
             <iframe 
               src="https://vk.ru/video_ext.php?oid=462652209&id=456239282&autoplay=0" 
@@ -278,7 +284,7 @@
               allowfullscreen>
             </iframe>
           </div>
-          <p class="text-center font-serif italic text-sm text-wine/80 mt-3">
+          <p class="text-center font-serif italic text-xs sm:text-sm text-wine/80 mt-2.5 sm:mt-3">
             «Исповедь незнакомки» — вечер, возвращающий вкус к жизни
           </p>
         </div>
@@ -291,48 +297,48 @@
   <!-- ПОСАДОЧНЫЙ РАЗДЕЛ №1: КОЛОДА КАРТ «ОРАКУЛ ЭЛИНЫ ПАСЕЧНИК» (#oracle)    -->
   <!-- Ссылка для Яндекс Директа: https://elinapasechnik.ru/?...#oracle        -->
   <!-- ======================================================================= -->
-  <section id="oracle" class="py-16 sm:py-24 border-b border-gold/20 bg-gradient-to-b from-warmCream via-warmBeige/30 to-warmCream scroll-mt-16">
-    <div class="max-w-6xl mx-auto px-4 sm:px-6">
-      <div class="bg-white rounded-3xl p-6 sm:p-12 border border-gold/35 candle-shadow">
+  <section id="oracle" class="py-12 sm:py-24 border-b border-gold/20 bg-gradient-to-b from-warmCream via-warmBeige/30 to-warmCream scroll-mt-24">
+    <div class="max-w-6xl mx-auto px-3.5 sm:px-6">
+      <div class="bg-white rounded-2xl sm:rounded-3xl p-5 sm:p-12 border border-gold/35 candle-shadow overflow-hidden">
         
-        <div class="grid lg:grid-cols-12 gap-10 items-center">
+        <div class="grid lg:grid-cols-12 gap-8 sm:gap-10 items-center">
           
           <!-- Левая колонка: Описание и ценность колоды -->
-          <div class="lg:col-span-7 space-y-6">
-            <div class="inline-flex items-center gap-2 bg-warmCream border border-gold/40 px-3.5 py-1 rounded-full text-[11px] uppercase tracking-widest text-wine font-semibold">
+          <div class="lg:col-span-7 min-w-0 space-y-5 sm:space-y-6">
+            <div class="inline-flex flex-wrap items-center gap-2 bg-warmCream border border-gold/40 px-3 sm:px-3.5 py-1.5 rounded-xl sm:rounded-full text-[10px] sm:text-[11px] uppercase tracking-wider sm:tracking-widest text-wine font-semibold max-w-full">
               <span>🔮</span>
-              <span>Авторская колода из 60 карт • Быстрая доставка Ozon</span>
+              <span class="leading-snug">Авторская колода из 60 карт • Доставка Ozon</span>
             </div>
 
-            <h2 class="font-serif text-3xl sm:text-5xl text-wine leading-tight font-normal">
+            <h2 class="font-serif text-2xl sm:text-5xl text-wine leading-tight font-normal break-words">
               «Оракул Элины Пасечник» — <span class="italic font-semibold text-gold">бережный диалог</span> с вашей интуицией
             </h2>
 
-            <p class="text-sm sm:text-base text-charcoal/80 font-light leading-relaxed">
+            <p class="text-sm sm:text-base text-charcoal/80 font-light leading-relaxed break-words">
               Каждая карта этой авторской колоды соединяет глубокий художественный образ и проникновенное поэтическое послание Элины Пасечник. Колода создана для тонкой внутренней настройки: чтобы в минуты сомнений, усталости или важного выбора вы могли остановиться, вытянуть карту и услышать ответ собственного сердца.
             </p>
 
             <!-- Преимущества колоды для покупательницы -->
-            <div class="grid sm:grid-cols-2 gap-4 pt-2">
-              <div class="bg-warmCream/70 p-4 rounded-xl border border-gold/20">
+            <div class="grid sm:grid-cols-2 gap-3.5 sm:gap-4 pt-1">
+              <div class="bg-warmCream/70 p-4 rounded-xl border border-gold/20 min-w-0">
                 <p class="font-serif text-lg text-wine font-semibold">✨ Утренний ритуал настройки</p>
                 <p class="text-xs text-charcoal/70 mt-1 font-light leading-relaxed">
                   Вытяните одну карту за утренним кофе, чтобы задать тёплый, осознанный вектор всему предстоящему дню.
                 </p>
               </div>
-              <div class="bg-warmCream/70 p-4 rounded-xl border border-gold/20">
+              <div class="bg-warmCream/70 p-4 rounded-xl border border-gold/20 min-w-0">
                 <p class="font-serif text-lg text-wine font-semibold">🌿 Понятна с первого прикосновения</p>
                 <p class="text-xs text-charcoal/70 mt-1 font-light leading-relaxed">
                   Не нужно учить сложные толкования — поэтические строки на картах говорят с душой напрямую и бережно.
                 </p>
               </div>
-              <div class="bg-warmCream/70 p-4 rounded-xl border border-gold/20">
+              <div class="bg-warmCream/70 p-4 rounded-xl border border-gold/20 min-w-0">
                 <p class="font-serif text-lg text-wine font-semibold">🎁 Подарок со смыслом</p>
                 <p class="text-xs text-charcoal/70 mt-1 font-light leading-relaxed">
                   Эстетичное исполнение делает колоду незабываемым подарком для близкой подруги, мамы, сестры или психолога.
                 </p>
               </div>
-              <div class="bg-warmCream/70 p-4 rounded-xl border border-gold/20">
+              <div class="bg-warmCream/70 p-4 rounded-xl border border-gold/20 min-w-0">
                 <p class="font-serif text-lg text-wine font-semibold">📦 Доставка в любой ПВЗ Ozon</p>
                 <p class="text-xs text-charcoal/70 mt-1 font-light leading-relaxed">
                   Безопасная покупка через официальную витрину на Ozon с быстрой доставкой рядом с вашим домом.
@@ -341,30 +347,30 @@
             </div>
 
             <!-- Главные кнопки целевого действия -->
-            <div class="pt-4 flex flex-col sm:flex-row items-stretch sm:items-center gap-4">
+            <div class="pt-2 sm:pt-4 flex flex-col sm:flex-row items-stretch sm:items-center gap-3.5 sm:gap-4">
               <a href="https://ozon.onelink.me/SNMZ?af_dp=https://ozon.ru/product/orakul-eliny-pasechnik-5114150489&af_web_dp=https://ozon.ru/product/orakul-eliny-pasechnik-5114150489&is_retargeting=true&c=vendor_org_4133655_oracle_elina_site&pid=yandex_direct|cpc&af_adset=ozon_btn&hs=1&utm_source=yandex_direct&utm_medium=cpc&utm_campaign=vendor_org_4133655_oracle_elina_site&utm_content=ozon_btn" 
                  target="_blank" 
                  rel="noopener" 
                  onclick="trackConversionGoal('buy_oracle_ozon')" 
-                 class="ozon-oracle-link inline-flex items-center justify-center gap-2 bg-wine hover:bg-wineDark text-white px-8 py-4 rounded-full text-xs uppercase tracking-widest font-medium transition shadow-md text-center">
+                 class="ozon-oracle-link inline-flex items-center justify-center gap-2 bg-wine hover:bg-wineDark text-white px-6 sm:px-8 py-4 rounded-full text-xs uppercase tracking-widest font-medium transition shadow-md text-center">
                 <span>Заказать колоду на Ozon</span>
                 <span>→</span>
               </a>
               <span class="text-xs text-charcoal/60 text-center sm:text-left">
-                Попробуйте вытянуть свою карту онлайн справа →
+                Попробуйте вытянуть свою карту онлайн →
               </span>
             </div>
           </div>
 
-          <!-- Правая колонка: Романтический 3D-ритуал вытягивания карты (рубашкой вверх при загрузке) -->
-          <div class="lg:col-span-5">
-            <div class="bg-gradient-to-b from-wine to-wineDark text-warmCream rounded-2xl p-6 sm:p-7 border border-gold/40 candle-shadow text-center space-y-4 relative overflow-hidden">
+          <!-- Правая колонка: Романтический 3D-ритуал вытягивания карты (рубашкой вверх при загрузке, без черных полос) -->
+          <div class="lg:col-span-5 min-w-0 w-full">
+            <div class="bg-gradient-to-b from-wine to-wineDark text-warmCream rounded-2xl p-5 sm:p-7 border border-gold/40 candle-shadow text-center space-y-4 relative overflow-hidden">
               
               <div class="space-y-1">
-                <span class="text-[10px] uppercase tracking-[0.25em] text-goldLight/90 font-medium block">
+                <span class="text-[10px] uppercase tracking-[0.2em] sm:tracking-[0.25em] text-goldLight/90 font-medium block">
                   ✦ Таинство живого отклика ✦
                 </span>
-                <h3 class="font-serif text-2xl sm:text-3xl text-white font-normal">
+                <h3 class="font-serif text-xl sm:text-3xl text-white font-normal">
                   Вытяните карту для своего сердца
                 </h3>
                 <p id="oracleRitualHint" class="text-xs text-warmCream/80 font-light leading-relaxed max-w-xs mx-auto">
@@ -372,7 +378,7 @@
                 </p>
               </div>
 
-              <!-- 3D-сцена карты (при загрузке строго рубашкой вверх) -->
+              <!-- 3D-сцена карты (укороченная под пропорции рисунков карт — без черных полос) -->
               <div class="oracle-deck-stage" onclick="flipOracleDeckCard()" title="Нажмите, чтобы открыть карту">
                 <div class="oracle-card-body" id="oracleDeckCard">
                   
@@ -380,16 +386,16 @@
                   <div class="oracle-card-side oracle-side-back">
                     <img src="https://drive.google.com/thumbnail?id=11Y1L0clVsYw4X7BQpzPucibbtTOf4EyO&sz=w800" 
                          alt="Рубашка колоды Оракул Элины Пасечник" 
-                         class="w-full h-full object-cover block"
+                         class="w-full h-full object-cover object-center block"
                          referrerpolicy="no-referrer">
                   </div>
 
-                  <!-- Лицевая сторона карты (подлинное изображение из колоды) -->
+                  <!-- Лицевая сторона карты (object-cover заполняет всю рамку без черных полос) -->
                   <div class="oracle-card-side oracle-side-front">
                     <img id="deckCardArtImg" 
                          src="" 
                          alt="Послание колоды Оракул Элины Пасечник" 
-                         class="w-full h-full object-contain block bg-black"
+                         class="w-full h-full object-cover object-center block"
                          referrerpolicy="no-referrer">
                   </div>
 
@@ -398,7 +404,7 @@
 
               <!-- Кнопка вытягивания карты -->
               <div class="pt-1">
-                <button type="button" id="oracleDrawActionBtn" onclick="flipOracleDeckCard()" class="w-full bg-gold hover:bg-yellow-600 text-wineDark font-semibold py-3.5 px-6 rounded-full text-xs uppercase tracking-widest transition shadow-md">
+                <button type="button" id="oracleDrawActionBtn" onclick="flipOracleDeckCard()" class="w-full bg-gold hover:bg-yellow-600 text-wineDark font-semibold py-3.5 px-4 sm:px-6 rounded-full text-[11px] sm:text-xs uppercase tracking-wider sm:tracking-widest transition shadow-md">
                   ✨ Прикоснуться к колоде и открыть карту
                 </button>
               </div>
@@ -425,15 +431,15 @@
   <!-- ПОСАДОЧНЫЙ РАЗДЕЛ №2: СБОРНИК СТИХОВ «БЛИЖЕ» (#book)                    -->
   <!-- Ссылка для Яндекс Директа: https://elinapasechnik.ru/?...#book          -->
   <!-- ======================================================================= -->
-  <section id="book" class="py-16 sm:py-24 border-b border-gold/20 bg-warmCream scroll-mt-16">
-    <div class="max-w-6xl mx-auto px-4 sm:px-6">
-      <div class="bg-white rounded-3xl p-6 sm:p-12 border border-gold/35 candle-shadow">
+  <section id="book" class="py-12 sm:py-24 border-b border-gold/20 bg-warmCream scroll-mt-24">
+    <div class="max-w-6xl mx-auto px-3.5 sm:px-6">
+      <div class="bg-white rounded-2xl sm:rounded-3xl p-5 sm:p-12 border border-gold/35 candle-shadow overflow-hidden">
         
-        <div class="grid lg:grid-cols-12 gap-10 items-center">
+        <div class="grid lg:grid-cols-12 gap-8 sm:gap-10 items-center">
           
           <!-- Левая колонка: Подлинная фотография сборника стихов «Ближе» -->
-          <div class="lg:col-span-5 order-2 lg:order-1">
-            <div class="bg-warmCream p-3.5 rounded-2xl border border-gold/35 candle-shadow">
+          <div class="lg:col-span-5 min-w-0 w-full order-2 lg:order-1">
+            <div class="bg-warmCream p-3 sm:p-3.5 rounded-2xl border border-gold/35 candle-shadow">
               <div class="rounded-xl overflow-hidden border border-gold/20 bg-white">
                 <img 
                   src="https://sun9-56.vkuserphoto.ru/s/v1/ig2/FVImGo6qkoxfjioLpcnWkLnGYYRKD1rot1m9Jq5GHqS8UMHLLNMh4MEQ-F4uVpgU-cnjWG5gAfEFC1_RYqWTuCC5.jpg?quality=95&as=32x21,48x32,72x48,108x72,160x107,240x160,360x240,480x321,540x361,640x427,720x481,1080x721,1280x855,1440x962,2560x1710&from=bu&u=h7So_iUCcRmcgrvX6c4zXFgGABKRBnHsYmCUOxkRPOs&cs=2560x0" 
@@ -442,48 +448,48 @@
                   referrerpolicy="no-referrer"
                 >
               </div>
-              <p class="text-center font-serif italic text-sm text-wine/85 mt-3">
+              <p class="text-center font-serif italic text-xs sm:text-sm text-wine/85 mt-2.5 sm:mt-3">
                 Авторский сборник лирики Элины Пасечник «Ближе»
               </p>
             </div>
           </div>
 
           <!-- Правая колонка: Описание книги и покупка -->
-          <div class="lg:col-span-7 space-y-6 order-1 lg:order-2">
-            <div class="inline-flex items-center gap-2 bg-warmCream border border-gold/40 px-3.5 py-1 rounded-full text-[11px] uppercase tracking-widest text-wine font-semibold">
+          <div class="lg:col-span-7 min-w-0 space-y-5 sm:space-y-6 order-1 lg:order-2">
+            <div class="inline-flex flex-wrap items-center gap-2 bg-warmCream border border-gold/40 px-3 sm:px-3.5 py-1.5 rounded-xl sm:rounded-full text-[10px] sm:text-[11px] uppercase tracking-wider sm:tracking-widest text-wine font-semibold max-w-full">
               <span>📚</span>
-              <span>Авторское издание • Печатная и электронная версия</span>
+              <span class="leading-snug">Авторское издание • Печатная и электронная версия</span>
             </div>
 
-            <h2 class="font-serif text-3xl sm:text-5xl text-wine leading-tight font-normal">
+            <h2 class="font-serif text-2xl sm:text-5xl text-wine leading-tight font-normal break-words">
               Сборник стихов «Ближе» — <span class="italic font-semibold text-gold">книга-объятие</span> для женской души
             </h2>
 
-            <p class="text-sm sm:text-base text-charcoal/80 font-light leading-relaxed">
+            <p class="text-sm sm:text-base text-charcoal/80 font-light leading-relaxed break-words">
               Изящное авторское издание лирики Элины Пасечник. Это книга на прикроватный столик, к которой возвращаешься в минуты светлой грусти, надежды или тихого вечернего чая. Каждое стихотворение здесь звучит как откровенный разговор по душам с близкой подругой.
             </p>
 
             <ul class="space-y-2.5 text-sm text-charcoal/80 font-light">
               <li class="flex items-start gap-2.5">
-                <span class="text-gold font-bold">✦</span>
+                <span class="text-gold font-bold shrink-0">✦</span>
                 <span><strong>Живая женская лирика:</strong> стихи о любви, внутреннем взрослении, нежности и умении беречь свет в сердце.</span>
               </li>
               <li class="flex items-start gap-2.5">
-                <span class="text-gold font-bold">✦</span>
+                <span class="text-gold font-bold shrink-0">✦</span>
                 <span><strong>Два удобных формата:</strong> вы можете заказать бумажную книгу с доставкой или сразу приобрести электронную версию для чтения в телефоне и ридере.</span>
               </li>
               <li class="flex items-start gap-2.5">
-                <span class="text-gold font-bold">✦</span>
+                <span class="text-gold font-bold shrink-0">✦</span>
                 <span><strong>Прекрасный дуэт с колодой «Оракул»:</strong> читательницы часто заказывают книгу «Ближе» вместе с картами-посланиями для себя или в подарок близкому человеку.</span>
               </li>
             </ul>
 
-            <div class="pt-4 flex flex-col sm:flex-row items-stretch sm:items-center gap-4">
+            <div class="pt-2 sm:pt-4 flex flex-col sm:flex-row items-stretch sm:items-center gap-3.5 sm:gap-4">
               <a href="https://ridero.ru/books/blizhe/" 
                  target="_blank" 
                  rel="noopener" 
                  onclick="trackConversionGoal('buy_book')" 
-                 class="inline-flex items-center justify-center gap-2 bg-gold hover:bg-yellow-600 text-white px-8 py-4 rounded-full text-xs uppercase tracking-widest font-medium transition shadow-md text-center">
+                 class="inline-flex items-center justify-center gap-2 bg-gold hover:bg-yellow-600 text-white px-6 sm:px-8 py-4 rounded-full text-xs uppercase tracking-widest font-medium transition shadow-md text-center">
                 <span>Купить книгу «Ближе»</span>
                 <span>→</span>
               </a>
@@ -500,13 +506,13 @@
   </section>
 
   <!-- Живые концерты («Исповедь незнакомки») с фотографией -->
-  <section id="concerts" class="py-16 sm:py-20 max-w-6xl mx-auto px-4 sm:px-6 scroll-mt-16">
-    <div class="bg-white rounded-3xl p-6 sm:p-10 border border-gold/25 candle-shadow grid md:grid-cols-12 gap-8 items-center">
+  <section id="concerts" class="py-12 sm:py-20 max-w-6xl mx-auto px-3.5 sm:px-6 scroll-mt-24">
+    <div class="bg-white rounded-2xl sm:rounded-3xl p-5 sm:p-10 border border-gold/25 candle-shadow grid md:grid-cols-12 gap-6 sm:gap-8 items-center overflow-hidden">
       
-      <div class="md:col-span-7 space-y-4 text-center md:text-left">
-        <span class="text-[11px] uppercase tracking-widest text-gold font-semibold block">🕯️ Живое музыкально-поэтическое событие</span>
-        <h2 class="font-serif text-3xl sm:text-4xl text-wine font-semibold">Концерт при свечах «Исповедь незнакомки»</h2>
-        <p class="text-sm sm:text-base text-charcoal/75 leading-relaxed font-light">
+      <div class="md:col-span-7 min-w-0 space-y-4 text-center md:text-left">
+        <span class="text-[10px] sm:text-[11px] uppercase tracking-widest text-gold font-semibold block">🕯️ Живое музыкально-поэтическое событие</span>
+        <h2 class="font-serif text-2xl sm:text-4xl text-wine font-semibold break-words">Концерт при свечах «Исповедь незнакомки»</h2>
+        <p class="text-sm sm:text-base text-charcoal/75 leading-relaxed font-light break-words">
           Камерный вечер при мерцании сотен свечей. Проникновенная лирика Элины Пасечник под аккомпанемент гитариста-виртуоза, номинанта премии Grammy <strong>Михаила Савичева</strong> (легендарное трио «Лойко»).
         </p>
         <div class="pt-2">
@@ -514,14 +520,14 @@
              target="_blank" 
              rel="noopener" 
              onclick="trackConversionGoal('vk_subscribe')" 
-             class="inline-block w-full sm:w-auto bg-wine hover:bg-wineDark text-white px-8 py-4 rounded-full text-xs uppercase tracking-widest transition shadow-md text-center">
+             class="inline-block w-full sm:w-auto bg-wine hover:bg-wineDark text-white px-6 sm:px-8 py-4 rounded-full text-xs uppercase tracking-widest transition shadow-md text-center">
             Следить за анонсами в ВК
           </a>
         </div>
       </div>
 
-      <div class="md:col-span-5">
-        <div class="bg-warmCream p-3 rounded-2xl border border-gold/30 candle-shadow">
+      <div class="md:col-span-5 min-w-0 w-full">
+        <div class="bg-warmCream p-2.5 sm:p-3 rounded-2xl border border-gold/30 candle-shadow">
           <div class="rounded-xl overflow-hidden aspect-[4/3] bg-wineDark">
             <img 
               src="https://drive.google.com/thumbnail?id=1do8-R49_yHbMDJ4PkRVsRhOXeoSyTFHT&sz=w1200" 
@@ -537,12 +543,12 @@
   </section>
 
   <!-- Об авторе (Элина Пасечник) -->
-  <section id="about" class="py-16 sm:py-20 bg-warmBeige/40 border-y border-gold/20">
-    <div class="max-w-5xl mx-auto px-4 sm:px-6 grid md:grid-cols-12 gap-10 items-center">
+  <section id="about" class="py-12 sm:py-20 bg-warmBeige/40 border-y border-gold/20 scroll-mt-24">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 grid md:grid-cols-12 gap-8 sm:gap-10 items-center">
       
-      <div class="md:col-span-5 text-center">
-        <div class="bg-white p-3 rounded-2xl candle-shadow inline-block">
-          <div class="w-64 h-80 sm:w-72 sm:h-96 rounded-xl bg-warmCream overflow-hidden border border-gold/30 flex items-center justify-center relative">
+      <div class="md:col-span-5 min-w-0 text-center">
+        <div class="bg-white p-3 rounded-2xl candle-shadow inline-block max-w-full">
+          <div class="w-60 h-76 sm:w-72 sm:h-96 max-w-full rounded-xl bg-warmCream overflow-hidden border border-gold/30 flex items-center justify-center relative mx-auto">
             <img 
               id="authorPhoto" 
               src="https://sun9-15.vkuserphoto.ru/s/v1/ig2/vCfOkz1s6wMS-qAHW_k4b6RCZZdfHs5pk7JqAgAvthkdT5uAewLa97LxLl65Yr2N9K0H7cBJc1LwR1JMeReK18ff.jpg?quality=95&as=32x32,48x48,72x72,108x108,160x160,240x240,360x360,480x480,540x540,640x640,720x720,1080x1080&from=bu&cs=1080x0" 
@@ -554,8 +560,8 @@
         </div>
       </div>
 
-      <div class="md:col-span-7 space-y-5">
-        <span class="text-gold text-xs uppercase tracking-[0.25em] font-medium">Голос женского сердца</span>
+      <div class="md:col-span-7 min-w-0 space-y-4 sm:space-y-5">
+        <span class="text-gold text-xs uppercase tracking-[0.25em] font-medium block">Голос женского сердца</span>
         <h2 class="font-serif text-3xl sm:text-4xl text-wine font-normal">Элина Пасечник</h2>
         
         <p class="text-sm sm:text-base text-charcoal/80 font-light leading-relaxed">
@@ -566,12 +572,12 @@
           Награждена государственными и общественными литературными медалями Анны Ахматовой, Александра Блока, Антона Чехова, Афанасия Фета, Александра Пушкина и медалью «Святая Русь», а также лауреат литературной премии «Наследие».
         </p>
 
-        <blockquote class="border-l-2 border-gold pl-4 py-1 italic font-serif text-lg text-wine/90">
+        <blockquote class="border-l-2 border-gold pl-4 py-1 italic font-serif text-base sm:text-lg text-wine/90">
           «Мои стихи — это не просто рифмы. Это объятие для тех, кто устал быть сильной, и напоминание о том, как прекрасна женская душа в своей искренности».
         </blockquote>
 
         <div class="pt-2">
-          <button onclick="openModal('Пригласить на закрытый вечер')" class="text-xs uppercase tracking-widest text-wine hover:text-gold font-semibold underline underline-offset-8 transition">
+          <button onclick="openModal('Пригласить на закрытый вечер')" class="text-xs uppercase tracking-widest text-wine hover:text-gold font-semibold underline underline-offset-8 transition text-left">
             Пригласить на закрытый вечер →
           </button>
         </div>
@@ -581,15 +587,15 @@
   </section>
 
   <!-- Видео-отзывы зрителей -->
-  <section id="reviews" class="py-16 sm:py-24 max-w-5xl mx-auto px-4 sm:px-6 text-center">
+  <section id="reviews" class="py-12 sm:py-24 max-w-5xl mx-auto px-4 sm:px-6 text-center scroll-mt-24">
     <span class="text-gold text-xs uppercase tracking-[0.3em] font-medium">Искренние эмоции</span>
-    <h2 class="font-serif text-3xl sm:text-5xl text-wine mt-2 mb-4 font-normal">Что чувствуют зрительницы</h2>
-    <p class="text-sm sm:text-base text-charcoal/70 max-w-2xl mx-auto mb-10 font-light">
+    <h2 class="font-serif text-2xl sm:text-5xl text-wine mt-2 mb-4 font-normal">Что чувствуют зрительницы</h2>
+    <p class="text-sm sm:text-base text-charcoal/70 max-w-2xl mx-auto mb-8 sm:mb-10 font-light">
       Слезы очищения, улыбки и ощущение, будто груз забот спадает с плеч уже после первых строк.
     </p>
 
     <!-- Второе видео: Отзывы из ВК -->
-    <div class="bg-white p-3.5 rounded-2xl candle-shadow border border-gold/25 max-w-3xl mx-auto">
+    <div class="bg-white p-2.5 sm:p-3.5 rounded-2xl candle-shadow border border-gold/25 max-w-3xl mx-auto">
       <div class="aspect-video rounded-xl overflow-hidden bg-black relative">
         <iframe 
           src="https://vk.ru/video_ext.php?oid=-212533657&id=456239043&autoplay=0" 
@@ -599,14 +605,14 @@
           allowfullscreen>
         </iframe>
       </div>
-      <p class="font-serif italic text-sm text-wine mt-3">
+      <p class="font-serif italic text-xs sm:text-sm text-wine mt-2.5 sm:mt-3">
         Живые отзывы после концерта «Исповедь незнакомки»
       </p>
     </div>
   </section>
 
   <!-- Подвал сайта (без кнопки Telegram) -->
-  <footer class="bg-wineDark text-warmCream py-12 border-t border-gold/30">
+  <footer class="bg-wineDark text-warmCream py-10 sm:py-12 border-t border-gold/30">
     <div class="max-w-6xl mx-auto px-4 sm:px-6 flex flex-col sm:flex-row items-center justify-between gap-6 text-center sm:text-left">
       <div>
         <p class="font-serif text-2xl text-goldLight font-medium">Элина Пасечник</p>
@@ -725,7 +731,7 @@
     }
 
     // =========================================================================
-    // РИТУАЛ ВЫТЯГИВАНИЯ КАРТЫ: ПОЛНАЯ КОЛОДА ИЗ 60 КАРТ (БЕЗ ВЫДУМАННЫХ ИМЁН)
+    // РИТУАЛ ВЫТЯГИВАНИЯ КАРТЫ: ПОЛНАЯ КОЛОДА ИЗ 60 КАРТ (БЕЗ ЧЕРНЫХ ПОЛОС)
     // =========================================================================
     const oracleCardIds = [
       "1vX4S3DNCB3DgYwD-2o1f6lTCTdUE28MP",
@@ -829,7 +835,7 @@
         isCardFlipped = true;
 
         if (hintEl) {
-          hintEl.innerText = 'Вчитайтесь в строки вашей карты и прислушайтесь к первому отклику в душе...';
+          hintEl.innerText = 'Вчитайтесь в образ вашей карты и прислушайтесь к первому отклику в душе...';
         }
         if (btnEl) {
           btnEl.innerText = '✨ Вытянуть другую карту из колоды';
@@ -853,7 +859,7 @@
           isCardFlipped = true;
 
           if (hintEl) {
-            hintEl.innerText = 'Новое послание открыто для вас. Пусть эти строки согреют ваше сердце.';
+            hintEl.innerText = 'Новое послание открыто для вас. Пусть этот образ согреет ваше сердце.';
           }
           prepareNextOracleCard();
           setTimeout(() => { isFlipAnimating = false; }, 950);
@@ -1006,9 +1012,7 @@
     function handleFormSubmit(e) {
       e.preventDefault();
 
-      // Проверка 1: Honeypot (если скрытое поле заполнено — это бот)
       const trapVal = document.getElementById('websiteUrl').value;
-      // Проверка 2: Таймер (если форма отправлена быстрее 2.5 сек после открытия — это бот)
       const fillDuration = Date.now() - modalOpenTimestamp;
 
       if (trapVal !== '' || fillDuration < 2500 || !isHumanVerified || isHeadlessBot()) {
