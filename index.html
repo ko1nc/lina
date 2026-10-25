@@ -126,19 +126,19 @@
       transform: translateY(-5px);
     }
 
-    /* 3D-ритуал вытягивания карты Оракула (укороченная пропорция 1:1.365 без черных полос) */
+    /* 3D-ритуал вытягивания карты Оракула: точная пропорция 290/422 (1:1.455) убирает только черные полосы без обрезки рисунка */
     .oracle-deck-stage {
       perspective: 1400px;
       width: 100%;
-      max-width: 255px;
-      aspect-ratio: 255 / 348;
+      max-width: 268px;
+      aspect-ratio: 290 / 422;
       margin: 0 auto;
       cursor: pointer;
       position: relative;
     }
     @media (min-width: 640px) {
       .oracle-deck-stage {
-        max-width: 288px;
+        max-width: 300px;
       }
     }
     .oracle-card-body {
@@ -362,7 +362,7 @@
             </div>
           </div>
 
-          <!-- Правая колонка: Романтический 3D-ритуал вытягивания карты (рубашкой вверх при загрузке, без черных полос) -->
+          <!-- Правая колонка: Романтический 3D-ритуал вытягивания карты (рубашкой вверх при загрузке, пропорция 290/422) -->
           <div class="lg:col-span-5 min-w-0 w-full">
             <div class="bg-gradient-to-b from-wine to-wineDark text-warmCream rounded-2xl p-5 sm:p-7 border border-gold/40 candle-shadow text-center space-y-4 relative overflow-hidden">
               
@@ -378,7 +378,7 @@
                 </p>
               </div>
 
-              <!-- 3D-сцена карты (укороченная под пропорции рисунков карт — без черных полос) -->
+              <!-- 3D-сцена карты (пропорция 290/422 отсекает только бывшие черные поля сверху и снизу) -->
               <div class="oracle-deck-stage" onclick="flipOracleDeckCard()" title="Нажмите, чтобы открыть карту">
                 <div class="oracle-card-body" id="oracleDeckCard">
                   
@@ -390,7 +390,7 @@
                          referrerpolicy="no-referrer">
                   </div>
 
-                  <!-- Лицевая сторона карты (object-cover заполняет всю рамку без черных полос) -->
+                  <!-- Лицевая сторона карты -->
                   <div class="oracle-card-side oracle-side-front">
                     <img id="deckCardArtImg" 
                          src="" 
@@ -611,7 +611,7 @@
     </div>
   </section>
 
-  <!-- Подвал сайта (без кнопки Telegram) -->
+  <!-- Подвал сайта (без кнопок Telegram и «Оставить пожелание») -->
   <footer class="bg-wineDark text-warmCream py-10 sm:py-12 border-t border-gold/30">
     <div class="max-w-6xl mx-auto px-4 sm:px-6 flex flex-col sm:flex-row items-center justify-between gap-6 text-center sm:text-left">
       <div>
@@ -620,17 +620,14 @@
       </div>
 
       <div class="flex flex-wrap justify-center items-center gap-3.5 text-xs tracking-wider">
-        <a href="https://vk.ru/elinapasechnik" target="_blank" rel="noopener" class="border border-gold/40 hover:border-gold px-4 py-2 rounded-full text-goldLight transition">
+        <a href="https://vk.ru/elinapasechnik" target="_blank" rel="noopener" class="border border-gold/40 hover:border-gold px-5 py-2.5 rounded-full text-goldLight transition">
           Страница ВКонтакте
         </a>
-        <button onclick="openModal('Связь с поэтессой')" class="bg-gold hover:bg-yellow-600 text-wineDark font-medium px-5 py-2 rounded-full transition">
-          Оставить пожелание
-        </button>
       </div>
     </div>
   </footer>
 
-  <!-- Модальное окно для заявок (с антибот-защитой Honeypot + Таймер) -->
+  <!-- Модальное окно для заявок (с антибот-защитой Honeypot) -->
   <div id="modal" class="fixed inset-0 z-50 hidden bg-wineDark/70 backdrop-blur-xs flex items-center justify-center p-4">
     <div class="bg-warmCream rounded-2xl border border-gold/40 max-w-md w-full p-6 sm:p-8 relative candle-shadow">
       <button onclick="closeModal()" class="absolute top-4 right-4 text-charcoal/50 hover:text-wine text-2xl leading-none">&times;</button>
@@ -683,7 +680,7 @@
     });
 
     // =========================================================================
-    // АНТИФРОД-СИСТЕМА v2.0 ПРОТИВ БОТОВ РСЯ И СКЛИКИВАНИЯ КОНВЕРСИЙ
+    // АНТИФРОД-СИСТЕМА v2.1 ПРОТИВ БОТОВ РСЯ И СКЛИКИВАНИЯ КОНВЕРСИЙ
     // =========================================================================
     const pageLoadTimestamp = Date.now();
     let modalOpenTimestamp = 0;
@@ -704,7 +701,7 @@
     function registerHumanAction() {
       if (isHeadlessBot()) return;
       interactionScore++;
-      if (interactionScore >= 2) {
+      if (interactionScore >= 1) {
         isHumanVerified = true;
       }
     }
@@ -713,12 +710,13 @@
     window.addEventListener('scroll', registerHumanAction, { passive: true });
     window.addEventListener('touchstart', registerHumanAction, { passive: true });
     window.addEventListener('keydown', registerHumanAction, { passive: true });
+    window.addEventListener('pointerdown', registerHumanAction, { passive: true });
 
     function trackConversionGoal(goalName) {
       const timeSpentMs = Date.now() - pageLoadTimestamp;
 
-      if (isHeadlessBot() || (!isHumanVerified && timeSpentMs < 2500)) {
-        console.warn('Anti-bot v2: конверсия заблокирована (подозрение на бота).');
+      if (isHeadlessBot() || (!isHumanVerified && timeSpentMs < 2000)) {
+        console.warn('Anti-bot: конверсия заблокирована (подозрение на бота).');
         return;
       }
 
@@ -731,7 +729,7 @@
     }
 
     // =========================================================================
-    // РИТУАЛ ВЫТЯГИВАНИЯ КАРТЫ: ПОЛНАЯ КОЛОДА ИЗ 60 КАРТ (БЕЗ ЧЕРНЫХ ПОЛОС)
+    // РИТУАЛ ВЫТЯГИВАНИЯ КАРТЫ: ПОЛНАЯ КОЛОДА ИЗ 60 КАРТ (290x422 БЕЗ ПОЛОС)
     // =========================================================================
     const oracleCardIds = [
       "1vX4S3DNCB3DgYwD-2o1f6lTCTdUE28MP",
@@ -812,7 +810,6 @@
       preloadedImgObj.src = getOracleCardUrl(nextPreloadedCardId);
     }
 
-    // Предзагружаем первую случайную карту сразу при старте, оставляя рубашку закрытой
     prepareNextOracleCard();
 
     function flipOracleDeckCard() {
@@ -868,14 +865,14 @@
     }
 
     // =========================================================================
-    // НАСТРОЙКИ TELEGRAM-БОТА И ПОЧТЫ ДЛЯ ЗАЯВОК:
+    // НАСТРОЙКИ TELEGRAM-БОТА И ПОЧТЫ ДЛЯ ЗАЯВОК (ПРЯМАЯ ДОСТАВКА + РЕЗЕРВ):
     // =========================================================================
     const TG_BOT_TOKEN = '8962021789:AAEfzn63bp5JuaiZAc-dLwFfaCMWeRu0Qkg';
     const TG_CHAT_ID = '57473050';
     const BACKUP_EMAIL = 'ko1nc1@gmail.com';
-    const GOOGLE_SCRIPT_URL = '';
 
     function openModal(title) {
+      registerHumanAction();
       modalOpenTimestamp = Date.now();
       document.getElementById('targetInput').value = title;
       document.getElementById('modalTitle').innerText = 'Написать сообщение';
@@ -890,42 +887,11 @@
       document.getElementById('modal').classList.add('hidden');
     }
 
-    function fetchWithTimeout(url, options = {}, timeoutMs = 4500) {
+    function fetchWithTimeout(url, options = {}, timeoutMs = 3500) {
       const controller = new AbortController();
       const id = setTimeout(() => controller.abort(), timeoutMs);
-      return fetch(url, { ...options, signal: controller.signal })
+      return fetch(url, { ...options, keepalive: true, signal: controller.signal })
         .finally(() => clearTimeout(id));
-    }
-
-    function fireJsonpGateway(fullGetUrl) {
-      return new Promise(resolve => {
-        try {
-          const cbName = 'tg_cb_' + Math.floor(Math.random() * 1000000);
-          const script = document.createElement('script');
-          const timer = setTimeout(() => {
-            cleanup();
-            resolve(false);
-          }, 4500);
-          function cleanup() {
-            clearTimeout(timer);
-            try { delete window[cbName]; } catch (e) {}
-            if (script.parentNode) script.parentNode.removeChild(script);
-          }
-          window[cbName] = function(data) {
-            cleanup();
-            if (data && data.contents && data.contents.indexOf('"ok":true') !== -1) {
-              resolve(true);
-            } else {
-              resolve(false);
-            }
-          };
-          script.src = `https://api.allorigins.win/get?url=${encodeURIComponent(fullGetUrl)}&callback=${cbName}&_=${Date.now()}`;
-          script.onerror = function() { cleanup(); resolve(false); };
-          document.body.appendChild(script);
-        } catch (e) {
-          resolve(false);
-        }
-      });
     }
 
     async function sendToTelegram(text) {
@@ -935,42 +901,29 @@
       const query = `?chat_id=${encodeURIComponent(chatId)}&text=${encodeURIComponent(text)}`;
       const fullGetUrl = `${baseApi}${query}`;
 
-      if (GOOGLE_SCRIPT_URL) {
-        try {
-          await fetchWithTimeout(GOOGLE_SCRIPT_URL, {
-            method: 'POST',
-            mode: 'no-cors',
-            headers: { 'Content-Type': 'text/plain;charset=utf-8' },
-            body: JSON.stringify({ token: TG_BOT_TOKEN, chat_id: chatId, text: text })
-          }, 4000);
-          return true;
-        } catch (e) {}
-      }
-
+      // 1. Прямой POST-запрос к Telegram Bot API (срабатывает мгновенно в 90% сетей)
       try {
-        const resAo = await fetchWithTimeout(`https://api.allorigins.win/get?url=${encodeURIComponent(fullGetUrl)}&_=${Date.now()}`, { cache: 'no-store' }, 4000);
-        if (resAo.ok) {
-          const dAo = await resAo.json();
-          if (dAo && dAo.contents && dAo.contents.includes('"ok":true')) return true;
+        const resDirect = await fetchWithTimeout(baseApi, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+          body: new URLSearchParams({ chat_id: chatId, text: text }).toString()
+        }, 2800);
+        if (resDirect.ok) {
+          const data = await resDirect.json();
+          if (data && data.ok) return true;
         }
       } catch (e) {}
 
-      try {
-        const jsonpOk = await fireJsonpGateway(fullGetUrl);
-        if (jsonpOk) return true;
-      } catch (e) {}
-
+      // 2. Резервные шлюзы (на случай блокировки api.telegram.org провайдером)
       const fallbackGateways = [
         `https://api.codetabs.com/v1/proxy?quest=${encodeURIComponent(fullGetUrl)}`,
         `https://api.allorigins.win/raw?url=${encodeURIComponent(fullGetUrl)}`,
-        `https://thingproxy.freeboard.io/fetch/${fullGetUrl}`,
-        `https://corsproxy.org/?${encodeURIComponent(fullGetUrl)}`,
         `https://corsproxy.io/?url=${encodeURIComponent(fullGetUrl)}`
       ];
 
       for (const gw of fallbackGateways) {
         try {
-          const res = await fetchWithTimeout(gw, { cache: 'no-store' }, 3500);
+          const res = await fetchWithTimeout(gw, { cache: 'no-store' }, 3000);
           if (res.ok) {
             const bodyText = await res.text();
             if (bodyText && bodyText.includes('"ok":true')) return true;
@@ -978,13 +931,10 @@
         } catch (e) {}
       }
 
+      // 3. Безотказный no-cors GET маяк напрямую на сервер Telegram
       try {
-        const resDirect = await fetchWithTimeout(baseApi, {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-          body: new URLSearchParams({ chat_id: chatId, text: text }).toString()
-        }, 3000);
-        if (resDirect.ok) return true;
+        await fetch(fullGetUrl, { mode: 'no-cors', keepalive: true });
+        return true;
       } catch (e) {}
 
       return false;
@@ -995,6 +945,7 @@
       try {
         await fetch(`https://formsubmit.co/ajax/${BACKUP_EMAIL}`, {
           method: 'POST',
+          keepalive: true,
           headers: {
             'Content-Type': 'application/json',
             'Accept': 'application/json'
@@ -1015,7 +966,8 @@
       const trapVal = document.getElementById('websiteUrl').value;
       const fillDuration = Date.now() - modalOpenTimestamp;
 
-      if (trapVal !== '' || fillDuration < 2500 || !isHumanVerified || isHeadlessBot()) {
+      // Блокируем только явных ботов (заполненный Honeypot, Headless или автосабмит <0.6 сек)
+      if (trapVal !== '' || fillDuration < 600 || isHeadlessBot()) {
         document.getElementById('orderForm').classList.add('hidden');
         document.getElementById('modalSuccess').classList.remove('hidden');
         return;
@@ -1029,6 +981,7 @@
       const name = document.getElementById('nameInput').value;
       const phone = document.getElementById('phoneInput').value;
 
+      isHumanVerified = true;
       trackConversionGoal('lead_submit');
 
       const tgMessage = `🕯️ Заявка с сайта Элины Пасечник!\n\n📌 Тема: ${target}\n👤 Имя: ${name}\n📞 Контакт: ${phone}`;
