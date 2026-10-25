@@ -4,11 +4,11 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="yandex-verification" content="a4127b9d9557dcd7" />
-  <link rel="canonical" href="https://elinapasechnik.ru/" />
 
   <title>Элина Пасечник — Поэзия, согревающая сердце | Книга «Ближе» и Карты-Оракул</title>
   <meta name="description" content="Официальный сайт поэтессы Элины Пасечник. Авторский сборник стихов «Ближе», метафорическая колода карт «Оракул Элины Пасечник» с доставкой Ozon, концерт при свечах «Исповедь незнакомки».">
   <meta name="keywords" content="Элина Пасечник, поэтесса, стихи, Исповедь незнакомки, концерт при свечах, книга Ближе, Оракул Элины Пасечник, метафорические карты купить, оракул карты озон">
+  <link rel="canonical" href="https://elinapasechnik.ru/">
   
   <!-- Полная индексация для Яндекса и Google -->
   <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
@@ -46,7 +46,7 @@
       {
         "@type": "Product",
         "name": "Оракул Элины Пасечник — авторская метафорическая колода карт",
-        "description": "Авторская колода из 60 карт для бережного диалога с интуицией, утренних настроек и внутренней гармонии.",
+        "description": "Авторская метафорическая колода карт с поэтическими посланиями для диалога с интуицией и внутренней гармонии.",
         "brand": {
           "@type": "Brand",
           "name": "Элина Пасечник"
@@ -65,7 +65,7 @@
           "@type": "Person",
           "name": "Элина Пасечник"
         },
-        "image": "https://sun9-56.vkuserphoto.ru/s/v1/ig2/FVImGo6qkoxfjioLpcnWkLnGYYRKD1rot1m9Jq5GHqS8UMHLLNMh4MEQ-F4uVpgU-cnjWG5gAfEFC1_RYqWTuCC5.jpg?quality=95&from=bu&u=h7So_iUCcRmcgrvX6c4zXFgGABKRBnHsYmCUOxkRPOs&cs=2560x0",
+        "image": "https://sun9-56.vkuserphoto.ru/s/v1/ig2/FVImGo6qkoxfjioLpcnWkLnGYYRKD1rot1m9Jq5GHqS8UMHLLNMh4MEQ-F4uVpgU-cnjWG5gAfEFC1_RYqWTuCC5.jpg?quality=95&as=32x21,48x32,72x48,108x72,160x107,240x160,360x240,480x321,540x361,640x427,720x481,1080x721,1280x855,1440x962,2560x1710&from=bu&u=h7So_iUCcRmcgrvX6c4zXFgGABKRBnHsYmCUOxkRPOs&cs=2560x0",
         "description": "Изящное авторское издание лирических стихотворений в печатном и электронном формате.",
         "url": "https://ridero.ru/books/blizhe/"
       }
@@ -113,43 +113,28 @@
     .candle-shadow {
       box-shadow: 0 15px 35px -5px rgba(61, 19, 30, 0.12), 0 5px 15px rgba(197, 160, 89, 0.08);
     }
+    .card-hover {
+      transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    .card-hover:hover {
+      transform: translateY(-5px);
+    }
 
-    /* 3D-колода карт «Оракул Элины Пасечник» (Романтическое вытягивание) */
+    /* 3D-ритуал вытягивания карты Оракула */
     .oracle-deck-stage {
       perspective: 1400px;
-      width: 268px;
-      height: 432px;
+      width: 280px;
+      height: 450px;
       margin: 0 auto;
       cursor: pointer;
       position: relative;
-      user-select: none;
     }
-    /* Эффект стопки карт под верхней картой */
-    .oracle-deck-stack-1,
-    .oracle-deck-stack-2 {
-      position: absolute;
-      inset: 0;
-      border-radius: 16px;
-      background: #260B12;
-      border: 1.5px solid rgba(232, 211, 167, 0.45);
-      pointer-events: none;
-      transition: transform 0.6s ease;
+    @media (min-width: 640px) {
+      .oracle-deck-stage {
+        width: 310px;
+        height: 495px;
+      }
     }
-    .oracle-deck-stack-1 {
-      transform: translate(6px, 6px) rotate(1.8deg);
-      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.35);
-    }
-    .oracle-deck-stack-2 {
-      transform: translate(-5px, 10px) rotate(-1.5deg);
-      box-shadow: 0 15px 35px rgba(0, 0, 0, 0.45);
-    }
-    .oracle-deck-stage:hover .oracle-deck-stack-1 {
-      transform: translate(9px, 8px) rotate(2.8deg);
-    }
-    .oracle-deck-stage:hover .oracle-deck-stack-2 {
-      transform: translate(-8px, 12px) rotate(-2.5deg);
-    }
-
     .oracle-card-body {
       width: 100%;
       height: 100%;
@@ -157,26 +142,25 @@
       transform-style: preserve-3d;
       transition: transform 0.95s cubic-bezier(0.35, 0.2, 0.15, 1), box-shadow 0.5s ease;
       border-radius: 16px;
-      box-shadow: 0 20px 45px rgba(20, 5, 10, 0.65), 0 0 28px rgba(197, 160, 89, 0.28);
-      z-index: 2;
+      box-shadow: 0 20px 45px rgba(38, 11, 18, 0.55), 0 0 28px rgba(197, 160, 89, 0.3);
     }
     .oracle-deck-stage:hover .oracle-card-body:not(.flipped) {
       transform: translateY(-6px) scale(1.015);
-      box-shadow: 0 26px 55px rgba(20, 5, 10, 0.75), 0 0 38px rgba(232, 211, 167, 0.45);
+      box-shadow: 0 25px 55px rgba(38, 11, 18, 0.7), 0 0 38px rgba(232, 211, 167, 0.5);
     }
     .oracle-card-body.flipped {
       transform: rotateY(180deg);
     }
-
     .oracle-card-side {
       position: absolute;
+      inset: 0;
       width: 100%;
       height: 100%;
       border-radius: 16px;
       backface-visibility: hidden;
       -webkit-backface-visibility: hidden;
       overflow: hidden;
-      background: #1B080D;
+      background: #1a080d;
       border: 2px solid #C5A059;
     }
     .oracle-side-back {
@@ -189,32 +173,7 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      background: #120508;
-    }
-    .oracle-card-img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      display: block;
-    }
-    .oracle-card-front-img {
-      width: 100%;
-      height: 100%;
-      object-fit: contain;
-      display: block;
-      background: #120508;
-    }
-
-    .oracle-reveal-panel {
-      display: none;
-      opacity: 0;
-      transform: translateY(12px);
-      transition: opacity 0.5s ease, transform 0.5s ease;
-    }
-    .oracle-reveal-panel.visible {
-      display: block;
-      opacity: 1;
-      transform: translateY(0);
+      background: #120609;
     }
 
     /* Невидимая ловушка для ботов */
@@ -330,8 +289,7 @@
 
   <!-- ======================================================================= -->
   <!-- ПОСАДОЧНЫЙ РАЗДЕЛ №1: КОЛОДА КАРТ «ОРАКУЛ ЭЛИНЫ ПАСЕЧНИК» (#oracle)    -->
-  <!-- Ссылка для Яндекс Директа:                                              -->
-  <!-- https://elinapasechnik.ru/?utm_source=yandex&utm_medium=cpc&utm_campaign=oracle_ozon#oracle -->
+  <!-- Ссылка для Яндекс Директа: https://elinapasechnik.ru/?...#oracle        -->
   <!-- ======================================================================= -->
   <section id="oracle" class="py-16 sm:py-24 border-b border-gold/20 bg-gradient-to-b from-warmCream via-warmBeige/30 to-warmCream scroll-mt-16">
     <div class="max-w-6xl mx-auto px-4 sm:px-6">
@@ -340,10 +298,10 @@
         <div class="grid lg:grid-cols-12 gap-10 items-center">
           
           <!-- Левая колонка: Описание и ценность колоды -->
-          <div class="lg:col-span-6 space-y-6">
+          <div class="lg:col-span-7 space-y-6">
             <div class="inline-flex items-center gap-2 bg-warmCream border border-gold/40 px-3.5 py-1 rounded-full text-[11px] uppercase tracking-widest text-wine font-semibold">
               <span>🔮</span>
-              <span>Авторская колода из 60 карт • Доставка Ozon</span>
+              <span>Авторская колода из 60 карт • Быстрая доставка Ozon</span>
             </div>
 
             <h2 class="font-serif text-3xl sm:text-5xl text-wine leading-tight font-normal">
@@ -351,7 +309,7 @@
             </h2>
 
             <p class="text-sm sm:text-base text-charcoal/80 font-light leading-relaxed">
-              Каждая из 60 карт этой авторской колоды хранит глубокий символический образ и тонкий эмоциональный настрой. Колода создана для тёплого диалога с собой: чтобы в минуты сомнений, усталости или важного выбора вы могли остановиться, вытянуть карту и услышать подсказку собственного сердца.
+              Каждая карта этой авторской колоды соединяет глубокий художественный образ и проникновенное поэтическое послание Элины Пасечник. Колода создана для тонкой внутренней настройки: чтобы в минуты сомнений, усталости или важного выбора вы могли остановиться, вытянуть карту и услышать ответ собственного сердца.
             </p>
 
             <!-- Преимущества колоды для покупательницы -->
@@ -359,30 +317,30 @@
               <div class="bg-warmCream/70 p-4 rounded-xl border border-gold/20">
                 <p class="font-serif text-lg text-wine font-semibold">✨ Утренний ритуал настройки</p>
                 <p class="text-xs text-charcoal/70 mt-1 font-light leading-relaxed">
-                  Вытяните одну карту за утренним чаем или кофе, чтобы задать светлый, гармоничный вектор всему дню.
+                  Вытяните одну карту за утренним кофе, чтобы задать тёплый, осознанный вектор всему предстоящему дню.
                 </p>
               </div>
               <div class="bg-warmCream/70 p-4 rounded-xl border border-gold/20">
-                <p class="font-serif text-lg text-wine font-semibold">🌿 Понятна с первого взгляда</p>
+                <p class="font-serif text-lg text-wine font-semibold">🌿 Понятна с первого прикосновения</p>
                 <p class="text-xs text-charcoal/70 mt-1 font-light leading-relaxed">
-                  В колоде 60 говорящих архетипических образов — вы сразу чувствуете отклик души без сложного обучения.
+                  Не нужно учить сложные толкования — поэтические строки на картах говорят с душой напрямую и бережно.
                 </p>
               </div>
               <div class="bg-warmCream/70 p-4 rounded-xl border border-gold/20">
                 <p class="font-serif text-lg text-wine font-semibold">🎁 Подарок со смыслом</p>
                 <p class="text-xs text-charcoal/70 mt-1 font-light leading-relaxed">
-                  Утончённое исполнение делает колоду особенным подарком для близкой подруги, мамы или сестры.
+                  Эстетичное исполнение делает колоду незабываемым подарком для близкой подруги, мамы, сестры или психолога.
                 </p>
               </div>
               <div class="bg-warmCream/70 p-4 rounded-xl border border-gold/20">
-                <p class="font-serif text-lg text-wine font-semibold">📦 Быстрая доставка Ozon</p>
+                <p class="font-serif text-lg text-wine font-semibold">📦 Доставка в любой ПВЗ Ozon</p>
                 <p class="text-xs text-charcoal/70 mt-1 font-light leading-relaxed">
-                  Заказ в один клик через приложение Ozon с быстрой доставкой в удобный пункт выдачи рядом с домом.
+                  Безопасная покупка через официальную витрину на Ozon с быстрой доставкой рядом с вашим домом.
                 </p>
               </div>
             </div>
 
-            <!-- Главные кнопки целевого действия (с диплинком Ozon Seller) -->
+            <!-- Главные кнопки целевого действия -->
             <div class="pt-4 flex flex-col sm:flex-row items-stretch sm:items-center gap-4">
               <a href="https://ozon.onelink.me/SNMZ?af_dp=https://ozon.ru/product/orakul-eliny-pasechnik-5114150489&af_web_dp=https://ozon.ru/product/orakul-eliny-pasechnik-5114150489&is_retargeting=true&c=vendor_org_4133655_oracle_elina_site&pid=yandex_direct|cpc&af_adset=ozon_btn&hs=1&utm_source=yandex_direct&utm_medium=cpc&utm_campaign=vendor_org_4133655_oracle_elina_site&utm_content=ozon_btn" 
                  target="_blank" 
@@ -393,82 +351,67 @@
                 <span>→</span>
               </a>
               <span class="text-xs text-charcoal/60 text-center sm:text-left">
-                Откроется в приложении Ozon или в браузере
+                Попробуйте вытянуть свою карту онлайн справа →
               </span>
             </div>
           </div>
 
-          <!-- Правая колонка: Романтический 3D-ритуал вытягивания карты (рубашкой вверх при старте) -->
-          <div class="lg:col-span-6">
-            <div class="bg-gradient-to-b from-wine to-wineDark text-warmCream rounded-2xl p-6 sm:p-8 border border-gold/40 candle-shadow text-center space-y-5 relative overflow-hidden">
+          <!-- Правая колонка: Романтический 3D-ритуал вытягивания карты (рубашкой вверх при загрузке) -->
+          <div class="lg:col-span-5">
+            <div class="bg-gradient-to-b from-wine to-wineDark text-warmCream rounded-2xl p-6 sm:p-7 border border-gold/40 candle-shadow text-center space-y-4 relative overflow-hidden">
               
-              <div class="space-y-1.5">
-                <span class="text-[11px] uppercase tracking-[0.25em] text-goldLight/90 font-medium block">
-                  ✦ Тайна вашего сердца ✦
+              <div class="space-y-1">
+                <span class="text-[10px] uppercase tracking-[0.25em] text-goldLight/90 font-medium block">
+                  ✦ Таинство живого отклика ✦
                 </span>
                 <h3 class="font-serif text-2xl sm:text-3xl text-white font-normal">
-                  Вытяните свою карту-послание
+                  Вытяните карту для своего сердца
                 </h3>
-                <p id="oracleRitualHint" class="text-xs sm:text-sm text-warmCream/80 font-light max-w-md mx-auto leading-relaxed">
-                  Загадайте желание или подумайте о том, что волнует вашу душу прямо сейчас, и нежно коснитесь рубашки колоды...
+                <p id="oracleRitualHint" class="text-xs text-warmCream/80 font-light leading-relaxed max-w-xs mx-auto">
+                  Закройте глаза на мгновение, подумайте о том, что сейчас волнует вашу душу, и нежно коснитесь рубашки колоды...
                 </p>
               </div>
 
-              <!-- 3D-сцена колоды (при загрузке СТРОГО рубашкой вверх) -->
-              <div class="py-2">
-                <div class="oracle-deck-stage" onclick="flipOracleDeckCard()" title="Нажмите, чтобы вытянуть карту">
-                  <div class="oracle-deck-stack-2"></div>
-                  <div class="oracle-deck-stack-1"></div>
-                  <div class="oracle-card-body" id="oracleDeckCard">
-                    
-                    <!-- РУБАШКА КОЛОДЫ (при первой загрузке) -->
-                    <div class="oracle-card-side oracle-side-back">
-                      <img src="https://drive.google.com/thumbnail?id=11Y1L0clVsYw4X7BQpzPucibbtTOf4EyO&sz=w600" 
-                           alt="Рубашка колоды Оракул Элины Пасечник" 
-                           class="oracle-card-img"
-                           referrerpolicy="no-referrer">
-                    </div>
-
-                    <!-- ЛИЦЕВАЯ СТОРОНА КАРТЫ (открывается при клике) -->
-                    <div class="oracle-card-side oracle-side-front">
-                      <img id="deckCardArtImg" 
-                           src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" 
-                           alt="Карта Оракула Элины Пасечник" 
-                           class="oracle-card-front-img"
-                           referrerpolicy="no-referrer">
-                    </div>
-
+              <!-- 3D-сцена карты (при загрузке строго рубашкой вверх) -->
+              <div class="oracle-deck-stage" onclick="flipOracleDeckCard()" title="Нажмите, чтобы открыть карту">
+                <div class="oracle-card-body" id="oracleDeckCard">
+                  
+                  <!-- Рубашка колоды -->
+                  <div class="oracle-card-side oracle-side-back">
+                    <img src="https://drive.google.com/thumbnail?id=11Y1L0clVsYw4X7BQpzPucibbtTOf4EyO&sz=w800" 
+                         alt="Рубашка колоды Оракул Элины Пасечник" 
+                         class="w-full h-full object-cover block"
+                         referrerpolicy="no-referrer">
                   </div>
+
+                  <!-- Лицевая сторона карты (подлинное изображение из колоды) -->
+                  <div class="oracle-card-side oracle-side-front">
+                    <img id="deckCardArtImg" 
+                         src="" 
+                         alt="Послание колоды Оракул Элины Пасечник" 
+                         class="w-full h-full object-contain block bg-black"
+                         referrerpolicy="no-referrer">
+                  </div>
+
                 </div>
               </div>
 
-              <!-- Кнопка до первого открытия карты -->
-              <div id="initialDrawBtnWrap">
-                <button type="button" onclick="flipOracleDeckCard()" class="bg-gold hover:bg-yellow-600 text-wineDark font-semibold py-3.5 px-7 rounded-full text-xs uppercase tracking-widest transition shadow-md">
+              <!-- Кнопка вытягивания карты -->
+              <div class="pt-1">
+                <button type="button" id="oracleDrawActionBtn" onclick="flipOracleDeckCard()" class="w-full bg-gold hover:bg-yellow-600 text-wineDark font-semibold py-3.5 px-6 rounded-full text-xs uppercase tracking-widest transition shadow-md">
                   ✨ Прикоснуться к колоде и открыть карту
                 </button>
               </div>
 
-              <!-- Панель с посланием выпавшей карты (появляется после переворота) -->
-              <div id="oracleRevealPanel" class="oracle-reveal-panel bg-white/10 backdrop-blur-xs border border-gold/35 rounded-xl p-5 text-center space-y-2.5">
-                <div id="deckCardNum" class="text-[10px] uppercase tracking-[0.25em] text-goldLight/80 font-medium"></div>
-                <h4 id="deckCardTitle" class="font-serif text-2xl sm:text-3xl text-goldLight font-semibold"></h4>
-                <p id="deckCardSense" class="text-xs sm:text-sm text-warmCream/90 font-light leading-relaxed"></p>
-                
-                <div class="pt-3 flex flex-wrap items-center justify-center gap-3">
-                  <button type="button" onclick="flipOracleDeckCard()" class="bg-gold hover:bg-yellow-600 text-wineDark font-semibold py-2.5 px-5 rounded-full text-[11px] uppercase tracking-widest transition">
-                    ↻ Вытянуть другую карту
-                  </button>
-                  <a href="https://ozon.onelink.me/SNMZ?af_dp=https://ozon.ru/product/orakul-eliny-pasechnik-5114150489&af_web_dp=https://ozon.ru/product/orakul-eliny-pasechnik-5114150489&is_retargeting=true&c=vendor_org_4133655_oracle_elina_site&pid=yandex_direct|cpc&af_adset=ozon_btn&hs=1&utm_source=yandex_direct&utm_medium=cpc&utm_campaign=vendor_org_4133655_oracle_elina_site&utm_content=ozon_btn" 
-                     target="_blank" 
-                     rel="noopener" 
-                     onclick="trackConversionGoal('buy_oracle_ozon')"
-                     class="ozon-oracle-link border border-goldLight/60 hover:border-goldLight text-goldLight hover:text-white py-2.5 px-5 rounded-full text-[11px] uppercase tracking-widest transition">
-                    Хочу всю колоду на Ozon →
-                  </a>
-                </div>
+              <div class="pt-2 border-t border-white/10">
+                <a href="https://ozon.onelink.me/SNMZ?af_dp=https://ozon.ru/product/orakul-eliny-pasechnik-5114150489&af_web_dp=https://ozon.ru/product/orakul-eliny-pasechnik-5114150489&is_retargeting=true&c=vendor_org_4133655_oracle_elina_site&pid=yandex_direct|cpc&af_adset=ozon_btn&hs=1&utm_source=yandex_direct&utm_medium=cpc&utm_campaign=vendor_org_4133655_oracle_elina_site&utm_content=ozon_btn" 
+                   target="_blank" 
+                   rel="noopener" 
+                   onclick="trackConversionGoal('buy_oracle_ozon')"
+                   class="ozon-oracle-link text-xs text-goldLight hover:text-white underline underline-offset-4 transition">
+                  Приобрести полную печатную колоду на Ozon →
+                </a>
               </div>
-
             </div>
           </div>
 
@@ -480,8 +423,7 @@
 
   <!-- ======================================================================= -->
   <!-- ПОСАДОЧНЫЙ РАЗДЕЛ №2: СБОРНИК СТИХОВ «БЛИЖЕ» (#book)                    -->
-  <!-- Ссылка для Яндекс Директа:                                              -->
-  <!-- https://elinapasechnik.ru/?utm_source=yandex&utm_medium=cpc&utm_campaign=book_blizhe#book -->
+  <!-- Ссылка для Яндекс Директа: https://elinapasechnik.ru/?...#book          -->
   <!-- ======================================================================= -->
   <section id="book" class="py-16 sm:py-24 border-b border-gold/20 bg-warmCream scroll-mt-16">
     <div class="max-w-6xl mx-auto px-4 sm:px-6">
@@ -489,19 +431,19 @@
         
         <div class="grid lg:grid-cols-12 gap-10 items-center">
           
-          <!-- Левая колонка: Живая фотография сборника «Ближе» -->
+          <!-- Левая колонка: Подлинная фотография сборника стихов «Ближе» -->
           <div class="lg:col-span-5 order-2 lg:order-1">
-            <div class="bg-warmCream p-3.5 rounded-2xl border border-gold/30 candle-shadow">
-              <div class="rounded-xl overflow-hidden bg-warmBeige">
+            <div class="bg-warmCream p-3.5 rounded-2xl border border-gold/35 candle-shadow">
+              <div class="rounded-xl overflow-hidden border border-gold/20 bg-white">
                 <img 
                   src="https://sun9-56.vkuserphoto.ru/s/v1/ig2/FVImGo6qkoxfjioLpcnWkLnGYYRKD1rot1m9Jq5GHqS8UMHLLNMh4MEQ-F4uVpgU-cnjWG5gAfEFC1_RYqWTuCC5.jpg?quality=95&as=32x21,48x32,72x48,108x72,160x107,240x160,360x240,480x321,540x361,640x427,720x481,1080x721,1280x855,1440x962,2560x1710&from=bu&u=h7So_iUCcRmcgrvX6c4zXFgGABKRBnHsYmCUOxkRPOs&cs=2560x0" 
                   alt="Авторский сборник стихов Элины Пасечник «Ближе»" 
-                  class="w-full h-auto object-cover hover:scale-105 transition duration-500"
+                  class="w-full h-auto object-cover block transition duration-500 hover:scale-105"
                   referrerpolicy="no-referrer"
                 >
               </div>
               <p class="text-center font-serif italic text-sm text-wine/85 mt-3">
-                Авторский сборник стихотворений Элины Пасечник «Ближе»
+                Авторский сборник лирики Элины Пасечник «Ближе»
               </p>
             </div>
           </div>
@@ -528,11 +470,11 @@
               </li>
               <li class="flex items-start gap-2.5">
                 <span class="text-gold font-bold">✦</span>
-                <span><strong>Два удобных формата:</strong> вы можете заказать бумажную книгу с доставкой или сразу скачать электронную версию для чтения в телефоне и ридере.</span>
+                <span><strong>Два удобных формата:</strong> вы можете заказать бумажную книгу с доставкой или сразу приобрести электронную версию для чтения в телефоне и ридере.</span>
               </li>
               <li class="flex items-start gap-2.5">
                 <span class="text-gold font-bold">✦</span>
-                <span><strong>Идеальный дуэт с колодой «Оракул»:</strong> многие читательницы собирают комплект из книги «Ближе» и карт-посланий для себя или в подарок.</span>
+                <span><strong>Прекрасный дуэт с колодой «Оракул»:</strong> читательницы часто заказывают книгу «Ближе» вместе с картами-посланиями для себя или в подарок близкому человеку.</span>
               </li>
             </ul>
 
@@ -546,7 +488,7 @@
                 <span>→</span>
               </a>
               <a href="#oracle" class="text-xs uppercase tracking-widest text-wine hover:text-gold font-medium text-center sm:text-left underline underline-offset-4 transition">
-                Вытянуть карту из колоды «Оракул» ↑
+                Посмотреть также Карты-Оракул
               </a>
             </div>
           </div>
@@ -557,22 +499,15 @@
     </div>
   </section>
 
-  <!-- Живое музыкально-поэтическое событие («Исповедь незнакомки») с фотографией -->
-  <section id="concerts" class="py-16 sm:py-24 max-w-6xl mx-auto px-4 sm:px-6 scroll-mt-16">
-    <div class="bg-white rounded-3xl p-6 sm:p-12 border border-gold/30 candle-shadow grid md:grid-cols-12 gap-8 lg:gap-12 items-center">
+  <!-- Живые концерты («Исповедь незнакомки») с фотографией -->
+  <section id="concerts" class="py-16 sm:py-20 max-w-6xl mx-auto px-4 sm:px-6 scroll-mt-16">
+    <div class="bg-white rounded-3xl p-6 sm:p-10 border border-gold/25 candle-shadow grid md:grid-cols-12 gap-8 items-center">
       
-      <div class="md:col-span-7 space-y-5 text-center md:text-left">
-        <span class="text-[11px] uppercase tracking-widest text-gold font-semibold block">
-          🕯️ Живое музыкально-поэтическое событие
-        </span>
-        <h2 class="font-serif text-3xl sm:text-5xl text-wine font-normal leading-tight">
-          Концерт при свечах «Исповедь незнакомки»
-        </h2>
-        <p class="text-sm sm:text-base text-charcoal/80 leading-relaxed font-light">
+      <div class="md:col-span-7 space-y-4 text-center md:text-left">
+        <span class="text-[11px] uppercase tracking-widest text-gold font-semibold block">🕯️ Живое музыкально-поэтическое событие</span>
+        <h2 class="font-serif text-3xl sm:text-4xl text-wine font-semibold">Концерт при свечах «Исповедь незнакомки»</h2>
+        <p class="text-sm sm:text-base text-charcoal/75 leading-relaxed font-light">
           Камерный вечер при мерцании сотен свечей. Проникновенная лирика Элины Пасечник под аккомпанемент гитариста-виртуоза, номинанта премии Grammy <strong>Михаила Савичева</strong> (легендарное трио «Лойко»).
-        </p>
-        <p class="text-sm text-charcoal/70 leading-relaxed font-light">
-          Глубокое погружение в сокровенные лабиринты женской души, где стихи и живая гитара исцеляют, дарят катарсис и возвращают вкус к жизни.
         </p>
         <div class="pt-2">
           <a href="https://vk.ru/elinapasechnik" 
@@ -587,11 +522,11 @@
 
       <div class="md:col-span-5">
         <div class="bg-warmCream p-3 rounded-2xl border border-gold/30 candle-shadow">
-          <div class="rounded-xl overflow-hidden bg-wineDark">
+          <div class="rounded-xl overflow-hidden aspect-[4/3] bg-wineDark">
             <img 
               src="https://drive.google.com/thumbnail?id=1do8-R49_yHbMDJ4PkRVsRhOXeoSyTFHT&sz=w1200" 
-              alt="Элина Пасечник — концерт Исповедь незнакомки" 
-              class="w-full h-auto object-cover hover:scale-105 transition duration-500"
+              alt="Элина Пасечник — концерт при свечах «Исповедь незнакомки»" 
+              class="w-full h-full object-cover block transition duration-500 hover:scale-105"
               referrerpolicy="no-referrer"
             >
           </div>
@@ -731,7 +666,7 @@
 
   <script>
     // =========================================================================
-    // УМНАЯ ДИПЛИНК-ССЫЛКА ИЗ OZON SELLER (открывает приложение Ozon)
+    // ДИПЛИНК-ССЫЛКА OZON SELLER С ВЕНДОР-МЕТКАМИ
     // =========================================================================
     const OZON_ORACLE_LINK = 'https://ozon.onelink.me/SNMZ?af_dp=https://ozon.ru/product/orakul-eliny-pasechnik-5114150489&af_web_dp=https://ozon.ru/product/orakul-eliny-pasechnik-5114150489&is_retargeting=true&c=vendor_org_4133655_oracle_elina_site&pid=yandex_direct|cpc&af_adset=ozon_btn&hs=1&utm_source=yandex_direct&utm_medium=cpc&utm_campaign=vendor_org_4133655_oracle_elina_site&utm_content=ozon_btn';
 
@@ -773,9 +708,345 @@
     window.addEventListener('touchstart', registerHumanAction, { passive: true });
     window.addEventListener('keydown', registerHumanAction, { passive: true });
 
-    // Отправка целей в Яндекс Метрику (113787675) ТОЛЬКО после проверки на живого человека
     function trackConversionGoal(goalName) {
       const timeSpentMs = Date.now() - pageLoadTimestamp;
 
       if (isHeadlessBot() || (!isHumanVerified && timeSpentMs < 2500)) {
-        console
+        console.warn('Anti-bot v2: конверсия заблокирована (подозрение на бота).');
+        return;
+      }
+
+      if (firedGoals.has(goalName)) return;
+      firedGoals.add(goalName);
+
+      if (typeof ym === 'function') {
+        ym(YM_COUNTER_ID, 'reachGoal', goalName);
+      }
+    }
+
+    // =========================================================================
+    // РИТУАЛ ВЫТЯГИВАНИЯ КАРТЫ: ПОЛНАЯ КОЛОДА ИЗ 60 КАРТ (БЕЗ ВЫДУМАННЫХ ИМЁН)
+    // =========================================================================
+    const oracleCardIds = [
+      "1vX4S3DNCB3DgYwD-2o1f6lTCTdUE28MP",
+      "1G9j3Ua0--7dTUV2zdLF4GF5pCwQHDrs4",
+      "1sDUJeMd7pzAMaJeFhBfeI51ZyF6M5qnR",
+      "1xej-VpwPI0anYxLperK8zTnkRqTmu2yh",
+      "1cD5OuCvgBYE38M5sNRWq1ANyUb0I0SVY",
+      "1TFr1x4y-4n90UhkuzqtheUeRIMZMghSu",
+      "1s4idr3hmwTqiqVxxzQPtXzfDwkc5vbgQ",
+      "1j_S7n4mA0FFv6Vqs7ebx5cFYRgNkBEsp",
+      "1HVv-MXYyC3SNVlu8hDIr8L1i0tJuZYrn",
+      "1R7OfqDywo2X8FrhkDdsa4wmMuuJio_vP",
+      "1PlmxzQ5tTUeTIKV5Sd7LsHvwYpeLeOx3",
+      "1FxgHUFO8-DvNDQDMCdhJ1iSGUlL6gMej",
+      "1hQ3YLFDSff_e6PWDKED3EKfpVjiG_O1o",
+      "1KbukTLMItyE7wdLfkYSD7amt3Vu7C-W7",
+      "1rKGnLf2TtPo3Rr9rgcJGUjJaap5jYrwv",
+      "1U24dz_UokdPfptZcCmi24PoawCb4HSrg",
+      "1Mrs8MLD6OvSqQP6csHdcydGNQVPQcIUI",
+      "1cv6a1_Xlt51eqweOk3y5jvjNWpS8bFJW",
+      "18_PgeCErTOntHm1gqh4sqETjiIWwMk6L",
+      "1cNVq1cEbC1Iyzx2KmxFVkBpAingRtcFC",
+      "1jSquk0kvpTv3EGUtG5ZsJkQqNkicU442",
+      "12IHik6tmfBs7r3XaQqhbPCbGEkMOF9oB",
+      "1GtoNix4JQMjqG36YWgbJ9wZFm9ZBhZOV",
+      "1_8wSyniGZ8JePx3Af2D7nCKAD0Yk-Hs2",
+      "1CYFZDPq0lJ9Ys32KtRn_-b9qxbr7gSxv",
+      "13C17npq58BVJQlCDsDrQD1EN9723b8J-",
+      "12CrYbHPpqjXcPaZpcjV92PMzDqH_NwCy",
+      "1DfTOSQrXftsLv5ACt935H7IiX-Gnm2pD",
+      "1QhUSwy53w4kDWS5tfS79PTgOPKg4iGxI",
+      "1rrLOussnaY2zB7iVd5Zp9wjXxRaZ8_r-",
+      "1-KuJl80HljB5wDMeM0mai8rDaADe3aRT",
+      "1qCCq4PffTiy9wX4rP70rhGJ9u1GPBPDu",
+      "177kQL8VGY0lfZWaE8SKouyogQBkIFRTE",
+      "1qV-76f3yMkwV199SqCbARZZq4M9O_MIh",
+      "1zGDHf31T-rX4WfeyFEu3RgXo_R-W25kP",
+      "1Fx3Mj9ZX9Dr3iNbvZSUug-hWoqZjUsYz",
+      "13YjhqvezZzHSOeY2oiK2p3iM0DDqDMmk",
+      "12m8pjidzJTodfJjRBaaRi8kdmAqArfum",
+      "1f35qkiujUOUG7CfAtlfpCPKfxrCMpCjB",
+      "1fEdjkTJJVTChdMgVs8BqRJy0JwTN9eZP",
+      "1RMMKO9CN_N2mHmsVRgPH_IjGYr9jkQKc",
+      "11n177_aWOszBoPK9K_J0j8XAQxEPJEpE",
+      "1aspLG5lABhhn4QWTSAXKJzuxvNA5BmX2",
+      "1BH1s4IZxK5pzV_Hph5sphpAP6u0HnX8w",
+      "1MXX4CGxCFdLMdvhoMNpJCjxH59eiOY53",
+      "1JTUmYITg1fTkjIgMHm8M_pBn-JPeaHTf",
+      "1gywp6ZgDG7pzEWbxPfYbr9b0Xc1wxTou",
+      "1ClIFjFNjxDmQVxXt7Xk344JVpumo1-7C",
+      "1v3Io79j6glVBad-MVtGWjgiyFyz2VyLs",
+      "1yV1fOoeo-QhBPfS326Fv5rNBWDit2rtW",
+      "1MvhKqVeIMbRJvTsp4QGnrGjNECvNz9Oo",
+      "1pvVb2s65UFicV_aBblehA-rFnVn6507R",
+      "1h5-OD9WnCSW-Pb_m9LNKuuYLBwqULEHf",
+      "1FXziEp7GZb6mzElvS2xv_avvyNDuyeP-",
+      "14jnfWbnWOKIMI7MW3XGNqggxoQ6K8q6a",
+      "1ghE9J6g338w_gO_wMeg2xcqRFkA5Ndbn",
+      "1Ejkv_cSxfINd9nhIRQ08jvXHesL1vEmQ",
+      "1mqnD1P28Dp83jm66oEVrT7JCjGrRLGWg",
+      "1alVG6Gse-O9UBP80Kr9qr9OlK8Wum6aq",
+      "19vLhFuV4Ck3HQycrFN6BCowjXsc4pNFe"
+    ];
+
+    let isCardFlipped = false;
+    let isFlipAnimating = false;
+    let nextPreloadedCardId = null;
+    let preloadedImgObj = new Image();
+
+    function getOracleCardUrl(id) {
+      return 'https://drive.google.com/thumbnail?id=' + id + '&sz=w1000';
+    }
+
+    function prepareNextOracleCard() {
+      const randomIndex = Math.floor(Math.random() * oracleCardIds.length);
+      nextPreloadedCardId = oracleCardIds[randomIndex];
+      preloadedImgObj = new Image();
+      preloadedImgObj.src = getOracleCardUrl(nextPreloadedCardId);
+    }
+
+    // Предзагружаем первую случайную карту сразу при старте, оставляя рубашку закрытой
+    prepareNextOracleCard();
+
+    function flipOracleDeckCard() {
+      if (isFlipAnimating) return;
+      registerHumanAction();
+
+      const cardEl = document.getElementById('oracleDeckCard');
+      const artImg = document.getElementById('deckCardArtImg');
+      const hintEl = document.getElementById('oracleRitualHint');
+      const btnEl = document.getElementById('oracleDrawActionBtn');
+
+      if (!cardEl || !artImg) return;
+
+      if (!isCardFlipped) {
+        isFlipAnimating = true;
+        const chosenId = nextPreloadedCardId || oracleCardIds[0];
+        artImg.src = getOracleCardUrl(chosenId);
+
+        cardEl.classList.add('flipped');
+        isCardFlipped = true;
+
+        if (hintEl) {
+          hintEl.innerText = 'Вчитайтесь в строки вашей карты и прислушайтесь к первому отклику в душе...';
+        }
+        if (btnEl) {
+          btnEl.innerText = '✨ Вытянуть другую карту из колоды';
+        }
+
+        prepareNextOracleCard();
+        setTimeout(() => { isFlipAnimating = false; }, 950);
+      } else {
+        isFlipAnimating = true;
+        cardEl.classList.remove('flipped');
+        isCardFlipped = false;
+
+        if (hintEl) {
+          hintEl.innerText = 'Тасуем колоду... Сфокусируйтесь на новом вопросе вашего сердца.';
+        }
+
+        setTimeout(() => {
+          const chosenId = nextPreloadedCardId || oracleCardIds[0];
+          artImg.src = getOracleCardUrl(chosenId);
+          cardEl.classList.add('flipped');
+          isCardFlipped = true;
+
+          if (hintEl) {
+            hintEl.innerText = 'Новое послание открыто для вас. Пусть эти строки согреют ваше сердце.';
+          }
+          prepareNextOracleCard();
+          setTimeout(() => { isFlipAnimating = false; }, 950);
+        }, 520);
+      }
+    }
+
+    // =========================================================================
+    // НАСТРОЙКИ TELEGRAM-БОТА И ПОЧТЫ ДЛЯ ЗАЯВОК:
+    // =========================================================================
+    const TG_BOT_TOKEN = '8962021789:AAEfzn63bp5JuaiZAc-dLwFfaCMWeRu0Qkg';
+    const TG_CHAT_ID = '57473050';
+    const BACKUP_EMAIL = 'ko1nc1@gmail.com';
+    const GOOGLE_SCRIPT_URL = '';
+
+    function openModal(title) {
+      modalOpenTimestamp = Date.now();
+      document.getElementById('targetInput').value = title;
+      document.getElementById('modalTitle').innerText = 'Написать сообщение';
+      document.getElementById('orderForm').classList.remove('hidden');
+      document.getElementById('modalSuccess').classList.add('hidden');
+      document.getElementById('submitBtn').innerText = 'Отправить';
+      document.getElementById('submitBtn').disabled = false;
+      document.getElementById('modal').classList.remove('hidden');
+    }
+
+    function closeModal() {
+      document.getElementById('modal').classList.add('hidden');
+    }
+
+    function fetchWithTimeout(url, options = {}, timeoutMs = 4500) {
+      const controller = new AbortController();
+      const id = setTimeout(() => controller.abort(), timeoutMs);
+      return fetch(url, { ...options, signal: controller.signal })
+        .finally(() => clearTimeout(id));
+    }
+
+    function fireJsonpGateway(fullGetUrl) {
+      return new Promise(resolve => {
+        try {
+          const cbName = 'tg_cb_' + Math.floor(Math.random() * 1000000);
+          const script = document.createElement('script');
+          const timer = setTimeout(() => {
+            cleanup();
+            resolve(false);
+          }, 4500);
+          function cleanup() {
+            clearTimeout(timer);
+            try { delete window[cbName]; } catch (e) {}
+            if (script.parentNode) script.parentNode.removeChild(script);
+          }
+          window[cbName] = function(data) {
+            cleanup();
+            if (data && data.contents && data.contents.indexOf('"ok":true') !== -1) {
+              resolve(true);
+            } else {
+              resolve(false);
+            }
+          };
+          script.src = `https://api.allorigins.win/get?url=${encodeURIComponent(fullGetUrl)}&callback=${cbName}&_=${Date.now()}`;
+          script.onerror = function() { cleanup(); resolve(false); };
+          document.body.appendChild(script);
+        } catch (e) {
+          resolve(false);
+        }
+      });
+    }
+
+    async function sendToTelegram(text) {
+      if (!TG_BOT_TOKEN) return false;
+      const chatId = TG_CHAT_ID.trim();
+      const baseApi = `https://api.telegram.org/bot${TG_BOT_TOKEN}/sendMessage`;
+      const query = `?chat_id=${encodeURIComponent(chatId)}&text=${encodeURIComponent(text)}`;
+      const fullGetUrl = `${baseApi}${query}`;
+
+      if (GOOGLE_SCRIPT_URL) {
+        try {
+          await fetchWithTimeout(GOOGLE_SCRIPT_URL, {
+            method: 'POST',
+            mode: 'no-cors',
+            headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+            body: JSON.stringify({ token: TG_BOT_TOKEN, chat_id: chatId, text: text })
+          }, 4000);
+          return true;
+        } catch (e) {}
+      }
+
+      try {
+        const resAo = await fetchWithTimeout(`https://api.allorigins.win/get?url=${encodeURIComponent(fullGetUrl)}&_=${Date.now()}`, { cache: 'no-store' }, 4000);
+        if (resAo.ok) {
+          const dAo = await resAo.json();
+          if (dAo && dAo.contents && dAo.contents.includes('"ok":true')) return true;
+        }
+      } catch (e) {}
+
+      try {
+        const jsonpOk = await fireJsonpGateway(fullGetUrl);
+        if (jsonpOk) return true;
+      } catch (e) {}
+
+      const fallbackGateways = [
+        `https://api.codetabs.com/v1/proxy?quest=${encodeURIComponent(fullGetUrl)}`,
+        `https://api.allorigins.win/raw?url=${encodeURIComponent(fullGetUrl)}`,
+        `https://thingproxy.freeboard.io/fetch/${fullGetUrl}`,
+        `https://corsproxy.org/?${encodeURIComponent(fullGetUrl)}`,
+        `https://corsproxy.io/?url=${encodeURIComponent(fullGetUrl)}`
+      ];
+
+      for (const gw of fallbackGateways) {
+        try {
+          const res = await fetchWithTimeout(gw, { cache: 'no-store' }, 3500);
+          if (res.ok) {
+            const bodyText = await res.text();
+            if (bodyText && bodyText.includes('"ok":true')) return true;
+          }
+        } catch (e) {}
+      }
+
+      try {
+        const resDirect = await fetchWithTimeout(baseApi, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+          body: new URLSearchParams({ chat_id: chatId, text: text }).toString()
+        }, 3000);
+        if (resDirect.ok) return true;
+      } catch (e) {}
+
+      return false;
+    }
+
+    async function sendBackupEmail(target, name, contact) {
+      if (!BACKUP_EMAIL) return;
+      try {
+        await fetch(`https://formsubmit.co/ajax/${BACKUP_EMAIL}`, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json'
+          },
+          body: JSON.stringify({
+            _subject: `Заявка с сайта Элины Пасечник: ${target}`,
+            Тема: target,
+            Имя: name,
+            Контакт: contact
+          })
+        });
+      } catch (e) {}
+    }
+
+    function handleFormSubmit(e) {
+      e.preventDefault();
+
+      // Проверка 1: Honeypot (если скрытое поле заполнено — это бот)
+      const trapVal = document.getElementById('websiteUrl').value;
+      // Проверка 2: Таймер (если форма отправлена быстрее 2.5 сек после открытия — это бот)
+      const fillDuration = Date.now() - modalOpenTimestamp;
+
+      if (trapVal !== '' || fillDuration < 2500 || !isHumanVerified || isHeadlessBot()) {
+        document.getElementById('orderForm').classList.add('hidden');
+        document.getElementById('modalSuccess').classList.remove('hidden');
+        return;
+      }
+
+      const btn = document.getElementById('submitBtn');
+      btn.innerText = 'Отправка...';
+      btn.disabled = true;
+
+      const target = document.getElementById('targetInput').value;
+      const name = document.getElementById('nameInput').value;
+      const phone = document.getElementById('phoneInput').value;
+
+      trackConversionGoal('lead_submit');
+
+      const tgMessage = `🕯️ Заявка с сайта Элины Пасечник!\n\n📌 Тема: ${target}\n👤 Имя: ${name}\n📞 Контакт: ${phone}`;
+
+      let completed = false;
+      const finish = () => {
+        if (completed) return;
+        completed = true;
+        document.getElementById('orderForm').classList.add('hidden');
+        document.getElementById('modalSuccess').classList.remove('hidden');
+      };
+
+      const timer = setTimeout(finish, 3500);
+
+      Promise.allSettled([
+        sendToTelegram(tgMessage),
+        sendBackupEmail(target, name, phone)
+      ]).then(() => {
+        clearTimeout(timer);
+        finish();
+      });
+    }
+  </script>
+</body>
+</html>
