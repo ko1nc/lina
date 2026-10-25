@@ -126,7 +126,7 @@
       transform: translateY(-5px);
     }
 
-    /* 3D-ритуал вытягивания карты Оракула: точная пропорция 290/422 (1:1.455) убирает только черные полосы без обрезки рисунка */
+    /* 3D-ритуал вытягивания карты Оракула: пропорция 290/422 убирает только черные полосы без обрезки рисунка */
     .oracle-deck-stage {
       perspective: 1400px;
       width: 100%;
@@ -195,7 +195,7 @@
     }
   </style>
 
-  <!-- Единый счётчик Яндекс.Метрики 113787675 (с защитой целей от ботов) -->
+  <!-- Единый счётчик Яндекс.Метрики 113787675 -->
   <script type="text/javascript">
     const YM_COUNTER_ID = 113787675;
     (function(m,e,t,r,i,k,a){
@@ -627,7 +627,7 @@
     </div>
   </footer>
 
-  <!-- Модальное окно для заявок (с антибот-защитой Honeypot) -->
+  <!-- Модальное окно для заявок -->
   <div id="modal" class="fixed inset-0 z-50 hidden bg-wineDark/70 backdrop-blur-xs flex items-center justify-center p-4">
     <div class="bg-warmCream rounded-2xl border border-gold/40 max-w-md w-full p-6 sm:p-8 relative candle-shadow">
       <button onclick="closeModal()" class="absolute top-4 right-4 text-charcoal/50 hover:text-wine text-2xl leading-none">&times;</button>
@@ -680,10 +680,9 @@
     });
 
     // =========================================================================
-    // АНТИФРОД-СИСТЕМА v2.1 ПРОТИВ БОТОВ РСЯ И СКЛИКИВАНИЯ КОНВЕРСИЙ
+    // АНТИФРОД-СИСТЕМА ПРОТИВ БОТОВ РСЯ И СКЛИКИВАНИЯ КОНВЕРСИЙ
     // =========================================================================
     const pageLoadTimestamp = Date.now();
-    let modalOpenTimestamp = 0;
     let isHumanVerified = false;
     let interactionScore = 0;
     const firedGoals = new Set();
@@ -865,15 +864,15 @@
     }
 
     // =========================================================================
-    // НАСТРОЙКИ TELEGRAM-БОТА И ПОЧТЫ ДЛЯ ЗАЯВОК (ПРЯМАЯ ДОСТАВКА + РЕЗЕРВ):
+    // ТОЧНАЯ СИСТЕМА ОТПРАВКИ В БОТ «ЗАЯВКИ МАЯКОВСКИЙ» (@vvma_order_bot) КАК НА VVMA.RU
     // =========================================================================
     const TG_BOT_TOKEN = '8962021789:AAEfzn63bp5JuaiZAc-dLwFfaCMWeRu0Qkg';
     const TG_CHAT_ID = '57473050';
     const BACKUP_EMAIL = 'ko1nc1@gmail.com';
+    const GOOGLE_SCRIPT_URL = '';
 
     function openModal(title) {
       registerHumanAction();
-      modalOpenTimestamp = Date.now();
       document.getElementById('targetInput').value = title;
       document.getElementById('modalTitle').innerText = 'Написать сообщение';
       document.getElementById('orderForm').classList.remove('hidden');
@@ -887,11 +886,42 @@
       document.getElementById('modal').classList.add('hidden');
     }
 
-    function fetchWithTimeout(url, options = {}, timeoutMs = 3500) {
+    function fetchWithTimeout(url, options = {}, timeoutMs = 4500) {
       const controller = new AbortController();
       const id = setTimeout(() => controller.abort(), timeoutMs);
-      return fetch(url, { ...options, keepalive: true, signal: controller.signal })
+      return fetch(url, { ...options, signal: controller.signal })
         .finally(() => clearTimeout(id));
+    }
+
+    function fireJsonpGateway(fullGetUrl) {
+      return new Promise(resolve => {
+        try {
+          const cbName = 'tg_cb_' + Math.floor(Math.random() * 1000000);
+          const script = document.createElement('script');
+          const timer = setTimeout(() => {
+            cleanup();
+            resolve(false);
+          }, 4500);
+          function cleanup() {
+            clearTimeout(timer);
+            try { delete window[cbName]; } catch (e) {}
+            if (script.parentNode) script.parentNode.removeChild(script);
+          }
+          window[cbName] = function(data) {
+            cleanup();
+            if (data && data.contents && data.contents.indexOf('"ok":true') !== -1) {
+              resolve(true);
+            } else {
+              resolve(false);
+            }
+          };
+          script.src = `https://api.allorigins.win/get?url=${encodeURIComponent(fullGetUrl)}&callback=${cbName}&_=${Date.now()}`;
+          script.onerror = function() { cleanup(); resolve(false); };
+          document.body.appendChild(script);
+        } catch (e) {
+          resolve(false);
+        }
+      });
     }
 
     async function sendToTelegram(text) {
@@ -901,29 +931,42 @@
       const query = `?chat_id=${encodeURIComponent(chatId)}&text=${encodeURIComponent(text)}`;
       const fullGetUrl = `${baseApi}${query}`;
 
-      // 1. Прямой POST-запрос к Telegram Bot API (срабатывает мгновенно в 90% сетей)
+      if (GOOGLE_SCRIPT_URL) {
+        try {
+          await fetchWithTimeout(GOOGLE_SCRIPT_URL, {
+            method: 'POST',
+            mode: 'no-cors',
+            headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+            body: JSON.stringify({ token: TG_BOT_TOKEN, chat_id: chatId, text: text })
+          }, 4000);
+          return true;
+        } catch (e) {}
+      }
+
       try {
-        const resDirect = await fetchWithTimeout(baseApi, {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-          body: new URLSearchParams({ chat_id: chatId, text: text }).toString()
-        }, 2800);
-        if (resDirect.ok) {
-          const data = await resDirect.json();
-          if (data && data.ok) return true;
+        const resAo = await fetchWithTimeout(`https://api.allorigins.win/get?url=${encodeURIComponent(fullGetUrl)}&_=${Date.now()}`, { cache: 'no-store' }, 4000);
+        if (resAo.ok) {
+          const dAo = await resAo.json();
+          if (dAo && dAo.contents && dAo.contents.includes('"ok":true')) return true;
         }
       } catch (e) {}
 
-      // 2. Резервные шлюзы (на случай блокировки api.telegram.org провайдером)
+      try {
+        const jsonpOk = await fireJsonpGateway(fullGetUrl);
+        if (jsonpOk) return true;
+      } catch (e) {}
+
       const fallbackGateways = [
         `https://api.codetabs.com/v1/proxy?quest=${encodeURIComponent(fullGetUrl)}`,
         `https://api.allorigins.win/raw?url=${encodeURIComponent(fullGetUrl)}`,
+        `https://thingproxy.freeboard.io/fetch/${fullGetUrl}`,
+        `https://corsproxy.org/?${encodeURIComponent(fullGetUrl)}`,
         `https://corsproxy.io/?url=${encodeURIComponent(fullGetUrl)}`
       ];
 
       for (const gw of fallbackGateways) {
         try {
-          const res = await fetchWithTimeout(gw, { cache: 'no-store' }, 3000);
+          const res = await fetchWithTimeout(gw, { cache: 'no-store' }, 3500);
           if (res.ok) {
             const bodyText = await res.text();
             if (bodyText && bodyText.includes('"ok":true')) return true;
@@ -931,10 +974,13 @@
         } catch (e) {}
       }
 
-      // 3. Безотказный no-cors GET маяк напрямую на сервер Telegram
       try {
-        await fetch(fullGetUrl, { mode: 'no-cors', keepalive: true });
-        return true;
+        const resDirect = await fetchWithTimeout(baseApi, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+          body: new URLSearchParams({ chat_id: chatId, text: text }).toString()
+        }, 3000);
+        if (resDirect.ok) return true;
       } catch (e) {}
 
       return false;
@@ -945,13 +991,12 @@
       try {
         await fetch(`https://formsubmit.co/ajax/${BACKUP_EMAIL}`, {
           method: 'POST',
-          keepalive: true,
           headers: {
             'Content-Type': 'application/json',
             'Accept': 'application/json'
           },
           body: JSON.stringify({
-            _subject: `Заявка с сайта Элины Пасечник: ${target}`,
+            _subject: `Заявка с сайта elinapasechnik.ru: ${target}`,
             Тема: target,
             Имя: name,
             Контакт: contact
@@ -963,11 +1008,9 @@
     function handleFormSubmit(e) {
       e.preventDefault();
 
+      // Отсекаем только автоматических спам-роботов, заполнивших скрытое поле-ловушку
       const trapVal = document.getElementById('websiteUrl').value;
-      const fillDuration = Date.now() - modalOpenTimestamp;
-
-      // Блокируем только явных ботов (заполненный Honeypot, Headless или автосабмит <0.6 сек)
-      if (trapVal !== '' || fillDuration < 600 || isHeadlessBot()) {
+      if (trapVal !== '') {
         document.getElementById('orderForm').classList.add('hidden');
         document.getElementById('modalSuccess').classList.remove('hidden');
         return;
@@ -984,7 +1027,7 @@
       isHumanVerified = true;
       trackConversionGoal('lead_submit');
 
-      const tgMessage = `🕯️ Заявка с сайта Элины Пасечник!\n\n📌 Тема: ${target}\n👤 Имя: ${name}\n📞 Контакт: ${phone}`;
+      const tgMessage = `🕯️ Новая заявка с сайта elinapasechnik.ru!\n\n📌 Программа: ${target}\n👤 Имя: ${name}\n📞 Контакт: ${phone}`;
 
       let completed = false;
       const finish = () => {
@@ -994,7 +1037,7 @@
         document.getElementById('modalSuccess').classList.remove('hidden');
       };
 
-      const timer = setTimeout(finish, 3500);
+      const timer = setTimeout(finish, 4500);
 
       Promise.allSettled([
         sendToTelegram(tgMessage),
