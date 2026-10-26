@@ -681,9 +681,6 @@
     </div>
   </footer>
 
-  <!-- Скрытый iframe для резервной отправки формы -->
-  <iframe name="tg_hidden_transport" id="tg_hidden_transport" style="display:none;width:0;height:0;border:0;"></iframe>
-
   <!-- Модальное окно для заявок (чистая форма без блокирующих ловушек) -->
   <div id="modal" class="fixed inset-0 z-50 hidden bg-wineDark/70 backdrop-blur-xs flex items-center justify-center p-4">
     <div class="bg-warmCream rounded-2xl border border-gold/40 max-w-md w-full p-6 sm:p-8 relative candle-shadow">
@@ -962,7 +959,7 @@
     }
 
     // =========================================================================
-    // НАДЕЖНАЯ ОТПРАВКА В TELEGRAM (@vvma_order_bot) И С VPN, И БЕЗ VPN
+    // КАСКАДНО-ПАРАЛЛЕЛЬНАЯ ДОСТАВКА В TELEGRAM (@vvma_order_bot) И С VPN, И БЕЗ VPN
     // =========================================================================
     const TG_BOT_TOKEN = '8962021789:AAEfzn63bp5JuaiZAc-dLwFfaCMWeRu0Qkg';
     const TG_CHAT_ID = '57473050';
@@ -984,47 +981,63 @@
       document.getElementById('modal').classList.add('hidden');
     }
 
-    function fetchWithTimeout(url, options = {}, timeoutMs = 4500) {
+    function fetchWithTimeout(url, options = {}, timeoutMs = 7000) {
       const controller = new AbortController();
       const id = setTimeout(() => controller.abort(), timeoutMs);
       return fetch(url, { ...options, signal: controller.signal })
         .finally(() => clearTimeout(id));
     }
 
-    function fireJsonpGateway(fullGetUrl) {
-      return new Promise(resolve => {
+    function isTelegramOk(bodyText) {
+      if (!bodyText) return false;
+      const str = typeof bodyText === 'string' ? bodyText : JSON.stringify(bodyText);
+      return str.indexOf('"ok":true') !== -1 || str.indexOf('\\"ok\\":true') !== -1;
+    }
+
+    // JSONP через тег <script> (обходит CORS, AdBlock и Kaspersky)
+    function fireJsonpScript(baseUrl, paramName, fullGetUrl, timeoutMs = 7000) {
+      return new Promise((resolve, reject) => {
         try {
-          const cbName = 'tg_cb_' + Math.floor(Math.random() * 1000000);
+          const cbName = 'tg_jsonp_' + Math.floor(Math.random() * 10000000);
           const script = document.createElement('script');
           const timer = setTimeout(() => {
             cleanup();
-            resolve(false);
-          }, 4500);
+            reject(new Error('JSONP timeout'));
+          }, timeoutMs);
+
           function cleanup() {
             clearTimeout(timer);
             try { delete window[cbName]; } catch (e) {}
             if (script.parentNode) script.parentNode.removeChild(script);
           }
+
           window[cbName] = function(data) {
             cleanup();
-            if (data && data.contents && (data.contents.indexOf('"ok":true') !== -1 || data.contents.indexOf('\\"ok\\":true') !== -1)) {
+            if (isTelegramOk(data)) {
               resolve(true);
             } else {
-              resolve(false);
+              reject(new Error('JSONP bad response'));
             }
           };
-          script.src = `https://api.allorigins.win/get?url=${encodeURIComponent(fullGetUrl)}&callback=${cbName}&_=${Date.now()}`;
-          script.onerror = function() { cleanup(); resolve(false); };
+
+          script.src = `${baseUrl}?${paramName}=${encodeURIComponent(fullGetUrl)}&callback=${cbName}&_=${Date.now()}`;
+          script.onerror = function() {
+            cleanup();
+            reject(new Error('JSONP script error'));
+          };
           document.body.appendChild(script);
         } catch (e) {
-          resolve(false);
+          reject(e);
         }
       });
     }
 
-    function isTelegramResponseOk(bodyText) {
-      if (!bodyText) return false;
-      return bodyText.includes('"ok":true') || bodyText.includes('\\"ok\\":true');
+    async function tryProxyFetch(gwUrl, timeoutMs = 7000) {
+      const res = await fetchWithTimeout(gwUrl, { cache: 'no-store' }, timeoutMs);
+      if (!res.ok) throw new Error('HTTP ' + res.status);
+      const text = await res.text();
+      if (isTelegramOk(text)) return true;
+      throw new Error('Invalid Telegram payload');
     }
 
     async function sendToTelegram(text) {
@@ -1034,20 +1047,6 @@
       const query = `?chat_id=${encodeURIComponent(chatId)}&text=${encodeURIComponent(text)}`;
       const fullGetUrl = `${baseApi}${query}`;
 
-      // 1. Прямой POST-запрос к API Telegram (мгновенно работает с VPN и у большинства провайдеров)
-      try {
-        const resDirect = await fetchWithTimeout(baseApi, {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-          body: new URLSearchParams({ chat_id: chatId, text: text }).toString()
-        }, 2500);
-        if (resDirect.ok) {
-          const directText = await resDirect.text();
-          if (isTelegramResponseOk(directText)) return true;
-        }
-      } catch (e) {}
-
-      // 2. Если задан Google Apps Script шлюз
       if (GOOGLE_SCRIPT_URL) {
         try {
           await fetchWithTimeout(GOOGLE_SCRIPT_URL, {
@@ -1055,44 +1054,67 @@
             mode: 'no-cors',
             headers: { 'Content-Type': 'text/plain;charset=utf-8' },
             body: JSON.stringify({ token: TG_BOT_TOKEN, chat_id: chatId, text: text })
-          }, 4000);
+          }, 5000);
           return true;
         } catch (e) {}
       }
 
-      // 3. Обходные прокси-шлюзы для сетей с блокировкой api.telegram.org (без VPN)
-      const fallbackGateways = [
-        `https://api.codetabs.com/v1/proxy?quest=${encodeURIComponent(fullGetUrl)}`,
-        `https://api.allorigins.win/raw?url=${encodeURIComponent(fullGetUrl)}&_=${Date.now()}`,
-        `https://api.allorigins.win/get?url=${encodeURIComponent(fullGetUrl)}&_=${Date.now()}`,
-        `https://corsproxy.io/?url=${encodeURIComponent(fullGetUrl)}`,
-        `https://corsproxy.org/?${encodeURIComponent(fullGetUrl)}`,
-        `https://thingproxy.freeboard.io/fetch/${fullGetUrl}`
-      ];
+      let delivered = false;
 
-      for (const gw of fallbackGateways) {
-        try {
-          const res = await fetchWithTimeout(gw, { cache: 'no-store' }, 4000);
-          if (res.ok) {
-            const bodyText = await res.text();
-            if (isTelegramResponseOk(bodyText)) return true;
-          }
-        } catch (e) {}
+      // ВОЛНА 1 (0.0 сек): Прямой запрос к Telegram (мгновенно срабатывает при включенном VPN)
+      const wave1 = fetchWithTimeout(baseApi, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        body: new URLSearchParams({ chat_id: chatId, text: text }).toString()
+      }, 4500).then(async r => {
+        if (!r.ok) throw new Error('Direct failed');
+        const t = await r.text();
+        if (!isTelegramOk(t)) throw new Error('Direct not ok');
+        delivered = true;
+        return true;
+      });
+
+      // ВОЛНА 2 (через 0.6 сек, если Волна 1 заблокирована провайдером без VPN):
+      // Шлюзы НЕ на Cloudflare (AWS / Fastly / Linode) + JSONP <script>
+      const wave2 = new Promise((resolve, reject) => {
+        setTimeout(() => {
+          if (delivered) return resolve(true);
+          Promise.any([
+            fireJsonpScript('https://jsonp.afeld.me/', 'url', fullGetUrl, 7000),
+            tryProxyFetch(`https://jsonp.afeld.me/?url=${encodeURIComponent(fullGetUrl)}&_=${Date.now()}`, 7000),
+            tryProxyFetch(`https://thingproxy.freeboard.io/fetch/${fullGetUrl}`, 7000),
+            tryProxyFetch(`https://api.codetabs.com/v1/proxy?quest=${encodeURIComponent(fullGetUrl)}`, 7000),
+            fireJsonpScript('https://api.allorigins.win/get', 'url', fullGetUrl, 7000),
+            tryProxyFetch(`https://api.allorigins.win/get?url=${encodeURIComponent(fullGetUrl)}&_=${Date.now()}`, 7000)
+          ]).then(() => {
+            delivered = true;
+            resolve(true);
+          }).catch(reject);
+        }, 600);
+      });
+
+      // ВОЛНА 3 (через 1.8 сек, если Волна 2 ещё в пути): Все остальные резервные шлюзы
+      const wave3 = new Promise((resolve, reject) => {
+        setTimeout(() => {
+          if (delivered) return resolve(true);
+          Promise.any([
+            tryProxyFetch(`https://api.allorigins.win/raw?url=${encodeURIComponent(fullGetUrl)}&_=${Date.now()}`, 7000),
+            tryProxyFetch(`https://api.cors.lol/?url=${encodeURIComponent(fullGetUrl)}`, 7000),
+            tryProxyFetch(`https://corsproxy.io/?url=${encodeURIComponent(fullGetUrl)}`, 7000),
+            tryProxyFetch(`https://corsproxy.org/?${encodeURIComponent(fullGetUrl)}`, 7000)
+          ]).then(() => {
+            delivered = true;
+            resolve(true);
+          }).catch(reject);
+        }, 1800);
+      });
+
+      try {
+        await Promise.any([wave1, wave2, wave3]);
+        return true;
+      } catch (e) {
+        return false;
       }
-
-      // 4. JSONP-шлюз через тег <script>
-      try {
-        const jsonpOk = await fireJsonpGateway(fullGetUrl);
-        if (jsonpOk) return true;
-      } catch (e) {}
-
-      // 5. Резервный no-cors маяк напрямую на сервер Telegram
-      try {
-        const imgBeacon = new Image();
-        imgBeacon.src = `${fullGetUrl}&_=${Date.now()}`;
-      } catch (e) {}
-
-      return false;
     }
 
     async function sendBackupEmail(target, name, contact) {
@@ -1138,7 +1160,7 @@
         document.getElementById('modalSuccess').classList.remove('hidden');
       };
 
-      const timer = setTimeout(finish, 4500);
+      const timer = setTimeout(finish, 8000);
 
       Promise.allSettled([
         sendToTelegram(tgMessage),
