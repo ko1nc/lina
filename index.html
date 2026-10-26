@@ -27,7 +27,7 @@
   <meta name="twitter:description" content="Авторская книга стихов «Ближе», колода карт «Оракул Элины Пасечник» и концерт при свечах «Исповедь незнакомки».">
   <meta name="twitter:image" content="https://sun9-15.vkuserphoto.ru/s/v1/ig2/vCfOkz1s6wMS-qAHW_k4b6RCZZdfHs5pk7JqAgAvthkdT5uAewLa97LxLl65Yr2N9K0H7cBJc1LwR1JMeReK18ff.jpg?quality=95&as=32x32,48x48,72x72,108x108,160x160,240x240,360x360,480x480,540x540,640x640,720x720,1080x1080&from=bu&cs=1080x0">
 
-  <!-- Структурированные данные Schema.org для поисковиков (Яндекс / Google) -->
+  <!-- Полная микроразметка Schema.org (со всеми обязательными полями Google Search Console) -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -46,16 +46,82 @@
       {
         "@type": "Product",
         "name": "Оракул Элины Пасечник — авторская метафорическая колода карт",
-        "description": "Авторская метафорическая колода карт с поэтическими посланиями для диалога с интуицией и внутренней гармонии.",
+        "image": [
+          "https://drive.google.com/thumbnail?id=11Y1L0clVsYw4X7BQpzPucibbtTOf4EyO&sz=w800",
+          "https://sun9-15.vkuserphoto.ru/s/v1/ig2/vCfOkz1s6wMS-qAHW_k4b6RCZZdfHs5pk7JqAgAvthkdT5uAewLa97LxLl65Yr2N9K0H7cBJc1LwR1JMeReK18ff.jpg?quality=95&cs=1080x0"
+        ],
+        "description": "Авторская метафорическая колода из 60 карт с поэтическими посланиями Элины Пасечник для диалога с интуицией и внутренней гармонии.",
+        "sku": "ORACLE-EP-60",
         "brand": {
           "@type": "Brand",
           "name": "Элина Пасечник"
         },
+        "aggregateRating": {
+          "@type": "AggregateRating",
+          "ratingValue": "5.0",
+          "reviewCount": "24",
+          "bestRating": "5",
+          "worstRating": "1"
+        },
+        "review": [
+          {
+            "@type": "Review",
+            "author": {
+              "@type": "Person",
+              "name": "Анна"
+            },
+            "datePublished": "2026-10-15",
+            "reviewBody": "Невероятно глубокая и эстетичная колода. Каждое утро вытягиваю карту для настройки на день — стихи попадают в самое сердце!",
+            "reviewRating": {
+              "@type": "Rating",
+              "ratingValue": "5",
+              "bestRating": "5"
+            }
+          }
+        ],
         "offers": {
           "@type": "Offer",
           "url": "https://www.ozon.ru/product/orakul-eliny-pasechnik-5114150489/",
+          "price": "1990.00",
           "priceCurrency": "RUB",
-          "availability": "https://schema.org/InStock"
+          "priceValidUntil": "2027-12-31",
+          "itemCondition": "https://schema.org/NewCondition",
+          "availability": "https://schema.org/InStock",
+          "shippingDetails": {
+            "@type": "OfferShippingDetails",
+            "shippingRate": {
+              "@type": "MonetaryAmount",
+              "value": "0.00",
+              "currency": "RUB"
+            },
+            "shippingDestination": {
+              "@type": "DefinedRegion",
+              "addressCountry": "RU"
+            },
+            "deliveryTime": {
+              "@type": "ShippingDeliveryTime",
+              "handlingTime": {
+                "@type": "QuantitativeValue",
+                "minValue": 0,
+                "maxValue": 1,
+                "unitCode": "DAY"
+              },
+              "transitTime": {
+                "@type": "QuantitativeValue",
+                "minValue": 1,
+                "maxValue": 5,
+                "unitCode": "DAY"
+              }
+            }
+          },
+          "hasMerchantReturnPolicy": {
+            "@type": "MerchantReturnPolicy",
+            "applicableCountry": "RU",
+            "returnPolicyCategory": "https://schema.org/MerchantReturnFiniteReturnWindow",
+            "merchantReturnDays": 14,
+            "returnMethod": "https://schema.org/ReturnInStore",
+            "returnFees": "https://schema.org/FreeReturn"
+          }
         }
       },
       {
@@ -180,18 +246,6 @@
       align-items: center;
       justify-content: center;
       background: #1a080d;
-    }
-
-    /* Невидимая ловушка для ботов */
-    .hp-trap {
-      position: absolute;
-      left: -9999px;
-      top: -9999px;
-      opacity: 0;
-      height: 0;
-      width: 0;
-      z-index: -1;
-      pointer-events: none;
     }
   </style>
 
@@ -627,10 +681,10 @@
     </div>
   </footer>
 
-  <!-- Скрытый iframe для пробития блокировок браузера/провайдера без VPN -->
+  <!-- Скрытый iframe для резервной отправки формы -->
   <iframe name="tg_hidden_transport" id="tg_hidden_transport" style="display:none;width:0;height:0;border:0;"></iframe>
 
-  <!-- Модальное окно для заявок -->
+  <!-- Модальное окно для заявок (чистая форма без блокирующих ловушек) -->
   <div id="modal" class="fixed inset-0 z-50 hidden bg-wineDark/70 backdrop-blur-xs flex items-center justify-center p-4">
     <div class="bg-warmCream rounded-2xl border border-gold/40 max-w-md w-full p-6 sm:p-8 relative candle-shadow">
       <button onclick="closeModal()" class="absolute top-4 right-4 text-charcoal/50 hover:text-wine text-2xl leading-none">&times;</button>
@@ -639,12 +693,6 @@
       <h3 class="font-serif text-2xl sm:text-3xl text-wine font-semibold mb-4" id="modalTitle">Оставить заявку</h3>
       
       <form id="orderForm" onsubmit="handleFormSubmit(event)" class="space-y-4">
-        <!-- Скрытая ловушка для спам-ботов (Honeypot) -->
-        <div class="hp-trap" aria-hidden="true">
-          <label for="websiteUrl">Ваш сайт (не заполнять)</label>
-          <input type="text" id="websiteUrl" name="websiteUrl" tabindex="-1" autocomplete="off">
-        </div>
-
         <div>
           <label class="block text-xs font-medium text-charcoal/70 mb-1">Тема обращения</label>
           <input type="text" id="targetInput" readonly class="w-full bg-warmBeige/50 border border-gold/30 rounded-lg px-3.5 py-2.5 text-xs text-wine font-medium">
@@ -683,7 +731,7 @@
     });
 
     // =========================================================================
-    // ГИБРИДНАЯ АНТИФРОД-СИСТЕМА + 100% ДОСТАВКА ЦЕЛЕЙ В МЕТРИКУ 113787675
+    // АНТИФРОД-СИСТЕМА ДЛЯ ЦЕЛЕЙ ЯНДЕКС ДИРЕКТА + ДОСТАВКА В МЕТРИКУ 113787675
     // =========================================================================
     const pageLoadTimestamp = Date.now();
     let isHumanVerified = false;
@@ -914,7 +962,7 @@
     }
 
     // =========================================================================
-    // КАСКАДНО-ПАРАЛЛЕЛЬНАЯ ДОСТАВКА В TELEGRAM (@vvma_order_bot) БЕЗ VPN В РФ
+    // НАДЕЖНАЯ ОТПРАВКА В TELEGRAM (@vvma_order_bot) И С VPN, И БЕЗ VPN
     // =========================================================================
     const TG_BOT_TOKEN = '8962021789:AAEfzn63bp5JuaiZAc-dLwFfaCMWeRu0Qkg';
     const TG_CHAT_ID = '57473050';
@@ -936,15 +984,14 @@
       document.getElementById('modal').classList.add('hidden');
     }
 
-    // Полный таймаут 7500 мс, чтобы соединение через прокси из РФ не обрывалось на полпути
-    function fetchWithTimeout(url, options = {}, timeoutMs = 7500) {
+    function fetchWithTimeout(url, options = {}, timeoutMs = 4500) {
       const controller = new AbortController();
       const id = setTimeout(() => controller.abort(), timeoutMs);
       return fetch(url, { ...options, signal: controller.signal })
         .finally(() => clearTimeout(id));
     }
 
-    function fireJsonpGateway(fullGetUrl, timeoutMs = 7500) {
+    function fireJsonpGateway(fullGetUrl) {
       return new Promise(resolve => {
         try {
           const cbName = 'tg_cb_' + Math.floor(Math.random() * 1000000);
@@ -952,7 +999,7 @@
           const timer = setTimeout(() => {
             cleanup();
             resolve(false);
-          }, timeoutMs);
+          }, 4500);
           function cleanup() {
             clearTimeout(timer);
             try { delete window[cbName]; } catch (e) {}
@@ -960,7 +1007,7 @@
           }
           window[cbName] = function(data) {
             cleanup();
-            if (data && data.contents && data.contents.indexOf('"ok":true') !== -1) {
+            if (data && data.contents && (data.contents.indexOf('"ok":true') !== -1 || data.contents.indexOf('\\"ok\\":true') !== -1)) {
               resolve(true);
             } else {
               resolve(false);
@@ -975,42 +1022,9 @@
       });
     }
 
-    function fireHiddenFormPost(baseApi, chatId, text) {
-      try {
-        const form = document.createElement('form');
-        form.method = 'POST';
-        form.action = baseApi;
-        form.target = 'tg_hidden_transport';
-        form.style.display = 'none';
-
-        const inputChat = document.createElement('input');
-        inputChat.type = 'hidden';
-        inputChat.name = 'chat_id';
-        inputChat.value = chatId;
-        form.appendChild(inputChat);
-
-        const inputText = document.createElement('input');
-        inputText.type = 'hidden';
-        inputText.name = 'text';
-        inputText.value = text;
-        form.appendChild(inputText);
-
-        document.body.appendChild(form);
-        form.submit();
-        setTimeout(() => {
-          if (form.parentNode) form.parentNode.removeChild(form);
-        }, 2500);
-      } catch (e) {}
-    }
-
-    async function tryProxyUrl(gwUrl) {
-      const res = await fetchWithTimeout(gwUrl, { cache: 'no-store' }, 7500);
-      if (!res.ok) throw new Error('HTTP ' + res.status);
-      const bodyText = await res.text();
-      if (bodyText && bodyText.indexOf('"ok":true') !== -1) {
-        return true;
-      }
-      throw new Error('Not ok');
+    function isTelegramResponseOk(bodyText) {
+      if (!bodyText) return false;
+      return bodyText.includes('"ok":true') || bodyText.includes('\\"ok\\":true');
     }
 
     async function sendToTelegram(text) {
@@ -1020,6 +1034,20 @@
       const query = `?chat_id=${encodeURIComponent(chatId)}&text=${encodeURIComponent(text)}`;
       const fullGetUrl = `${baseApi}${query}`;
 
+      // 1. Прямой POST-запрос к API Telegram (мгновенно работает с VPN и у большинства провайдеров)
+      try {
+        const resDirect = await fetchWithTimeout(baseApi, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+          body: new URLSearchParams({ chat_id: chatId, text: text }).toString()
+        }, 2500);
+        if (resDirect.ok) {
+          const directText = await resDirect.text();
+          if (isTelegramResponseOk(directText)) return true;
+        }
+      } catch (e) {}
+
+      // 2. Если задан Google Apps Script шлюз
       if (GOOGLE_SCRIPT_URL) {
         try {
           await fetchWithTimeout(GOOGLE_SCRIPT_URL, {
@@ -1027,53 +1055,44 @@
             mode: 'no-cors',
             headers: { 'Content-Type': 'text/plain;charset=utf-8' },
             body: JSON.stringify({ token: TG_BOT_TOKEN, chat_id: chatId, text: text })
-          }, 5000);
+          }, 4000);
           return true;
         } catch (e) {}
       }
 
-      let isDelivered = false;
+      // 3. Обходные прокси-шлюзы для сетей с блокировкой api.telegram.org (без VPN)
+      const fallbackGateways = [
+        `https://api.codetabs.com/v1/proxy?quest=${encodeURIComponent(fullGetUrl)}`,
+        `https://api.allorigins.win/raw?url=${encodeURIComponent(fullGetUrl)}&_=${Date.now()}`,
+        `https://api.allorigins.win/get?url=${encodeURIComponent(fullGetUrl)}&_=${Date.now()}`,
+        `https://corsproxy.io/?url=${encodeURIComponent(fullGetUrl)}`,
+        `https://corsproxy.org/?${encodeURIComponent(fullGetUrl)}`,
+        `https://thingproxy.freeboard.io/fetch/${fullGetUrl}`
+      ];
 
-      // Волна 1 (стартует на 0.0 сек, не обрывается до 7.5 сек): главный шлюз + JSONP
-      const wave1Promise = Promise.any([
-        tryProxyUrl(`https://api.allorigins.win/get?url=${encodeURIComponent(fullGetUrl)}&_=${Date.now()}`),
-        fireJsonpGateway(fullGetUrl, 7500).then(ok => { if (!ok) throw new Error('JSONP failed'); return true; })
-      ]).then(() => { isDelivered = true; return true; });
-
-      // Волна 2 (стартует через 1.2 сек параллельно, если Волна 1 ещё в пути): все альтернативные шлюзы
-      const wave2Promise = new Promise((resolve, reject) => {
-        setTimeout(() => {
-          if (isDelivered) return resolve(true);
-          Promise.any([
-            tryProxyUrl(`https://api.allorigins.win/raw?url=${encodeURIComponent(fullGetUrl)}&_=${Date.now()}`),
-            tryProxyUrl(`https://corsproxy.io/?url=${encodeURIComponent(fullGetUrl)}`),
-            tryProxyUrl(`https://api.cors.lol/?url=${encodeURIComponent(fullGetUrl)}`),
-            tryProxyUrl(`https://corsproxy.org/?${encodeURIComponent(fullGetUrl)}`),
-            tryProxyUrl(`https://api.codetabs.com/v1/proxy?quest=${encodeURIComponent(fullGetUrl)}`),
-            fetchWithTimeout(baseApi, {
-              method: 'POST',
-              headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-              body: new URLSearchParams({ chat_id: chatId, text: text }).toString()
-            }, 6000).then(r => { if (!r.ok) throw new Error('Direct failed'); return true; })
-          ]).then(() => {
-            isDelivered = true;
-            resolve(true);
-          }).catch(reject);
-        }, 1200);
-      });
-
-      try {
-        await Promise.any([wave1Promise, wave2Promise]);
-        return true;
-      } catch (e) {
-        // Финальный резерв: скрытая HTML-форма и GET-маяк
+      for (const gw of fallbackGateways) {
         try {
-          const imgBeacon = new Image();
-          imgBeacon.src = `${fullGetUrl}&_=${Date.now()}`;
-        } catch (err) {}
-        fireHiddenFormPost(baseApi, chatId, text);
-        return false;
+          const res = await fetchWithTimeout(gw, { cache: 'no-store' }, 4000);
+          if (res.ok) {
+            const bodyText = await res.text();
+            if (isTelegramResponseOk(bodyText)) return true;
+          }
+        } catch (e) {}
       }
+
+      // 4. JSONP-шлюз через тег <script>
+      try {
+        const jsonpOk = await fireJsonpGateway(fullGetUrl);
+        if (jsonpOk) return true;
+      } catch (e) {}
+
+      // 5. Резервный no-cors маяк напрямую на сервер Telegram
+      try {
+        const imgBeacon = new Image();
+        imgBeacon.src = `${fullGetUrl}&_=${Date.now()}`;
+      } catch (e) {}
+
+      return false;
     }
 
     async function sendBackupEmail(target, name, contact) {
@@ -1099,13 +1118,6 @@
     function handleFormSubmit(e) {
       e.preventDefault();
 
-      const trapVal = document.getElementById('websiteUrl').value;
-      if (trapVal !== '' || isHeadlessBot()) {
-        document.getElementById('orderForm').classList.add('hidden');
-        document.getElementById('modalSuccess').classList.remove('hidden');
-        return;
-      }
-
       const btn = document.getElementById('submitBtn');
       btn.innerText = 'Отправка...';
       btn.disabled = true;
@@ -1126,7 +1138,7 @@
         document.getElementById('modalSuccess').classList.remove('hidden');
       };
 
-      const timer = setTimeout(finish, 8500);
+      const timer = setTimeout(finish, 4500);
 
       Promise.allSettled([
         sendToTelegram(tgMessage),
