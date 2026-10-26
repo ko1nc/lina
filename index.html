@@ -351,7 +351,7 @@
               <a href="https://ozon.onelink.me/SNMZ?af_dp=https://ozon.ru/product/orakul-eliny-pasechnik-5114150489&af_web_dp=https://ozon.ru/product/orakul-eliny-pasechnik-5114150489&is_retargeting=true&c=vendor_org_4133655_oracle_elina_site&pid=yandex_direct|cpc&af_adset=ozon_btn&hs=1&utm_source=yandex_direct&utm_medium=cpc&utm_campaign=vendor_org_4133655_oracle_elina_site&utm_content=ozon_btn" 
                  target="_blank" 
                  rel="noopener" 
-                 onclick="trackConversionGoal('buy_oracle_ozon')" 
+                 onclick="return handleOutboundConversion(event, this.href, 'buy_oracle_ozon', '/go-ozon-oracle')" 
                  class="ozon-oracle-link inline-flex items-center justify-center gap-2 bg-wine hover:bg-wineDark text-white px-6 sm:px-8 py-4 rounded-full text-xs uppercase tracking-widest font-medium transition shadow-md text-center">
                 <span>Заказать колоду на Ozon</span>
                 <span>→</span>
@@ -413,7 +413,7 @@
                 <a href="https://ozon.onelink.me/SNMZ?af_dp=https://ozon.ru/product/orakul-eliny-pasechnik-5114150489&af_web_dp=https://ozon.ru/product/orakul-eliny-pasechnik-5114150489&is_retargeting=true&c=vendor_org_4133655_oracle_elina_site&pid=yandex_direct|cpc&af_adset=ozon_btn&hs=1&utm_source=yandex_direct&utm_medium=cpc&utm_campaign=vendor_org_4133655_oracle_elina_site&utm_content=ozon_btn" 
                    target="_blank" 
                    rel="noopener" 
-                   onclick="trackConversionGoal('buy_oracle_ozon')"
+                   onclick="return handleOutboundConversion(event, this.href, 'buy_oracle_ozon', '/go-ozon-oracle')"
                    class="ozon-oracle-link text-xs text-goldLight hover:text-white underline underline-offset-4 transition">
                   Приобрести полную печатную колоду на Ozon →
                 </a>
@@ -488,7 +488,7 @@
               <a href="https://ridero.ru/books/blizhe/" 
                  target="_blank" 
                  rel="noopener" 
-                 onclick="trackConversionGoal('buy_book')" 
+                 onclick="return handleOutboundConversion(event, this.href, 'buy_book', '/go-books-blizhe')" 
                  class="inline-flex items-center justify-center gap-2 bg-gold hover:bg-yellow-600 text-white px-6 sm:px-8 py-4 rounded-full text-xs uppercase tracking-widest font-medium transition shadow-md text-center">
                 <span>Купить книгу «Ближе»</span>
                 <span>→</span>
@@ -519,7 +519,7 @@
           <a href="https://vk.ru/elinapasechnik" 
              target="_blank" 
              rel="noopener" 
-             onclick="trackConversionGoal('vk_subscribe')" 
+             onclick="return handleOutboundConversion(event, this.href, 'vk_subscribe', '/go-vk-subscribe')" 
              class="inline-block w-full sm:w-auto bg-wine hover:bg-wineDark text-white px-6 sm:px-8 py-4 rounded-full text-xs uppercase tracking-widest transition shadow-md text-center">
             Следить за анонсами в ВК
           </a>
@@ -683,16 +683,14 @@
     });
 
     // =========================================================================
-    // АНТИФРОД-СИСТЕМА ПРОТИВ БОТОВ РСЯ И СКЛИКИВАНИЯ КОНВЕРСИЙ
+    // ГИБРИДНАЯ АНТИФРОД-СИСТЕМА + 100% ДОСТАВКА ЦЕЛЕЙ В МЕТРИКУ 113787675
     // =========================================================================
     const pageLoadTimestamp = Date.now();
     let isHumanVerified = false;
-    let interactionScore = 0;
     const firedGoals = new Set();
 
     function isHeadlessBot() {
       if (navigator.webdriver) return true;
-      if (!navigator.languages || navigator.languages.length === 0) return true;
       const ua = (navigator.userAgent || '').toLowerCase();
       if (ua.includes('headless') || ua.includes('phantomjs') || ua.includes('selenium') || ua.includes('crawler')) {
         return true;
@@ -700,10 +698,9 @@
       return false;
     }
 
-    function registerHumanAction() {
+    function registerHumanAction(e) {
       if (isHeadlessBot()) return;
-      interactionScore++;
-      if (interactionScore >= 1) {
+      if (!e || e.isTrusted !== false) {
         isHumanVerified = true;
       }
     }
@@ -714,20 +711,77 @@
     window.addEventListener('keydown', registerHumanAction, { passive: true });
     window.addEventListener('pointerdown', registerHumanAction, { passive: true });
 
-    function trackConversionGoal(goalName) {
-      const timeSpentMs = Date.now() - pageLoadTimestamp;
-
-      if (isHeadlessBot() || (!isHumanVerified && timeSpentMs < 2000)) {
-        console.warn('Anti-bot: конверсия заблокирована (подозрение на бота).');
+    // Отправка сразу и JS-цели (reachGoal), и виртуального просмотра страницы (hit)
+    function sendVerifiedGoalToMetrika(goalName, virtualPath, callback) {
+      if (typeof ym !== 'function') {
+        if (callback) callback();
         return;
       }
 
-      if (firedGoals.has(goalName)) return;
+      if (firedGoals.has(goalName)) {
+        if (callback) callback();
+        return;
+      }
       firedGoals.add(goalName);
 
-      if (typeof ym === 'function') {
-        ym(YM_COUNTER_ID, 'reachGoal', goalName);
+      let called = false;
+      const done = () => {
+        if (called) return;
+        called = true;
+        if (callback) callback();
+      };
+
+      // Гарантированный таймаут 180 мс, чтобы переход в приложение Ozon не оборвал отправку
+      const safetyTimer = setTimeout(done, 180);
+
+      try {
+        // 1. Отправляем виртуальное посещение страницы (для целей типа «Посещение страниц: go-ozon / go-books»)
+        if (virtualPath) {
+          ym(YM_COUNTER_ID, 'hit', 'https://elinapasechnik.ru' + virtualPath, {
+            title: goalName,
+            referer: window.location.href
+          });
+        }
+        // 2. Отправляем JavaScript-событие (для целей «идентификатор содержит: oracle / book»)
+        ym(YM_COUNTER_ID, 'reachGoal', goalName, {}, function() {
+          clearTimeout(safetyTimer);
+          done();
+        });
+      } catch (err) {
+        clearTimeout(safetyTimer);
+        done();
       }
+    }
+
+    // Обработчик клика по внешним кнопкам (Ozon / Ridero / VK) с защитой от ботов
+    function handleOutboundConversion(event, targetUrl, goalName, virtualPath) {
+      const timeSpentMs = Date.now() - pageLoadTimestamp;
+      const isTrustedClick = event && event.isTrusted !== false;
+
+      // Отсекаем синтетические автоклики ботов и headless-скрипты
+      if (isHeadlessBot() || !isTrustedClick || (!isHumanVerified && timeSpentMs < 600)) {
+        console.warn('Anti-bot: синтетический клик заблокирован.');
+        return true;
+      }
+
+      isHumanVerified = true;
+
+      // Перехватываем мгновенный уход со страницы на 180 мс, чтобы Метрика 100% успела записать цель
+      if (event && event.preventDefault) {
+        event.preventDefault();
+      }
+
+      const newWin = window.open('about:blank', '_blank');
+
+      sendVerifiedGoalToMetrika(goalName, virtualPath, function() {
+        if (newWin && !newWin.closed) {
+          newWin.location.href = targetUrl;
+        } else {
+          window.location.href = targetUrl;
+        }
+      });
+
+      return false;
     }
 
     // =========================================================================
@@ -816,7 +870,7 @@
 
     function flipOracleDeckCard() {
       if (isFlipAnimating) return;
-      registerHumanAction();
+      isHumanVerified = true;
 
       const cardEl = document.getElementById('oracleDeckCard');
       const artImg = document.getElementById('deckCardArtImg');
@@ -875,7 +929,7 @@
     const GOOGLE_SCRIPT_URL = '';
 
     function openModal(title) {
-      registerHumanAction();
+      isHumanVerified = true;
       document.getElementById('targetInput').value = title;
       document.getElementById('modalTitle').innerText = 'Написать сообщение';
       document.getElementById('orderForm').classList.remove('hidden');
@@ -927,7 +981,6 @@
       });
     }
 
-    // Нативная отправка через скрытую HTML-форму в iframe (не блокируется Kaspersky и Adblock)
     function fireHiddenFormPost(baseApi, chatId, text) {
       return new Promise(resolve => {
         try {
@@ -968,7 +1021,6 @@
       const query = `?chat_id=${encodeURIComponent(chatId)}&text=${encodeURIComponent(text)}`;
       const fullGetUrl = `${baseApi}${query}`;
 
-      // 0. Если указан Google Apps Script шлюз
       if (GOOGLE_SCRIPT_URL) {
         try {
           await fetchWithTimeout(GOOGLE_SCRIPT_URL, {
@@ -981,7 +1033,6 @@
         } catch (e) {}
       }
 
-      // 1. В ПЕРВУЮ ОЧЕРЕДЬ: Шлюзы НЕ на Cloudflare (работают в РФ без VPN за 0.5 сек)
       const rfWorkingGateways = [
         `https://api.codetabs.com/v1/proxy?quest=${encodeURIComponent(fullGetUrl)}`,
         `https://api.codetabs.com/v1/proxy?quest=${fullGetUrl}`,
@@ -1002,13 +1053,11 @@
         } catch (e) {}
       }
 
-      // 2. JSONP-шлюз через тег <script>
       try {
         const jsonpOk = await fireJsonpGateway(fullGetUrl, 2000);
         if (jsonpOk) return true;
       } catch (e) {}
 
-      // 3. Прямой POST-запрос
       try {
         const resDirect = await fetchWithTimeout(baseApi, {
           method: 'POST',
@@ -1018,7 +1067,6 @@
         if (resDirect.ok) return true;
       } catch (e) {}
 
-      // 4. Безотказный резерв в обход блокировщиков fetch (скрытая HTML-форма + Image-маяк)
       try {
         const imgBeacon = new Image();
         imgBeacon.src = `${fullGetUrl}&_=${Date.now()}`;
@@ -1051,9 +1099,8 @@
     function handleFormSubmit(e) {
       e.preventDefault();
 
-      // Отсекаем только автоматических спам-роботов, заполнивших скрытое поле-ловушку
       const trapVal = document.getElementById('websiteUrl').value;
-      if (trapVal !== '') {
+      if (trapVal !== '' || isHeadlessBot()) {
         document.getElementById('orderForm').classList.add('hidden');
         document.getElementById('modalSuccess').classList.remove('hidden');
         return;
@@ -1067,8 +1114,7 @@
       const name = document.getElementById('nameInput').value;
       const phone = document.getElementById('phoneInput').value;
 
-      isHumanVerified = true;
-      trackConversionGoal('lead_submit');
+      sendVerifiedGoalToMetrika('lead_submit', '/go-lead-submit');
 
       const tgMessage = `🕯️ Новая заявка с сайта elinapasechnik.ru!\n\n📌 Программа: ${target}\n👤 Имя: ${name}\n📞 Контакт: ${phone}`;
 
