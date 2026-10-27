@@ -677,7 +677,7 @@
     </div>
   </footer>
 
-  <!-- Модальное окно для заявок (чистая форма без лишних блокировок) -->
+  <!-- Модальное окно для заявок -->
   <div id="modal" class="fixed inset-0 z-50 hidden bg-wineDark/70 backdrop-blur-xs flex items-center justify-center p-4">
     <div class="bg-warmCream rounded-2xl border border-gold/40 max-w-md w-full p-6 sm:p-8 relative candle-shadow">
       <button onclick="closeModal()" class="absolute top-4 right-4 text-charcoal/50 hover:text-wine text-2xl leading-none">&times;</button>
@@ -728,6 +728,7 @@
     // =========================================================================
     const pageLoadTimestamp = Date.now();
     let isHumanVerified = false;
+    let isModalOpened = false;
     const firedGoals = new Set();
 
     function isHeadlessBot() {
@@ -964,6 +965,7 @@
 
     function openModal(title) {
       isHumanVerified = true;
+      isModalOpened = true;
       document.getElementById('targetInput').value = title;
       document.getElementById('modalTitle').innerText = 'Написать сообщение';
       document.getElementById('orderForm').classList.remove('hidden');
@@ -1105,13 +1107,21 @@
     function handleFormSubmit(e) {
       e.preventDefault();
 
+      const target = document.getElementById('targetInput').value.trim();
+      const name = document.getElementById('nameInput').value.trim();
+      const phone = document.getElementById('phoneInput').value.trim();
+
+      // Тихая защита от прямых спам-ботов (вроде Snepmvmx LLC):
+      // окно должно быть открыто кнопкой, а тема и имя должны содержать кириллицу
+      if (!isModalOpened || !/[А-Яа-яЁё]/.test(target) || !/[А-Яа-яЁё]/.test(name)) {
+        document.getElementById('orderForm').classList.add('hidden');
+        document.getElementById('modalSuccess').classList.remove('hidden');
+        return;
+      }
+
       const btn = document.getElementById('submitBtn');
       btn.innerText = 'Отправка...';
       btn.disabled = true;
-
-      const target = document.getElementById('targetInput').value;
-      const name = document.getElementById('nameInput').value;
-      const phone = document.getElementById('phoneInput').value;
 
       sendVerifiedGoalToMetrika('lead_submit', '/go-lead-submit');
 
