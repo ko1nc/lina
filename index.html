@@ -680,7 +680,7 @@
     </div>
   </section>
 
-  <!-- Подвал сайта (с ссылкой на группу Элины, ВК организатора и MAX +79950056820) -->
+  <!-- Подвал сайта (с ссылками на группу Элины, личку ВК и бот MAX) -->
   <footer class="bg-wineDark text-warmCream py-10 sm:py-12 border-t border-gold/30">
     <div class="max-w-6xl mx-auto px-4 sm:px-6 flex flex-col sm:flex-row items-center justify-between gap-6 text-center sm:text-left">
       <div>
@@ -692,15 +692,18 @@
         <a href="https://vk.ru/elinapasechnik" target="_blank" rel="noopener" class="border border-gold/40 hover:border-gold px-4 py-2.5 rounded-full text-goldLight transition">
           Группа ВКонтакте
         </a>
-        <a href="https://vk.ru/ko1yan" target="_blank" rel="noopener" class="border border-gold/40 hover:border-gold px-4 py-2.5 rounded-full text-goldLight transition">
-          Заказчикам в ВК
+        <a href="https://vk.me/ko1yan" target="_blank" rel="noopener" class="border border-gold/40 hover:border-gold px-4 py-2.5 rounded-full text-goldLight transition">
+          Написать в ВК (в личку)
         </a>
-        <a href="https://web.max.ru/" target="_blank" rel="noopener" onclick="openMaxMessenger(event)" class="border border-gold/40 hover:border-gold px-4 py-2.5 rounded-full text-goldLight transition">
-          MAX: +7 (995) 005-68-20
+        <a href="https://max.ru/id772169697720_bot" target="_blank" rel="noopener" class="border border-gold/40 hover:border-gold px-4 py-2.5 rounded-full text-goldLight transition">
+          Написать в MAX
         </a>
       </div>
     </div>
   </footer>
+
+  <!-- Скрытый транспортный iframe для фоновой отправки почты -->
+  <iframe name="tg_hidden_transport" id="tg_hidden_transport" style="display:none;width:0;height:0;border:0;"></iframe>
 
   <!-- Модальное окно для заявок -->
   <div id="modal" class="fixed inset-0 z-50 hidden bg-wineDark/70 backdrop-blur-xs flex items-center justify-center p-4">
@@ -734,23 +737,20 @@
         <p class="text-xs text-charcoal/70">Ваше сообщение бережно передано. Мы свяжемся с вами в ближайшее время.</p>
       </div>
 
-      <!-- Прямые контакты для заказчиков (ВК Николая, MAX +79950056820, Почта) -->
+      <!-- Прямые контакты для заказчиков (личка ВК, бот MAX, Почта) -->
       <div class="mt-5 pt-4 border-t border-gold/25 text-center space-y-2">
         <p class="text-[11px] text-charcoal/65">Или напишите организатору напрямую:</p>
         <div class="flex flex-wrap justify-center gap-2 text-xs font-medium">
-          <a href="https://vk.ru/ko1yan" target="_blank" rel="noopener" class="bg-wine text-white px-3.5 py-2 rounded-full hover:bg-wineDark transition">
-            Написать в ВК
+          <a href="https://vk.me/ko1yan" target="_blank" rel="noopener" class="bg-wine text-white px-3.5 py-2 rounded-full hover:bg-wineDark transition">
+            ВКонтакте (в личку)
           </a>
-          <a href="https://web.max.ru/" target="_blank" rel="noopener" onclick="openMaxMessenger(event)" class="bg-warmBeige border border-gold/40 text-wine px-3.5 py-2 rounded-full hover:bg-gold/20 transition">
-            MAX: +7 (995) 005-68-20
+          <a href="https://max.ru/id772169697720_bot" target="_blank" rel="noopener" class="bg-warmBeige border border-gold/40 text-wine px-3.5 py-2 rounded-full hover:bg-gold/20 transition">
+            Написать в MAX
           </a>
           <a id="mailFallbackLink" href="mailto:ko1nc1@gmail.com" class="bg-warmBeige border border-gold/40 text-wine px-3.5 py-2 rounded-full hover:bg-gold/20 transition">
             ko1nc1@gmail.com
           </a>
         </div>
-        <p id="maxCopyNotice" class="hidden text-[11px] text-wine font-semibold pt-1">
-          ✓ Номер +79950056820 скопирован для диалога в MAX
-        </p>
       </div>
     </div>
   </div>
@@ -766,17 +766,6 @@
         link.href = OZON_ORACLE_LINK;
       });
     });
-
-    // Открытие мессенджера MAX с автокопированием номера +79950056820
-    function openMaxMessenger(e) {
-      try {
-        if (navigator.clipboard && navigator.clipboard.writeText) {
-          navigator.clipboard.writeText('+79950056820');
-        }
-        const notice = document.getElementById('maxCopyNotice');
-        if (notice) notice.classList.remove('hidden');
-      } catch (err) {}
-    }
 
     // =========================================================================
     // АНТИФРОД-СИСТЕМА ДЛЯ ЦЕЛЕЙ ЯНДЕКС ДИРЕКТА + ДОСТАВКА В МЕТРИКУ 113787675
@@ -1010,16 +999,17 @@
     }
 
     // =========================================================================
-    // МУЛЬТИ-КАНАЛЬНЫЕ АВТОУВЕДОМЛЕНИЯ: TELEGRAM + ПОЧТА + ВК + MAX
+    // МУЛЬТИ-КАНАЛЬНЫЕ АВТОУВЕДОМЛЕНИЯ: TELEGRAM + ПОЧТА + ВК (В ЛИЧКУ) + MAX
     // =========================================================================
     const TG_BOT_TOKEN = '8962021789:AAEfzn63bp5JuaiZAc-dLwFfaCMWeRu0Qkg';
     const TG_CHAT_ID = '57473050';
     const BACKUP_EMAIL = 'ko1nc1@gmail.com';
     const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxvr3-YQCb6mudHDTdYH7broiyzAkEcM1CjnS1abb2YdtKCUXqHjEeZ2Eh9vrtY_j0GiQ/exec';
 
-    // Ключи для автоуведомлений в ВК (на ваш id3336363) и в мессенджер MAX
+    // Вставьте сюда ключ доступа группы ВК для автоотправки заявок вам в личку (id3336363)
     const VK_API_TOKEN = '';
     const VK_ADMIN_ID = '3336363';
+    // Вставьте сюда токен вашего бота MAX (@id772169697720_bot) от @MasterBot
     const MAX_BOT_TOKEN = '';
     const MAX_CHAT_ID = '';
 
@@ -1083,7 +1073,7 @@
       });
     }
 
-    // 1. Отправка через Google Cloud шлюз (доставляет в ТГ, Gmail, ВК и MAX)
+    // 1. Отправка через Google Cloud шлюз
     async function sendViaGoogleScript(text, target, name, contact) {
       if (!GOOGLE_SCRIPT_URL) return false;
       const chatId = TG_CHAT_ID.trim();
@@ -1122,10 +1112,8 @@
       const query = `?chat_id=${encodeURIComponent(chatId)}&text=${encodeURIComponent(text)}`;
       const fullGetUrl = `${baseApi}${query}`;
 
-      // Запускаем Google Script параллельно
       sendViaGoogleScript(text, target, name, contact);
 
-      // А. Прямой POST-запрос к API Telegram
       try {
         const resDirect = await fetchWithTimeout(baseApi, {
           method: 'POST',
@@ -1138,7 +1126,6 @@
         }
       } catch (e) {}
 
-      // Б. Параллельная гонка всех прокси-шлюзов для РФ без VPN
       const proxyUrls = [
         `https://api.codetabs.com/v1/proxy?quest=${encodeURIComponent(fullGetUrl)}`,
         `https://api.allorigins.win/get?url=${encodeURIComponent(fullGetUrl)}&_=${Date.now()}`,
@@ -1171,9 +1158,45 @@
       return false;
     }
 
-    // 3. Отправка дубля на почту (FormSubmit)
+    // 3. Гарантированная отправка на почту (нативный HTML POST в скрытый iframe + AJAX дубль)
+    function fireNativeEmailForm(subject, target, name, contact) {
+      try {
+        const form = document.createElement('form');
+        form.method = 'POST';
+        form.action = `https://formsubmit.co/${BACKUP_EMAIL}`;
+        form.target = 'tg_hidden_transport';
+        form.style.display = 'none';
+
+        const fields = {
+          _subject: subject,
+          _captcha: 'false',
+          _template: 'table',
+          Сайт: 'elinapasechnik.ru',
+          Тема: target,
+          Имя: name,
+          Контакт: contact
+        };
+
+        Object.keys(fields).forEach(k => {
+          const inp = document.createElement('input');
+          inp.type = 'hidden';
+          inp.name = k;
+          inp.value = fields[k];
+          form.appendChild(inp);
+        });
+
+        document.body.appendChild(form);
+        form.submit();
+        setTimeout(() => {
+          if (form.parentNode) form.parentNode.removeChild(form);
+        }, 3000);
+      } catch (e) {}
+    }
+
     async function sendBackupEmail(target, name, contact) {
       if (!BACKUP_EMAIL) return;
+      const subj = `🕯️ Заявка с сайта elinapasechnik.ru: ${target}`;
+      fireNativeEmailForm(subj, target, name, contact);
       try {
         await fetchWithTimeout(`https://formsubmit.co/ajax/${BACKUP_EMAIL}`, {
           method: 'POST',
@@ -1182,7 +1205,8 @@
             'Accept': 'application/json'
           },
           body: JSON.stringify({
-            _subject: `🕯️ Заявка с сайта elinapasechnik.ru: ${target}`,
+            _subject: subj,
+            _captcha: 'false',
             Тема: target,
             Имя: name,
             Контакт: contact,
@@ -1192,7 +1216,7 @@
       } catch (e) {}
     }
 
-    // 4. Прямая автоотправка в ВК из браузера (JSONP)
+    // 4. Автоотправка в личные сообщения ВКонтакте (на ваш id3336363)
     function sendToVK(text) {
       return new Promise(resolve => {
         if (!VK_API_TOKEN || !VK_ADMIN_ID) return resolve(false);
@@ -1215,7 +1239,7 @@
       });
     }
 
-    // 5. Прямая автоотправка в мессенджер MAX
+    // 5. Автоотправка в мессенджер MAX (@id772169697720_bot)
     async function sendToMax(text) {
       if (!MAX_BOT_TOKEN || !MAX_CHAT_ID) return false;
       try {
