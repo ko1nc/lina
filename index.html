@@ -393,4 +393,971 @@
               <div class="bg-warmCream/70 p-4 rounded-xl border border-gold/20 min-w-0">
                 <p class="font-serif text-lg text-wine font-semibold">✨ Утренний ритуал настройки</p>
                 <p class="text-xs text-charcoal/70 mt-1 font-light leading-relaxed">
-                  Вытяните одну
+                  Вытяните одну карту за утренним кофе, чтобы задать тёплый, осознанный вектор всему предстоящему дню.
+                </p>
+              </div>
+              <div class="bg-warmCream/70 p-4 rounded-xl border border-gold/20 min-w-0">
+                <p class="font-serif text-lg text-wine font-semibold">🌿 Понятна с первого прикосновения</p>
+                <p class="text-xs text-charcoal/70 mt-1 font-light leading-relaxed">
+                  Не нужно учить сложные толкования — поэтические строки на картах говорят с душой напрямую и бережно.
+                </p>
+              </div>
+              <div class="bg-warmCream/70 p-4 rounded-xl border border-gold/20 min-w-0">
+                <p class="font-serif text-lg text-wine font-semibold">🎁 Подарок со смыслом</p>
+                <p class="text-xs text-charcoal/70 mt-1 font-light leading-relaxed">
+                  Эстетичное исполнение делает колоду незабываемым подарком для близкой подруги, мамы, сестры или психолога.
+                </p>
+              </div>
+              <div class="bg-warmCream/70 p-4 rounded-xl border border-gold/20 min-w-0">
+                <p class="font-serif text-lg text-wine font-semibold">📦 Доставка в любой ПВЗ Ozon</p>
+                <p class="text-xs text-charcoal/70 mt-1 font-light leading-relaxed">
+                  Безопасная покупка через официальную витрину на Ozon с быстрой доставкой рядом с вашим домом.
+                </p>
+              </div>
+            </div>
+
+            <!-- Главные кнопки целевого действия -->
+            <div class="pt-2 sm:pt-4 flex flex-col sm:flex-row items-stretch sm:items-center gap-3.5 sm:gap-4">
+              <a href="https://ozon.onelink.me/SNMZ?af_dp=https://ozon.ru/product/orakul-eliny-pasechnik-5114150489&af_web_dp=https://ozon.ru/product/orakul-eliny-pasechnik-5114150489&is_retargeting=true&c=vendor_org_4133655_oracle_elina_site&pid=yandex_direct|cpc&af_adset=ozon_btn&hs=1&utm_source=yandex_direct&utm_medium=cpc&utm_campaign=vendor_org_4133655_oracle_elina_site&utm_content=ozon_btn" 
+                 target="_blank" 
+                 rel="noopener" 
+                 onclick="return handleOutboundConversion(event, this.href, 'buy_oracle_ozon', '/go-ozon-oracle')" 
+                 class="ozon-oracle-link inline-flex items-center justify-center gap-2 bg-wine hover:bg-wineDark text-white px-6 sm:px-8 py-4 rounded-full text-xs uppercase tracking-widest font-medium transition shadow-md text-center">
+                <span>Заказать колоду на Ozon</span>
+                <span>→</span>
+              </a>
+              <span class="text-xs text-charcoal/60 text-center sm:text-left">
+                Попробуйте вытянуть свою карту онлайн →
+              </span>
+            </div>
+          </div>
+
+          <!-- Правая колонка: Романтический 3D-ритуал вытягивания карты -->
+          <div class="lg:col-span-5 min-w-0 w-full">
+            <div class="bg-gradient-to-b from-wine to-wineDark text-warmCream rounded-2xl p-5 sm:p-7 border border-gold/40 candle-shadow text-center space-y-4 relative overflow-hidden">
+              
+              <div class="space-y-1">
+                <span class="text-[10px] uppercase tracking-[0.2em] sm:tracking-[0.25em] text-goldLight/90 font-medium block">
+                  ✦ Таинство живого отклика ✦
+                </span>
+                <h3 class="font-serif text-xl sm:text-3xl text-white font-normal">
+                  Вытяните карту для своего сердца
+                </h3>
+                <p id="oracleRitualHint" class="text-xs text-warmCream/80 font-light leading-relaxed max-w-xs mx-auto">
+                  Закройте глаза на мгновение, подумайте о том, что сейчас волнует вашу душу, и нежно коснитесь рубашки колоды...
+                </p>
+              </div>
+
+              <!-- 3D-сцена карты -->
+              <div class="oracle-deck-stage" onclick="flipOracleDeckCard()" title="Нажмите, чтобы открыть карту">
+                <div class="oracle-card-body" id="oracleDeckCard">
+                  
+                  <!-- Рубашка колоды -->
+                  <div class="oracle-card-side oracle-side-back">
+                    <img src="https://drive.google.com/thumbnail?id=11Y1L0clVsYw4X7BQpzPucibbtTOf4EyO&sz=w800" 
+                         alt="Рубашка колоды Оракул Элины Пасечник" 
+                         class="w-full h-full object-cover object-center block"
+                         referrerpolicy="no-referrer">
+                  </div>
+
+                  <!-- Лицевая сторона карты -->
+                  <div class="oracle-card-side oracle-side-front">
+                    <img id="deckCardArtImg" 
+                         src="" 
+                         alt="Послание колоды Оракул Элины Пасечник" 
+                         class="w-full h-full object-cover object-center block"
+                         referrerpolicy="no-referrer">
+                  </div>
+
+                </div>
+              </div>
+
+              <!-- Кнопка вытягивания карты -->
+              <div class="pt-1">
+                <button type="button" id="oracleDrawActionBtn" onclick="flipOracleDeckCard()" class="w-full bg-gold hover:bg-yellow-600 text-wineDark font-semibold py-3.5 px-4 sm:px-6 rounded-full text-[11px] sm:text-xs uppercase tracking-wider sm:tracking-widest transition shadow-md">
+                  ✨ Прикоснуться к колоде и открыть карту
+                </button>
+              </div>
+
+              <div class="pt-2 border-t border-white/10">
+                <a href="https://ozon.onelink.me/SNMZ?af_dp=https://ozon.ru/product/orakul-eliny-pasechnik-5114150489&af_web_dp=https://ozon.ru/product/orakul-eliny-pasechnik-5114150489&is_retargeting=true&c=vendor_org_4133655_oracle_elina_site&pid=yandex_direct|cpc&af_adset=ozon_btn&hs=1&utm_source=yandex_direct&utm_medium=cpc&utm_campaign=vendor_org_4133655_oracle_elina_site&utm_content=ozon_btn" 
+                   target="_blank" 
+                   rel="noopener" 
+                   onclick="return handleOutboundConversion(event, this.href, 'buy_oracle_ozon', '/go-ozon-oracle')"
+                   class="ozon-oracle-link text-xs text-goldLight hover:text-white underline underline-offset-4 transition">
+                  Приобрести полную печатную колоду на Ozon →
+                </a>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ======================================================================= -->
+  <!-- ПОСАДОЧНЫЙ РАЗДЕЛ №2: СБОРНИК СТИХОВ «БЛИЖЕ» (#book)                    -->
+  <!-- ======================================================================= -->
+  <section id="book" class="py-12 sm:py-24 border-b border-gold/20 bg-warmCream scroll-mt-24">
+    <div class="max-w-6xl mx-auto px-3.5 sm:px-6">
+      <div class="bg-white rounded-2xl sm:rounded-3xl p-5 sm:p-12 border border-gold/35 candle-shadow overflow-hidden">
+        
+        <div class="grid lg:grid-cols-12 gap-8 sm:gap-10 items-center">
+          
+          <!-- Левая колонка: Подлинная фотография сборника стихов «Ближе» -->
+          <div class="lg:col-span-5 min-w-0 w-full order-2 lg:order-1">
+            <div class="bg-warmCream p-3 sm:p-3.5 rounded-2xl border border-gold/35 candle-shadow">
+              <div class="rounded-xl overflow-hidden border border-gold/20 bg-white">
+                <img 
+                  src="https://sun9-56.vkuserphoto.ru/s/v1/ig2/FVImGo6qkoxfjioLpcnWkLnGYYRKD1rot1m9Jq5GHqS8UMHLLNMh4MEQ-F4uVpgU-cnjWG5gAfEFC1_RYqWTuCC5.jpg?quality=95&as=32x21,48x32,72x48,108x72,160x107,240x160,360x240,480x321,540x361,640x427,720x481,1080x721,1280x855,1440x962,2560x1710&from=bu&u=h7So_iUCcRmcgrvX6c4zXFgGABKRBnHsYmCUOxkRPOs&cs=2560x0" 
+                  alt="Авторский сборник стихов Элины Пасечник «Ближе»" 
+                  class="w-full h-auto object-cover block transition duration-500 hover:scale-105"
+                  referrerpolicy="no-referrer"
+                >
+              </div>
+              <p class="text-center font-serif italic text-xs sm:text-sm text-wine/85 mt-2.5 sm:mt-3">
+                Авторский сборник лирики Элины Пасечник «Ближе»
+              </p>
+            </div>
+          </div>
+
+          <!-- Правая колонка: Описание книги и покупка -->
+          <div class="lg:col-span-7 min-w-0 space-y-5 sm:space-y-6 order-1 lg:order-2">
+            <div class="inline-flex flex-wrap items-center gap-2 bg-warmCream border border-gold/40 px-3 sm:px-3.5 py-1.5 rounded-xl sm:rounded-full text-[10px] sm:text-[11px] uppercase tracking-wider sm:tracking-widest text-wine font-semibold max-w-full">
+              <span>📚</span>
+              <span class="leading-snug">Авторское издание • Печатная и электронная версия</span>
+            </div>
+
+            <h2 class="font-serif text-2xl sm:text-5xl text-wine leading-tight font-normal break-words">
+              Сборник стихов «Ближе» — <span class="italic font-semibold text-gold">книга-объятие</span> для женской души
+            </h2>
+
+            <p class="text-sm sm:text-base text-charcoal/80 font-light leading-relaxed break-words">
+              Изящное авторское издание лирики Элины Пасечник. Это книга на прикроватный столик, к которой возвращаешься в минуты светлой грусти, надежды или тихого вечернего чая. Каждое стихотворение здесь звучит как откровенный разговор по душам с близкой подругой.
+            </p>
+
+            <ul class="space-y-2.5 text-sm text-charcoal/80 font-light">
+              <li class="flex items-start gap-2.5">
+                <span class="text-gold font-bold shrink-0">✦</span>
+                <span><strong>Живая женская лирика:</strong> стихи о любви, внутреннем взрослении, нежности и умении беречь свет в сердце.</span>
+              </li>
+              <li class="flex items-start gap-2.5">
+                <span class="text-gold font-bold shrink-0">✦</span>
+                <span><strong>Два удобных формата:</strong> вы можете заказать бумажную книгу с доставкой или сразу приобрести электронную версию для чтения в телефоне и ридере.</span>
+              </li>
+              <li class="flex items-start gap-2.5">
+                <span class="text-gold font-bold shrink-0">✦</span>
+                <span><strong>Прекрасный дуэт с колодой «Оракул»:</strong> читательницы часто заказывают книгу «Ближе» вместе с картами-посланиями для себя или в подарок близкому человеку.</span>
+              </li>
+            </ul>
+
+            <div class="pt-2 sm:pt-4 flex flex-col sm:flex-row items-stretch sm:items-center gap-3.5 sm:gap-4">
+              <a href="https://ridero.ru/books/blizhe/" 
+                 target="_blank" 
+                 rel="noopener" 
+                 onclick="return handleOutboundConversion(event, this.href, 'buy_book', '/go-books-blizhe')" 
+                 class="inline-flex items-center justify-center gap-2 bg-gold hover:bg-yellow-600 text-white px-6 sm:px-8 py-4 rounded-full text-xs uppercase tracking-widest font-medium transition shadow-md text-center">
+                <span>Купить книгу «Ближе»</span>
+                <span>→</span>
+              </a>
+              <a href="#oracle" class="text-xs uppercase tracking-widest text-wine hover:text-gold font-medium text-center sm:text-left underline underline-offset-4 transition">
+                Посмотреть также Карты-Оракул
+              </a>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Живые концерты («Исповедь незнакомки») с фотографией -->
+  <section id="concerts" class="py-12 sm:py-20 max-w-6xl mx-auto px-3.5 sm:px-6 scroll-mt-24">
+    <div class="bg-white rounded-2xl sm:rounded-3xl p-5 sm:p-10 border border-gold/25 candle-shadow grid md:grid-cols-12 gap-6 sm:gap-8 items-center overflow-hidden">
+      
+      <div class="md:col-span-7 min-w-0 space-y-4 text-center md:text-left">
+        <span class="text-[10px] sm:text-[11px] uppercase tracking-widest text-gold font-semibold block">🕯️ Живое музыкально-поэтическое событие</span>
+        <h2 class="font-serif text-2xl sm:text-4xl text-wine font-semibold break-words">Концерт при свечах «Исповедь незнакомки»</h2>
+        <p class="text-sm sm:text-base text-charcoal/75 leading-relaxed font-light break-words">
+          Камерный вечер при мерцании сотен свечей. Проникновенная лирика Элины Пасечник под аккомпанемент гитариста-виртуоза, номинанта премии Grammy <strong>Михаила Савичева</strong> и других известных композиторов.
+        </p>
+        <div class="pt-2">
+          <a href="https://vk.ru/elinapasechnik" 
+             target="_blank" 
+             rel="noopener" 
+             onclick="return handleOutboundConversion(event, this.href, 'vk_subscribe', '/go-vk-subscribe')" 
+             class="inline-block w-full sm:w-auto bg-wine hover:bg-wineDark text-white px-6 sm:px-8 py-4 rounded-full text-xs uppercase tracking-widest transition shadow-md text-center">
+            Следить за анонсами в ВК
+          </a>
+        </div>
+      </div>
+
+      <div class="md:col-span-5 min-w-0 w-full">
+        <div class="bg-warmCream p-2.5 sm:p-3 rounded-2xl border border-gold/30 candle-shadow">
+          <div class="rounded-xl overflow-hidden aspect-[4/3] bg-wineDark">
+            <img 
+              src="https://drive.google.com/thumbnail?id=1do8-R49_yHbMDJ4PkRVsRhOXeoSyTFHT&sz=w1200" 
+              alt="Элина Пасечник — концерт при свечах «Исповедь незнакомки»" 
+              class="w-full h-full object-cover block transition duration-500 hover:scale-105"
+              referrerpolicy="no-referrer"
+            >
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Об авторе (Элина Пасечник) -->
+  <section id="about" class="py-12 sm:py-20 bg-warmBeige/40 border-y border-gold/20 scroll-mt-24">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 grid md:grid-cols-12 gap-8 sm:gap-10 items-center">
+      
+      <div class="md:col-span-5 min-w-0 text-center">
+        <div class="bg-white p-3 rounded-2xl candle-shadow inline-block max-w-full">
+          <div class="w-60 h-76 sm:w-72 sm:h-96 max-w-full rounded-xl bg-warmCream overflow-hidden border border-gold/30 flex items-center justify-center relative mx-auto">
+            <img 
+              id="authorPhoto" 
+              src="https://sun9-15.vkuserphoto.ru/s/v1/ig2/vCfOkz1s6wMS-qAHW_k4b6RCZZdfHs5pk7JqAgAvthkdT5uAewLa97LxLl65Yr2N9K0H7cBJc1LwR1JMeReK18ff.jpg?quality=95&as=32x32,48x48,72x72,108x108,160x160,240x240,360x360,480x480,540x540,640x640,720x720,1080x1080&from=bu&cs=1080x0" 
+              alt="Элина Пасечник" 
+              class="w-full h-full object-cover"
+              referrerpolicy="no-referrer"
+            >
+          </div>
+        </div>
+      </div>
+
+      <div class="md:col-span-7 min-w-0 space-y-4 sm:space-y-5">
+        <span class="text-gold text-xs uppercase tracking-[0.25em] font-medium block">Голос женского сердца</span>
+        <h2 class="font-serif text-3xl sm:text-4xl text-wine font-normal">Элина Пасечник</h2>
+        
+        <p class="text-sm sm:text-base text-charcoal/80 font-light leading-relaxed">
+          Поэтесса, член Союза писателей России, актриса театра и кино. Включена в число авторов многотомного издания «Антология русской поэзии». 
+        </p>
+
+        <p class="text-sm sm:text-base text-charcoal/80 font-light leading-relaxed">
+          Награждена государственными и общественными литературными медалями Анны Ахматовой, Александра Блока, Антона Чехова, Афанасия Фета, Александра Пушкина и медалью «Святая Русь», а также лауреат литературной премии «Наследие».
+        </p>
+
+        <blockquote class="border-l-2 border-gold pl-4 py-1 italic font-serif text-base sm:text-lg text-wine/90">
+          «Мои стихи — это не просто рифмы. Это объятие для тех, кто устал быть сильной, и напоминание о том, как прекрасна женская душа в своей искренности».
+        </blockquote>
+
+        <div class="pt-2">
+          <button onclick="openModal('Пригласить на закрытый вечер')" class="text-xs uppercase tracking-widest text-wine hover:text-gold font-semibold underline underline-offset-8 transition text-left">
+            Пригласить на закрытый вечер →
+          </button>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Видео-отзывы зрителей -->
+  <section id="reviews" class="py-12 sm:py-24 max-w-5xl mx-auto px-4 sm:px-6 text-center scroll-mt-24">
+    <span class="text-gold text-xs uppercase tracking-[0.3em] font-medium">Искренние эмоции</span>
+    <h2 class="font-serif text-2xl sm:text-5xl text-wine mt-2 mb-4 font-normal">Что чувствуют зрительницы</h2>
+    <p class="text-sm sm:text-base text-charcoal/70 max-w-2xl mx-auto mb-8 sm:mb-10 font-light">
+      Слезы очищения, улыбки и ощущение, будто груз забот спадает с плеч уже после первых строк.
+    </p>
+
+    <!-- Второе видео: Отзывы из ВК -->
+    <div class="bg-white p-2.5 sm:p-3.5 rounded-2xl candle-shadow border border-gold/25 max-w-3xl mx-auto">
+      <div class="aspect-video rounded-xl overflow-hidden bg-black relative">
+        <iframe 
+          src="https://vk.ru/video_ext.php?oid=-212533657&id=456239043&autoplay=0" 
+          class="w-full h-full border-0"
+          style="background-color: #000" 
+          allow="autoplay; encrypted-media; fullscreen; picture-in-picture; screen-wake-lock;" 
+          allowfullscreen>
+        </iframe>
+      </div>
+      <p class="font-serif italic text-xs sm:text-sm text-wine mt-2.5 sm:mt-3">
+        Живые отзывы после концерта «Исповедь незнакомки»
+      </p>
+    </div>
+  </section>
+
+  <!-- Подвал сайта -->
+  <footer class="bg-wineDark text-warmCream py-10 sm:py-12 border-t border-gold/30">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 flex flex-col sm:flex-row items-center justify-between gap-6 text-center sm:text-left">
+      <div>
+        <p class="font-serif text-2xl text-goldLight font-medium">Элина Пасечник</p>
+        <p class="text-xs text-warmCream/60 mt-1">Официальный сайт поэтессы • Санкт-Петербург / Москва</p>
+      </div>
+
+      <div class="flex flex-wrap justify-center items-center gap-3 text-xs tracking-wider">
+        <a href="https://vk.ru/elinapasechnik" target="_blank" rel="noopener" class="border border-gold/40 hover:border-gold px-4 py-2.5 rounded-full text-goldLight transition">
+          Группа ВКонтакте
+        </a>
+        <a href="https://vk.me/ko1yan" target="_blank" rel="noopener" class="border border-gold/40 hover:border-gold px-4 py-2.5 rounded-full text-goldLight transition">
+          Написать в ВК (в личку)
+        </a>
+        <a href="https://max.ru/id772169697720_bot" target="_blank" rel="noopener" class="border border-gold/40 hover:border-gold px-4 py-2.5 rounded-full text-goldLight transition">
+          Написать в MAX
+        </a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Скрытый транспортный iframe для фоновой отправки почты -->
+  <iframe name="tg_hidden_transport" id="tg_hidden_transport" style="display:none;width:0;height:0;border:0;"></iframe>
+
+  <!-- Модальное окно для заявок -->
+  <div id="modal" class="fixed inset-0 z-50 hidden bg-wineDark/70 backdrop-blur-xs flex items-center justify-center p-4">
+    <div class="bg-warmCream rounded-2xl border border-gold/40 max-w-md w-full p-6 sm:p-8 relative candle-shadow">
+      <button onclick="closeModal()" class="absolute top-4 right-4 text-charcoal/50 hover:text-wine text-2xl leading-none">&times;</button>
+      
+      <span class="text-[11px] uppercase tracking-widest text-gold font-semibold block mb-1">С любовью и вниманием</span>
+      <h3 class="font-serif text-2xl sm:text-3xl text-wine font-semibold mb-4" id="modalTitle">Оставить заявку</h3>
+      
+      <form id="orderForm" onsubmit="handleFormSubmit(event)" class="space-y-4">
+        <div>
+          <label class="block text-xs font-medium text-charcoal/70 mb-1">Тема обращения</label>
+          <input type="text" id="targetInput" readonly class="w-full bg-warmBeige/50 border border-gold/30 rounded-lg px-3.5 py-2.5 text-xs text-wine font-medium">
+        </div>
+        <div>
+          <label class="block text-xs font-medium text-charcoal/70 mb-1">Ваше имя</label>
+          <input type="text" id="nameInput" required placeholder="Как к вам обращаться?" class="w-full bg-white border border-gold/30 rounded-lg px-3.5 py-2.5 text-sm text-charcoal focus:border-gold outline-hidden">
+        </div>
+        <div>
+          <label class="block text-xs font-medium text-charcoal/70 mb-1">Ваш контакт (Телефон / E-mail / Мессенджер)</label>
+          <input type="text" id="phoneInput" required placeholder="Телефон или e-mail" class="w-full bg-white border border-gold/30 rounded-lg px-3.5 py-2.5 text-sm text-charcoal focus:border-gold outline-hidden">
+        </div>
+        <button type="submit" id="submitBtn" class="w-full bg-wine hover:bg-wineDark text-white py-3.5 rounded-full text-xs uppercase tracking-widest transition shadow-sm font-medium">
+          Отправить
+        </button>
+      </form>
+
+      <div id="modalSuccess" class="hidden text-center py-5 space-y-3">
+        <span class="text-3xl">🕊️</span>
+        <h4 class="font-serif text-2xl text-wine">Благодарим вас от всего сердца!</h4>
+        <p class="text-xs text-charcoal/70">Ваше сообщение бережно передано. Мы свяжемся с вами в ближайшее время.</p>
+      </div>
+
+      <!-- Прямые контакты для заказчиков -->
+      <div class="mt-5 pt-4 border-t border-gold/25 text-center space-y-2">
+        <p class="text-[11px] text-charcoal/65">Или напишите организатору напрямую:</p>
+        <div class="flex flex-wrap justify-center gap-2 text-xs font-medium">
+          <a href="https://vk.me/ko1yan" target="_blank" rel="noopener" class="bg-wine text-white px-3.5 py-2 rounded-full hover:bg-wineDark transition">
+            ВКонтакте (в личку)
+          </a>
+          <a href="https://max.ru/id772169697720_bot" target="_blank" rel="noopener" class="bg-warmBeige border border-gold/40 text-wine px-3.5 py-2 rounded-full hover:bg-gold/20 transition">
+            Написать в MAX
+          </a>
+          <a id="mailFallbackLink" href="mailto:ko1nc1@gmail.com" class="bg-warmBeige border border-gold/40 text-wine px-3.5 py-2 rounded-full hover:bg-gold/20 transition">
+            ko1nc1@gmail.com
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // =========================================================================
+    // ДИПЛИНК-ССЫЛКА OZON SELLER С ВЕНДОР-МЕТКАМИ
+    // =========================================================================
+    const OZON_ORACLE_LINK = 'https://ozon.onelink.me/SNMZ?af_dp=https://ozon.ru/product/orakul-eliny-pasechnik-5114150489&af_web_dp=https://ozon.ru/product/orakul-eliny-pasechnik-5114150489&is_retargeting=true&c=vendor_org_4133655_oracle_elina_site&pid=yandex_direct|cpc&af_adset=ozon_btn&hs=1&utm_source=yandex_direct&utm_medium=cpc&utm_campaign=vendor_org_4133655_oracle_elina_site&utm_content=ozon_btn';
+
+    document.addEventListener('DOMContentLoaded', () => {
+      document.querySelectorAll('.ozon-oracle-link').forEach(link => {
+        link.href = OZON_ORACLE_LINK;
+      });
+    });
+
+    // =========================================================================
+    // АНТИФРОД-СИСТЕМА ДЛЯ ЦЕЛЕЙ ЯНДЕКС ДИРЕКТА + ДОСТАВКА В МЕТРИКУ 113787675
+    // =========================================================================
+    const pageLoadTimestamp = Date.now();
+    let isHumanVerified = false;
+    let isModalOpened = false;
+    const firedGoals = new Set();
+
+    function isHeadlessBot() {
+      if (navigator.webdriver) return true;
+      const ua = (navigator.userAgent || '').toLowerCase();
+      if (ua.includes('headless') || ua.includes('phantomjs') || ua.includes('selenium') || ua.includes('crawler')) {
+        return true;
+      }
+      return false;
+    }
+
+    function registerHumanAction(e) {
+      if (isHeadlessBot()) return;
+      if (!e || e.isTrusted !== false) {
+        isHumanVerified = true;
+      }
+    }
+
+    window.addEventListener('mousemove', registerHumanAction, { passive: true });
+    window.addEventListener('scroll', registerHumanAction, { passive: true });
+    window.addEventListener('touchstart', registerHumanAction, { passive: true });
+    window.addEventListener('keydown', registerHumanAction, { passive: true });
+    window.addEventListener('pointerdown', registerHumanAction, { passive: true });
+
+    function sendVerifiedGoalToMetrika(goalName, virtualPath, callback) {
+      if (typeof ym !== 'function') {
+        if (callback) callback();
+        return;
+      }
+
+      if (firedGoals.has(goalName)) {
+        if (callback) callback();
+        return;
+      }
+      firedGoals.add(goalName);
+
+      let called = false;
+      const done = () => {
+        if (called) return;
+        called = true;
+        if (callback) callback();
+      };
+
+      const safetyTimer = setTimeout(done, 180);
+
+      try {
+        if (virtualPath) {
+          ym(YM_COUNTER_ID, 'hit', 'https://elinapasechnik.ru' + virtualPath, {
+            title: goalName,
+            referer: window.location.href
+          });
+        }
+        ym(YM_COUNTER_ID, 'reachGoal', goalName, {}, function() {
+          clearTimeout(safetyTimer);
+          done();
+        });
+      } catch (err) {
+        clearTimeout(safetyTimer);
+        done();
+      }
+    }
+
+    function handleOutboundConversion(event, targetUrl, goalName, virtualPath) {
+      const timeSpentMs = Date.now() - pageLoadTimestamp;
+      const isTrustedClick = event && event.isTrusted !== false;
+
+      if (isHeadlessBot() || !isTrustedClick || (!isHumanVerified && timeSpentMs < 600)) {
+        return true;
+      }
+
+      isHumanVerified = true;
+
+      if (event && event.preventDefault) {
+        event.preventDefault();
+      }
+
+      const newWin = window.open('about:blank', '_blank');
+
+      sendVerifiedGoalToMetrika(goalName, virtualPath, function() {
+        if (newWin && !newWin.closed) {
+          newWin.location.href = targetUrl;
+        } else {
+          window.location.href = targetUrl;
+        }
+      });
+
+      return false;
+    }
+
+    // =========================================================================
+    // РИТУАЛ ВЫТЯГИВАНИЯ КАРТЫ: ПОЛНАЯ КОЛОДА ИЗ 60 КАРТ (290x422 БЕЗ ПОЛОС)
+    // =========================================================================
+    const oracleCardIds = [
+      "1vX4S3DNCB3DgYwD-2o1f6lTCTdUE28MP",
+      "1G9j3Ua0--7dTUV2zdLF4GF5pCwQHDrs4",
+      "1sDUJeMd7pzAMaJeFhBfeI51ZyF6M5qnR",
+      "1xej-VpwPI0anYxLperK8zTnkRqTmu2yh",
+      "1cD5OuCvgBYE38M5sNRWq1ANyUb0I0SVY",
+      "1TFr1x4y-4n90UhkuzqtheUeRIMZMghSu",
+      "1s4idr3hmwTqiqVxxzQPtXzfDwkc5vbgQ",
+      "1j_S7n4mA0FFv6Vqs7ebx5cFYRgNkBEsp",
+      "1HVv-MXYyC3SNVlu8hDIr8L1i0tJuZYrn",
+      "1R7OfqDywo2X8FrhkDdsa4wmMuuJio_vP",
+      "1PlmxzQ5tTUeTIKV5Sd7LsHvwYpeLeOx3",
+      "1FxgHUFO8-DvNDQDMCdhJ1iSGUlL6gMej",
+      "1hQ3YLFDSff_e6PWDKED3EKfpVjiG_O1o",
+      "1KbukTLMItyE7wdLfkYSD7amt3Vu7C-W7",
+      "1rKGnLf2TtPo3Rr9rgcJGUjJaap5jYrwv",
+      "1U24dz_UokdPfptZcCmi24PoawCb4HSrg",
+      "1Mrs8MLD6OvSqQP6csHdcydGNQVPQcIUI",
+      "1cv6a1_Xlt51eqweOk3y5jvjNWpS8bFJW",
+      "18_PgeCErTOntHm1gqh4sqETjiIWwMk6L",
+      "1cNVq1cEbC1Iyzx2KmxFVkBpAingRtcFC",
+      "1jSquk0kvpTv3EGUtG5ZsJkQqNkicU442",
+      "12IHik6tmfBs7r3XaQqhbPCbGEkMOF9oB",
+      "1GtoNix4JQMjqG36YWgbJ9wZFm9ZBhZOV",
+      "1_8wSyniGZ8JePx3Af2D7nCKAD0Yk-Hs2",
+      "1CYFZDPq0lJ9Ys32KtRn_-b9qxbr7gSxv",
+      "13C17npq58BVJQlCDsDrQD1EN9723b8J-",
+      "12CrYbHPpqjXcPaZpcjV92PMzDqH_NwCy",
+      "1DfTOSQrXftsLv5ACt935H7IiX-Gnm2pD",
+      "1QhUSwy53w4kDWS5tfS79PTgOPKg4iGxI",
+      "1rrLOussnaY2zB7iVd5Zp9wjXxRaZ8_r-",
+      "1-KuJl80HljB5wDMeM0mai8rDaADe3aRT",
+      "1qCCq4PffTiy9wX4rP70rhGJ9u1GPBPDu",
+      "177kQL8VGY0lfZWaE8SKouyogQBkIFRTE",
+      "1qV-76f3yMkwV199SqCbARZZq4M9O_MIh",
+      "1zGDHf31T-rX4WfeyFEu3RgXo_R-W25kP",
+      "1Fx3Mj9ZX9Dr3iNbvZSUug-hWoqZjUsYz",
+      "13YjhqvezZzHSOeY2oiK2p3iM0DDqDMmk",
+      "12m8pjidzJTodfJjRBaaRi8kdmAqArfum",
+      "1f35qkiujUOUG7CfAtlfpCPKfxrCMpCjB",
+      "1fEdjkTJJVTChdMgVs8BqRJy0JwTN9eZP",
+      "1RMMKO9CN_N2mHmsVRgPH_IjGYr9jkQKc",
+      "11n177_aWOszBoPK9K_J0j8XAQxEPJEpE",
+      "1aspLG5lABhhn4QWTSAXKJzuxvNA5BmX2",
+      "1BH1s4IZxK5pzV_Hph5sphpAP6u0HnX8w",
+      "1MXX4CGxCFdLMdvhoMNpJCjxH59eiOY53",
+      "1JTUmYITg1fTkjIgMHm8M_pBn-JPeaHTf",
+      "1gywp6ZgDG7pzEWbxPfYbr9b0Xc1wxTou",
+      "1ClIFjFNjxDmQVxXt7Xk344JVpumo1-7C",
+      "1v3Io79j6glVBad-MVtGWjgiyFyz2VyLs",
+      "1yV1fOoeo-QhBPfS326Fv5rNBWDit2rtW",
+      "1MvhKqVeIMbRJvTsp4QGnrGjNECvNz9Oo",
+      "1pvVb2s65UFicV_aBblehA-rFnVn6507R",
+      "1h5-OD9WnCSW-Pb_m9LNKuuYLBwqULEHf",
+      "1FXziEp7GZb6mzElvS2xv_avvyNDuyeP-",
+      "14jnfWbnWOKIMI7MW3XGNqggxoQ6K8q6a",
+      "1ghE9J6g338w_gO_wMeg2xcqRFkA5Ndbn",
+      "1Ejkv_cSxfINd9nhIRQ08jvXHesL1vEmQ",
+      "1mqnD1P28Dp83jm66oEVrT7JCjGrRLGWg",
+      "1alVG6Gse-O9UBP80Kr9qr9OlK8Wum6aq",
+      "19vLhFuV4Ck3HQycrFN6BCowjXsc4pNFe"
+    ];
+
+    let isCardFlipped = false;
+    let isFlipAnimating = false;
+    let nextPreloadedCardId = null;
+    let preloadedImgObj = new Image();
+
+    function getOracleCardUrl(id) {
+      return 'https://drive.google.com/thumbnail?id=' + id + '&sz=w1000';
+    }
+
+    function prepareNextOracleCard() {
+      const randomIndex = Math.floor(Math.random() * oracleCardIds.length);
+      nextPreloadedCardId = oracleCardIds[randomIndex];
+      preloadedImgObj = new Image();
+      preloadedImgObj.src = getOracleCardUrl(nextPreloadedCardId);
+    }
+
+    prepareNextOracleCard();
+
+    function flipOracleDeckCard() {
+      if (isFlipAnimating) return;
+      isHumanVerified = true;
+
+      const cardEl = document.getElementById('oracleDeckCard');
+      const artImg = document.getElementById('deckCardArtImg');
+      const hintEl = document.getElementById('oracleRitualHint');
+      const btnEl = document.getElementById('oracleDrawActionBtn');
+
+      if (!cardEl || !artImg) return;
+
+      if (!isCardFlipped) {
+        isFlipAnimating = true;
+        const chosenId = nextPreloadedCardId || oracleCardIds[0];
+        artImg.src = getOracleCardUrl(chosenId);
+
+        cardEl.classList.add('flipped');
+        isCardFlipped = true;
+
+        if (hintEl) {
+          hintEl.innerText = 'Вчитайтесь в образ вашей карты и прислушайтесь к первому отклику в душе...';
+        }
+        if (btnEl) {
+          btnEl.innerText = '✨ Вытянуть другую карту из колоды';
+        }
+
+        prepareNextOracleCard();
+        setTimeout(() => { isFlipAnimating = false; }, 950);
+      } else {
+        isFlipAnimating = true;
+        cardEl.classList.remove('flipped');
+        isCardFlipped = false;
+
+        if (hintEl) {
+          hintEl.innerText = 'Тасуем колоду... Сфокусируйтесь на новом вопросе вашего сердца.';
+        }
+
+        setTimeout(() => {
+          const chosenId = nextPreloadedCardId || oracleCardIds[0];
+          artImg.src = getOracleCardUrl(chosenId);
+          cardEl.classList.add('flipped');
+          isCardFlipped = true;
+
+          if (hintEl) {
+            hintEl.innerText = 'Новое послание открыто для вас. Пусть этот образ согреет ваше сердце.';
+          }
+          prepareNextOracleCard();
+          setTimeout(() => { isFlipAnimating = false; }, 950);
+        }, 520);
+      }
+    }
+
+    // =========================================================================
+    // АВТОУВЕДОМЛЕНИЯ: TELEGRAM + ПОЧТА + МЕССЕНДЖЕР MAX (@id772169697720_bot)
+    // =========================================================================
+    const TG_BOT_TOKEN = '8962021789:AAEfzn63bp5JuaiZAc-dLwFfaCMWeRu0Qkg';
+    const TG_CHAT_ID = '57473050';
+    const BACKUP_EMAIL = 'ko1nc1@gmail.com';
+    const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxvr3-YQCb6mudHDTdYH7broiyzAkEcM1CjnS1abb2YdtKCUXqHjEeZ2Eh9vrtY_j0GiQ/exec';
+    const MAX_BOT_TOKEN = 'f9LHodD0cOLGeaYy8TzD_3zw8aVzz6WsY9Naa8PpMCCxyju4prOgVIawjMhnxSV63RgHPpZLGhNXn0navnj8';
+
+    function openModal(title) {
+      isHumanVerified = true;
+      isModalOpened = true;
+      document.getElementById('targetInput').value = title;
+      document.getElementById('modalTitle').innerText = 'Написать сообщение';
+      document.getElementById('orderForm').classList.remove('hidden');
+      document.getElementById('modalSuccess').classList.add('hidden');
+      document.getElementById('submitBtn').innerText = 'Отправить';
+      document.getElementById('submitBtn').disabled = false;
+      document.getElementById('modal').classList.remove('hidden');
+    }
+
+    function closeModal() {
+      document.getElementById('modal').classList.add('hidden');
+    }
+
+    function fetchWithTimeout(url, options = {}, timeoutMs = 4500) {
+      const controller = new AbortController();
+      const id = setTimeout(() => controller.abort(), timeoutMs);
+      return fetch(url, { ...options, keepalive: true, signal: controller.signal })
+        .finally(() => clearTimeout(id));
+    }
+
+    function isTelegramOk(bodyText) {
+      if (!bodyText) return false;
+      const str = typeof bodyText === 'string' ? bodyText : JSON.stringify(bodyText);
+      return str.indexOf('"ok":true') !== -1 || str.indexOf('\\"ok\\":true') !== -1;
+    }
+
+    function fireJsonpGateway(fullGetUrl) {
+      return new Promise(resolve => {
+        try {
+          const cbName = 'tg_cb_' + Math.floor(Math.random() * 1000000);
+          const script = document.createElement('script');
+          const timer = setTimeout(() => {
+            cleanup();
+            resolve(false);
+          }, 4500);
+          function cleanup() {
+            clearTimeout(timer);
+            try { delete window[cbName]; } catch (e) {}
+            if (script.parentNode) script.parentNode.removeChild(script);
+          }
+          window[cbName] = function(data) {
+            cleanup();
+            if (isTelegramOk(data)) {
+              resolve(true);
+            } else {
+              resolve(false);
+            }
+          };
+          script.src = `https://api.allorigins.win/get?url=${encodeURIComponent(fullGetUrl)}&callback=${cbName}&_=${Date.now()}`;
+          script.onerror = function() { cleanup(); resolve(false); };
+          document.body.appendChild(script);
+        } catch (e) {
+          resolve(false);
+        }
+      });
+    }
+
+    // 1. Отправка через Google Cloud шлюз
+    async function sendViaGoogleScript(text, target, name, contact) {
+      if (!GOOGLE_SCRIPT_URL) return false;
+      const chatId = TG_CHAT_ID.trim();
+      const payloadObj = {
+        token: TG_BOT_TOKEN,
+        chat_id: chatId,
+        text: text,
+        email: BACKUP_EMAIL,
+        subject: `🕯️ Заявка elinapasechnik.ru: ${target}`,
+        name: name,
+        contact: contact,
+        max_token: MAX_BOT_TOKEN
+      };
+      const urlWithParams = `${GOOGLE_SCRIPT_URL}?token=${encodeURIComponent(TG_BOT_TOKEN)}&chat_id=${encodeURIComponent(chatId)}&max_token=${encodeURIComponent(MAX_BOT_TOKEN)}&subject=${encodeURIComponent('Заявка elinapasechnik.ru: ' + target)}&text=${encodeURIComponent(text)}`;
+      try {
+        await fetchWithTimeout(urlWithParams, {
+          method: 'POST',
+          mode: 'no-cors',
+          headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+          body: JSON.stringify(payloadObj)
+        }, 4000);
+        return true;
+      } catch (e) {
+        return false;
+      }
+    }
+
+    // 2. Отправка в Telegram
+    async function sendToTelegram(text, target, name, contact) {
+      if (!TG_BOT_TOKEN) return false;
+      const chatId = TG_CHAT_ID.trim();
+      const baseApi = `https://api.telegram.org/bot${TG_BOT_TOKEN}/sendMessage`;
+      const query = `?chat_id=${encodeURIComponent(chatId)}&text=${encodeURIComponent(text)}`;
+      const fullGetUrl = `${baseApi}${query}`;
+
+      sendViaGoogleScript(text, target, name, contact);
+
+      try {
+        const resDirect = await fetchWithTimeout(baseApi, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+          body: new URLSearchParams({ chat_id: chatId, text: text }).toString()
+        }, 2500);
+        if (resDirect.ok) {
+          const t = await resDirect.text();
+          if (isTelegramOk(t)) return true;
+        }
+      } catch (e) {}
+
+      const proxyUrls = [
+        `https://api.codetabs.com/v1/proxy?quest=${encodeURIComponent(fullGetUrl)}`,
+        `https://api.allorigins.win/get?url=${encodeURIComponent(fullGetUrl)}&_=${Date.now()}`,
+        `https://api.allorigins.win/raw?url=${encodeURIComponent(fullGetUrl)}&_=${Date.now()}`,
+        `https://corsproxy.io/?url=${encodeURIComponent(fullGetUrl)}`,
+        `https://corsproxy.org/?${encodeURIComponent(fullGetUrl)}`,
+        `https://thingproxy.freeboard.io/fetch/${fullGetUrl}`
+      ];
+
+      const proxyTasks = proxyUrls.map(async (gw) => {
+        const res = await fetchWithTimeout(gw, { cache: 'no-store' }, 5500);
+        if (!res.ok) throw new Error('Proxy HTTP ' + res.status);
+        const bodyText = await res.text();
+        if (isTelegramOk(bodyText)) return true;
+        throw new Error('Bad payload');
+      });
+
+      proxyTasks.push(
+        fireJsonpGateway(fullGetUrl).then(ok => {
+          if (!ok) throw new Error('JSONP failed');
+          return true;
+        })
+      );
+
+      try {
+        await Promise.any(proxyTasks);
+        return true;
+      } catch (e) {}
+
+      return false;
+    }
+
+    // 3. Отправка на почту (нативный HTML POST в скрытый iframe + AJAX дубль)
+    function fireNativeEmailForm(subject, target, name, contact) {
+      try {
+        const form = document.createElement('form');
+        form.method = 'POST';
+        form.action = `https://formsubmit.co/${BACKUP_EMAIL}`;
+        form.target = 'tg_hidden_transport';
+        form.style.display = 'none';
+
+        const fields = {
+          _subject: subject,
+          _captcha: 'false',
+          _template: 'table',
+          Сайт: 'elinapasechnik.ru',
+          Тема: target,
+          Имя: name,
+          Контакт: contact
+        };
+
+        Object.keys(fields).forEach(k => {
+          const inp = document.createElement('input');
+          inp.type = 'hidden';
+          inp.name = k;
+          inp.value = fields[k];
+          form.appendChild(inp);
+        });
+
+        document.body.appendChild(form);
+        form.submit();
+        setTimeout(() => {
+          if (form.parentNode) form.parentNode.removeChild(form);
+        }, 3000);
+      } catch (e) {}
+    }
+
+    async function sendBackupEmail(target, name, contact) {
+      if (!BACKUP_EMAIL) return;
+      const subj = `🕯️ Заявка с сайта elinapasechnik.ru: ${target}`;
+      fireNativeEmailForm(subj, target, name, contact);
+      try {
+        await fetchWithTimeout(`https://formsubmit.co/ajax/${BACKUP_EMAIL}`, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json'
+          },
+          body: JSON.stringify({
+            _subject: subj,
+            _captcha: 'false',
+            Тема: target,
+            Имя: name,
+            Контакт: contact,
+            _template: 'table'
+          })
+        }, 4500);
+      } catch (e) {}
+    }
+
+    // 4. Автоотправка в мессенджер MAX (@id772169697720_bot)
+    // Автоматически находит ваш chat_id / user_id и отправляет уведомление
+    async function fetchMaxJson(apiUrl) {
+      const candidates = [
+        apiUrl,
+        `https://corsproxy.io/?url=${encodeURIComponent(apiUrl)}`,
+        `https://api.allorigins.win/raw?url=${encodeURIComponent(apiUrl)}&_=${Date.now()}`,
+        `https://api.codetabs.com/v1/proxy?quest=${encodeURIComponent(apiUrl)}`
+      ];
+      for (const u of candidates) {
+        try {
+          const r = await fetchWithTimeout(u, { cache: 'no-store' }, 3000);
+          if (r.ok) {
+            const j = await r.json();
+            if (j) return j;
+          }
+        } catch (e) {}
+      }
+      return null;
+    }
+
+    async function discoverMaxTargets() {
+      const chatIds = new Set();
+      const userIds = new Set();
+
+      try {
+        const savedChat = localStorage.getItem('max_admin_chat_id');
+        const savedUser = localStorage.getItem('max_admin_user_id');
+        if (savedChat) chatIds.add(savedChat);
+        if (savedUser) userIds.add(savedUser);
+      } catch (e) {}
+
+      const [chatsData, updatesData] = await Promise.all([
+        fetchMaxJson(`https://botapi.max.ru/chats?access_token=${encodeURIComponent(MAX_BOT_TOKEN)}`),
+        fetchMaxJson(`https://botapi.max.ru/updates?access_token=${encodeURIComponent(MAX_BOT_TOKEN)}`)
+      ]);
+
+      if (chatsData && Array.isArray(chatsData.chats)) {
+        chatsData.chats.forEach(c => {
+          if (c && c.chat_id) chatIds.add(String(c.chat_id));
+        });
+      }
+
+      if (updatesData && Array.isArray(updatesData.updates)) {
+        updatesData.updates.forEach(u => {
+          if (u.chat_id) chatIds.add(String(u.chat_id));
+          if (u.user_id) userIds.add(String(u.user_id));
+          if (u.user && u.user.user_id) userIds.add(String(u.user.user_id));
+          if (u.message) {
+            if (u.message.recipient && u.message.recipient.chat_id) {
+              chatIds.add(String(u.message.recipient.chat_id));
+            }
+            if (u.message.sender && u.message.sender.user_id) {
+              userIds.add(String(u.message.sender.user_id));
+            }
+          }
+        });
+      }
+
+      try {
+        const firstChat = Array.from(chatIds)[0];
+        const firstUser = Array.from(userIds)[0];
+        if (firstChat) localStorage.setItem('max_admin_chat_id', firstChat);
+        if (firstUser) localStorage.setItem('max_admin_user_id', firstUser);
+      } catch (e) {}
+
+      return { chatIds: Array.from(chatIds), userIds: Array.from(userIds) };
+    }
+
+    async function postMaxMessage(targetParam, text) {
+      const directUrl = `https://botapi.max.ru/messages?access_token=${encodeURIComponent(MAX_BOT_TOKEN)}&${targetParam}`;
+      const proxyUrl = `https://corsproxy.io/?url=${encodeURIComponent(directUrl)}`;
+      const bodyStr = JSON.stringify({ text: text });
+
+      await Promise.allSettled([
+        fetchWithTimeout(directUrl, {
+          method: 'POST',
+          mode: 'no-cors',
+          headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+          body: bodyStr
+        }, 3500),
+        fetchWithTimeout(proxyUrl, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'Authorization': MAX_BOT_TOKEN
+          },
+          body: bodyStr
+        }, 3500)
+      ]);
+    }
+
+    async function sendToMax(text) {
+      if (!MAX_BOT_TOKEN) return false;
+      try {
+        const targets = await discoverMaxTargets();
+        const tasks = [];
+        targets.chatIds.forEach(cid => tasks.push(postMaxMessage(`chat_id=${encodeURIComponent(cid)}`, text)));
+        targets.userIds.forEach(uid => tasks.push(postMaxMessage(`user_id=${encodeURIComponent(uid)}`, text)));
+        await Promise.allSettled(tasks);
+        return true;
+      } catch (e) {
+        return false;
+      }
+    }
+
+    function handleFormSubmit(e) {
+      e.preventDefault();
+
+      const target = document.getElementById('targetInput').value.trim();
+      const name = document.getElementById('nameInput').value.trim();
+      const phone = document.getElementById('phoneInput').value.trim();
+
+      if (!isModalOpened || !/[А-Яа-яЁё]/.test(target)) {
+        document.getElementById('orderForm').classList.add('hidden');
+        document.getElementById('modalSuccess').classList.remove('hidden');
+        return;
+      }
+
+      const btn = document.getElementById('submitBtn');
+      btn.innerText = 'Отправка...';
+      btn.disabled = true;
+
+      sendVerifiedGoalToMetrika('lead_submit', '/go-lead-submit');
+
+      const tgMessage = `🕯️ Новая заявка с сайта elinapasechnik.ru!\n\n📌 Программа: ${target}\n👤 Имя: ${name}\n📞 Контакт: ${phone}`;
+
+      const mailLink = document.getElementById('mailFallbackLink');
+      if (mailLink) {
+        mailLink.href = `mailto:${BACKUP_EMAIL}?subject=${encodeURIComponent('Заявка с сайта Элины Пасечник: ' + target)}&body=${encodeURIComponent(tgMessage)}`;
+      }
+
+      let completed = false;
+      const finish = () => {
+        if (completed) return;
+        completed = true;
+        document.getElementById('orderForm').classList.add('hidden');
+        document.getElementById('modalSuccess').classList.remove('hidden');
+      };
+
+      const timer = setTimeout(finish, 4000);
+
+      Promise.allSettled([
+        sendToTelegram(tgMessage, target, name, phone),
+        sendBackupEmail(target, name, phone),
+        sendToMax(tgMessage)
+      ]).then(() => {
+        clearTimeout(timer);
+        finish();
+      });
+    }
+  </script>
+</body>
+</html>
