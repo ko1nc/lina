@@ -680,7 +680,7 @@
     </div>
   </section>
 
-  <!-- Подвал сайта -->
+  <!-- Подвал сайта (ВКонтакте без слова «Группа» и личный MAX +79950056820) -->
   <footer class="bg-wineDark text-warmCream py-10 sm:py-12 border-t border-gold/30">
     <div class="max-w-6xl mx-auto px-4 sm:px-6 flex flex-col sm:flex-row items-center justify-between gap-6 text-center sm:text-left">
       <div>
@@ -690,13 +690,13 @@
 
       <div class="flex flex-wrap justify-center items-center gap-3 text-xs tracking-wider">
         <a href="https://vk.ru/elinapasechnik" target="_blank" rel="noopener" class="border border-gold/40 hover:border-gold px-4 py-2.5 rounded-full text-goldLight transition">
-          Группа ВКонтакте
+          ВКонтакте
         </a>
         <a href="https://vk.me/ko1yan" target="_blank" rel="noopener" class="border border-gold/40 hover:border-gold px-4 py-2.5 rounded-full text-goldLight transition">
-          Написать в ВК (в личку)
+          Заказчикам в ВК
         </a>
-        <a href="https://max.ru/id772169697720_bot" target="_blank" rel="noopener" class="border border-gold/40 hover:border-gold px-4 py-2.5 rounded-full text-goldLight transition">
-          Написать в MAX
+        <a href="https://web.max.ru/" target="_blank" rel="noopener" onclick="openPersonalMax(event)" class="personal-max-link border border-gold/40 hover:border-gold px-4 py-2.5 rounded-full text-goldLight transition">
+          Написать в MAX: +7 (995) 005-68-20
         </a>
       </div>
     </div>
@@ -744,28 +744,47 @@
           <a href="https://vk.me/ko1yan" target="_blank" rel="noopener" class="bg-wine text-white px-3.5 py-2 rounded-full hover:bg-wineDark transition">
             ВКонтакте (в личку)
           </a>
-          <a href="https://max.ru/id772169697720_bot" target="_blank" rel="noopener" class="bg-warmBeige border border-gold/40 text-wine px-3.5 py-2 rounded-full hover:bg-gold/20 transition">
-            Написать в MAX
+          <a href="https://web.max.ru/" target="_blank" rel="noopener" onclick="openPersonalMax(event)" class="personal-max-link bg-warmBeige border border-gold/40 text-wine px-3.5 py-2 rounded-full hover:bg-gold/20 transition">
+            MAX: +7 (995) 005-68-20
           </a>
           <a id="mailFallbackLink" href="mailto:ko1nc1@gmail.com" class="bg-warmBeige border border-gold/40 text-wine px-3.5 py-2 rounded-full hover:bg-gold/20 transition">
             ko1nc1@gmail.com
           </a>
         </div>
+        <p id="maxCopyNotice" class="hidden text-[11px] text-wine font-semibold pt-1">
+          ✓ Номер +79950056820 скопирован для диалога в MAX
+        </p>
       </div>
     </div>
   </div>
 
   <script>
     // =========================================================================
-    // ДИПЛИНК-ССЫЛКА OZON SELLER С ВЕНДОР-МЕТКАМИ
+    // ССЫЛКИ НА OZON И ЛИЧНЫЙ АККАУНТ MAX (+79950056820)
     // =========================================================================
     const OZON_ORACLE_LINK = 'https://ozon.onelink.me/SNMZ?af_dp=https://ozon.ru/product/orakul-eliny-pasechnik-5114150489&af_web_dp=https://ozon.ru/product/orakul-eliny-pasechnik-5114150489&is_retargeting=true&c=vendor_org_4133655_oracle_elina_site&pid=yandex_direct|cpc&af_adset=ozon_btn&hs=1&utm_source=yandex_direct&utm_medium=cpc&utm_campaign=vendor_org_4133655_oracle_elina_site&utm_content=ozon_btn';
+    
+    // Если скопируете личную ссылку профиля из настроек MAX (вида https://max.ru/u/...), вставьте её сюда:
+    const PERSONAL_MAX_LINK = 'https://web.max.ru/';
 
     document.addEventListener('DOMContentLoaded', () => {
       document.querySelectorAll('.ozon-oracle-link').forEach(link => {
         link.href = OZON_ORACLE_LINK;
       });
+      document.querySelectorAll('.personal-max-link').forEach(link => {
+        link.href = PERSONAL_MAX_LINK;
+      });
     });
+
+    function openPersonalMax(e) {
+      try {
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+          navigator.clipboard.writeText('+79950056820');
+        }
+        const notice = document.getElementById('maxCopyNotice');
+        if (notice) notice.classList.remove('hidden');
+      } catch (err) {}
+    }
 
     // =========================================================================
     // АНТИФРОД-СИСТЕМА ДЛЯ ЦЕЛЕЙ ЯНДЕКС ДИРЕКТА + ДОСТАВКА В МЕТРИКУ 113787675
@@ -999,7 +1018,7 @@
     }
 
     // =========================================================================
-    // АВТОУВЕДОМЛЕНИЯ: TELEGRAM + ПОЧТА + МЕССЕНДЖЕР MAX (@id772169697720_bot)
+    // АВТОУВЕДОМЛЕНИЯ: TELEGRAM + ПОЧТА + БОТ MAX («Заявки с сайтов»)
     // =========================================================================
     const TG_BOT_TOKEN = '8962021789:AAEfzn63bp5JuaiZAc-dLwFfaCMWeRu0Qkg';
     const TG_CHAT_ID = '57473050';
@@ -1067,7 +1086,7 @@
       });
     }
 
-    // 1. Отправка через Google Cloud шлюз
+    // 1. Отправка через Google Cloud шлюз (доставляет в ТГ и бот MAX)
     async function sendViaGoogleScript(text, target, name, contact) {
       if (!GOOGLE_SCRIPT_URL) return false;
       const chatId = TG_CHAT_ID.trim();
@@ -1149,7 +1168,7 @@
       return false;
     }
 
-    // 3. Отправка на почту (нативный HTML POST в скрытый iframe + AJAX дубль)
+    // 3. Отправка на почту
     function fireNativeEmailForm(subject, target, name, contact) {
       try {
         const form = document.createElement('form');
@@ -1207,14 +1226,13 @@
       } catch (e) {}
     }
 
-    // 4. Автоотправка в мессенджер MAX (@id772169697720_bot)
-    // Автоматически находит ваш chat_id / user_id и отправляет уведомление
+    // 4. Резервная отправка в бот MAX («Заявки с сайтов») через прокси-шлюзы
     async function fetchMaxJson(apiUrl) {
       const candidates = [
-        apiUrl,
-        `https://corsproxy.io/?url=${encodeURIComponent(apiUrl)}`,
+        `https://thingproxy.freeboard.io/fetch/${apiUrl}`,
+        `https://api.codetabs.com/v1/proxy?quest=${encodeURIComponent(apiUrl)}`,
         `https://api.allorigins.win/raw?url=${encodeURIComponent(apiUrl)}&_=${Date.now()}`,
-        `https://api.codetabs.com/v1/proxy?quest=${encodeURIComponent(apiUrl)}`
+        `https://corsproxy.io/?url=${encodeURIComponent(apiUrl)}`
       ];
       for (const u of candidates) {
         try {
@@ -1232,71 +1250,58 @@
       const chatIds = new Set();
       const userIds = new Set();
 
-      try {
-        const savedChat = localStorage.getItem('max_admin_chat_id');
-        const savedUser = localStorage.getItem('max_admin_user_id');
-        if (savedChat) chatIds.add(savedChat);
-        if (savedUser) userIds.add(savedUser);
-      } catch (e) {}
-
-      const [chatsData, updatesData] = await Promise.all([
+      const [chats1, updates1, chats2, updates2] = await Promise.all([
+        fetchMaxJson(`https://platform-api.max.ru/chats?access_token=${encodeURIComponent(MAX_BOT_TOKEN)}`),
+        fetchMaxJson(`https://platform-api.max.ru/updates?access_token=${encodeURIComponent(MAX_BOT_TOKEN)}`),
         fetchMaxJson(`https://botapi.max.ru/chats?access_token=${encodeURIComponent(MAX_BOT_TOKEN)}`),
         fetchMaxJson(`https://botapi.max.ru/updates?access_token=${encodeURIComponent(MAX_BOT_TOKEN)}`)
       ]);
 
-      if (chatsData && Array.isArray(chatsData.chats)) {
-        chatsData.chats.forEach(c => {
-          if (c && c.chat_id) chatIds.add(String(c.chat_id));
-        });
-      }
+      [chats1, chats2].forEach(chatsData => {
+        if (chatsData && Array.isArray(chatsData.chats)) {
+          chatsData.chats.forEach(c => {
+            if (c && c.chat_id) chatIds.add(String(c.chat_id));
+          });
+        }
+      });
 
-      if (updatesData && Array.isArray(updatesData.updates)) {
-        updatesData.updates.forEach(u => {
-          if (u.chat_id) chatIds.add(String(u.chat_id));
-          if (u.user_id) userIds.add(String(u.user_id));
-          if (u.user && u.user.user_id) userIds.add(String(u.user.user_id));
-          if (u.message) {
-            if (u.message.recipient && u.message.recipient.chat_id) {
-              chatIds.add(String(u.message.recipient.chat_id));
+      [updates1, updates2].forEach(updatesData => {
+        if (updatesData && Array.isArray(updatesData.updates)) {
+          updatesData.updates.forEach(u => {
+            if (u.chat_id) chatIds.add(String(u.chat_id));
+            if (u.user_id) userIds.add(String(u.user_id));
+            if (u.user && u.user.user_id) userIds.add(String(u.user.user_id));
+            if (u.message) {
+              if (u.message.recipient && u.message.recipient.chat_id) chatIds.add(String(u.message.recipient.chat_id));
+              if (u.message.sender && u.message.sender.user_id) userIds.add(String(u.message.sender.user_id));
             }
-            if (u.message.sender && u.message.sender.user_id) {
-              userIds.add(String(u.message.sender.user_id));
-            }
-          }
-        });
-      }
-
-      try {
-        const firstChat = Array.from(chatIds)[0];
-        const firstUser = Array.from(userIds)[0];
-        if (firstChat) localStorage.setItem('max_admin_chat_id', firstChat);
-        if (firstUser) localStorage.setItem('max_admin_user_id', firstUser);
-      } catch (e) {}
+          });
+        }
+      });
 
       return { chatIds: Array.from(chatIds), userIds: Array.from(userIds) };
     }
 
     async function postMaxMessage(targetParam, text) {
-      const directUrl = `https://botapi.max.ru/messages?access_token=${encodeURIComponent(MAX_BOT_TOKEN)}&${targetParam}`;
-      const proxyUrl = `https://corsproxy.io/?url=${encodeURIComponent(directUrl)}`;
       const bodyStr = JSON.stringify({ text: text });
-
-      await Promise.allSettled([
-        fetchWithTimeout(directUrl, {
+      const endpoints = [
+        `https://platform-api.max.ru/messages?access_token=${encodeURIComponent(MAX_BOT_TOKEN)}&${targetParam}`,
+        `https://botapi.max.ru/messages?access_token=${encodeURIComponent(MAX_BOT_TOKEN)}&${targetParam}`
+      ];
+      const tasks = [];
+      endpoints.forEach(ep => {
+        tasks.push(fetchWithTimeout(`https://thingproxy.freeboard.io/fetch/${ep}`, {
           method: 'POST',
-          mode: 'no-cors',
-          headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+          headers: { 'Content-Type': 'application/json', 'Authorization': MAX_BOT_TOKEN },
           body: bodyStr
-        }, 3500),
-        fetchWithTimeout(proxyUrl, {
+        }, 3500));
+        tasks.push(fetchWithTimeout(`https://corsproxy.io/?url=${encodeURIComponent(ep)}`, {
           method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-            'Authorization': MAX_BOT_TOKEN
-          },
+          headers: { 'Content-Type': 'application/json', 'Authorization': MAX_BOT_TOKEN },
           body: bodyStr
-        }, 3500)
-      ]);
+        }, 3500));
+      });
+      await Promise.allSettled(tasks);
     }
 
     async function sendToMax(text) {
