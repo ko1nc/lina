@@ -27,11 +27,32 @@
   <meta name="twitter:description" content="Авторская книга стихов «Ближе», колода карт «Оракул Элины Пасечник» и концерт при свечах «Исповедь незнакомки».">
   <meta name="twitter:image" content="https://sun9-15.vkuserphoto.ru/s/v1/ig2/vCfOkz1s6wMS-qAHW_k4b6RCZZdfHs5pk7JqAgAvthkdT5uAewLa97LxLl65Yr2N9K0H7cBJc1LwR1JMeReK18ff.jpg?quality=95&as=32x32,48x48,72x72,108x108,160x160,240x240,360x360,480x480,540x540,640x640,720x720,1080x1080&from=bu&cs=1080x0">
 
-  <!-- Полная микроразметка Schema.org (со всеми обязательными полями Google Search Console) -->
+  <!-- Иконка сайта (Favicon) для поисковой выдачи Google и Яндекса + резерв для вкладок -->
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" sizes="any">
+  <link rel="shortcut icon" type="image/svg+xml" href="/favicon.svg">
+  <link rel="apple-touch-icon" href="/favicon.svg">
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='50' fill='%233D131E'/><text x='50%' y='54%' dominant-baseline='central' text-anchor='middle' fill='%23E8D3A7' font-family='Georgia, serif' font-weight='700' font-size='48'>ЭП</text></svg>">
+
+  <!-- Полная микроразметка Schema.org (включая логотип сайта для поиска Google) -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
     "@graph": [
+      {
+        "@type": "WebSite",
+        "name": "Элина Пасечник",
+        "url": "https://elinapasechnik.ru/"
+      },
+      {
+        "@type": "Organization",
+        "name": "Элина Пасечник",
+        "url": "https://elinapasechnik.ru/",
+        "logo": "https://elinapasechnik.ru/favicon.svg",
+        "image": "https://sun9-15.vkuserphoto.ru/s/v1/ig2/vCfOkz1s6wMS-qAHW_k4b6RCZZdfHs5pk7JqAgAvthkdT5uAewLa97LxLl65Yr2N9K0H7cBJc1LwR1JMeReK18ff.jpg?quality=95&cs=1080x0",
+        "sameAs": [
+          "https://vk.ru/elinapasechnik"
+        ]
+      },
       {
         "@type": "Person",
         "name": "Элина Пасечник",
@@ -138,9 +159,6 @@
     ]
   }
   </script>
-
-  <!-- Иконка сайта (Favicon) -->
-  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='50' fill='%233D131E'/><text x='50%' y='54%' dominant-baseline='central' text-anchor='middle' fill='%23E8D3A7' font-family='Georgia, serif' font-weight='700' font-size='48'>ЭП</text></svg>">
 
   <!-- Шрифты: благородный поэтический Cormorant Garamond и чистый Montserrat -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -677,6 +695,9 @@
     </div>
   </footer>
 
+  <!-- Скрытый транспортный iframe для отправки форм без блокировок -->
+  <iframe name="tg_hidden_transport" id="tg_hidden_transport" style="display:none;width:0;height:0;border:0;"></iframe>
+
   <!-- Модальное окно для заявок -->
   <div id="modal" class="fixed inset-0 z-50 hidden bg-wineDark/70 backdrop-blur-xs flex items-center justify-center p-4">
     <div class="bg-warmCream rounded-2xl border border-gold/40 max-w-md w-full p-6 sm:p-8 relative candle-shadow">
@@ -703,10 +724,24 @@
         </button>
       </form>
 
-      <div id="modalSuccess" class="hidden text-center py-6 space-y-3">
+      <div id="modalSuccess" class="hidden text-center py-5 space-y-4">
         <span class="text-3xl">🕊️</span>
         <h4 class="font-serif text-2xl text-wine">Благодарим вас от всего сердца!</h4>
         <p class="text-xs text-charcoal/70">Ваше сообщение бережно передано. Мы свяжемся с вами в ближайшее время.</p>
+        <div class="pt-3 border-t border-gold/25 space-y-2">
+          <p class="text-[11px] text-charcoal/60">Быстрая связь и дублирование обращения:</p>
+          <div class="flex flex-wrap justify-center gap-2 text-xs">
+            <a id="vkFallbackLink" href="https://vk.ru/write-212533657" target="_blank" rel="noopener" class="bg-wine text-white px-3.5 py-2 rounded-full hover:bg-wineDark transition">
+              Написать в ВК
+            </a>
+            <a id="maxFallbackLink" href="https://max.ru/" target="_blank" rel="noopener" class="bg-warmBeige border border-gold/40 text-wine px-3.5 py-2 rounded-full hover:bg-gold/20 transition">
+              MAX Мессенджер
+            </a>
+            <a id="mailFallbackLink" href="mailto:ko1nc1@gmail.com" class="bg-warmBeige border border-gold/40 text-wine px-3.5 py-2 rounded-full hover:bg-gold/20 transition">
+              На Почту
+            </a>
+          </div>
+        </div>
       </div>
     </div>
   </div>
@@ -956,12 +991,18 @@
     }
 
     // =========================================================================
-    // ОТПРАВКА В TELEGRAM (@vvma_order_bot) ЧЕРЕЗ ЛИЧНЫЙ GOOGLE CLOUD ШЛЮЗ
+    // МУЛЬТИ-КАНАЛЬНАЯ ОТПРАВКА: TELEGRAM + EMAIL + VK + MAX
     // =========================================================================
     const TG_BOT_TOKEN = '8962021789:AAEfzn63bp5JuaiZAc-dLwFfaCMWeRu0Qkg';
     const TG_CHAT_ID = '57473050';
     const BACKUP_EMAIL = 'ko1nc1@gmail.com';
     const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbyXfO06h9vxHpOqKYyN052SznTGD-yHFBgbHqOQwXnDfPhlanudACTrhmA87fbBQlma/exec';
+
+    // Опциональные токены для автоуведомлений в ВК и мессенджер MAX (если захотите подключить ботов)
+    const VK_API_TOKEN = '';
+    const VK_ADMIN_ID = '3336363';
+    const MAX_BOT_TOKEN = '';
+    const MAX_CHAT_ID = '';
 
     function openModal(title) {
       isHumanVerified = true;
@@ -982,8 +1023,14 @@
     function fetchWithTimeout(url, options = {}, timeoutMs = 4500) {
       const controller = new AbortController();
       const id = setTimeout(() => controller.abort(), timeoutMs);
-      return fetch(url, { ...options, signal: controller.signal })
+      return fetch(url, { ...options, keepalive: true, signal: controller.signal })
         .finally(() => clearTimeout(id));
+    }
+
+    function isTelegramOk(bodyText) {
+      if (!bodyText) return false;
+      const str = typeof bodyText === 'string' ? bodyText : JSON.stringify(bodyText);
+      return str.indexOf('"ok":true') !== -1 || str.indexOf('\\"ok\\":true') !== -1;
     }
 
     function fireJsonpGateway(fullGetUrl) {
@@ -1002,7 +1049,7 @@
           }
           window[cbName] = function(data) {
             cleanup();
-            if (data && data.contents && data.contents.indexOf('"ok":true') !== -1) {
+            if (isTelegramOk(data)) {
               resolve(true);
             } else {
               resolve(false);
@@ -1017,6 +1064,34 @@
       });
     }
 
+    // 1. Отправка через Google Cloud шлюз (и POST JSON, и GET-параметры)
+    async function sendViaGoogleScript(text, target, name, contact) {
+      if (!GOOGLE_SCRIPT_URL) return false;
+      const chatId = TG_CHAT_ID.trim();
+      const payloadObj = {
+        token: TG_BOT_TOKEN,
+        chat_id: chatId,
+        text: text,
+        email: BACKUP_EMAIL,
+        subject: `Заявка elinapasechnik.ru: ${target}`,
+        name: name,
+        contact: contact
+      };
+      const urlWithParams = `${GOOGLE_SCRIPT_URL}?token=${encodeURIComponent(TG_BOT_TOKEN)}&chat_id=${encodeURIComponent(chatId)}&text=${encodeURIComponent(text)}`;
+      try {
+        await fetchWithTimeout(urlWithParams, {
+          method: 'POST',
+          mode: 'no-cors',
+          headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+          body: JSON.stringify(payloadObj)
+        }, 4000);
+        return true;
+      } catch (e) {
+        return false;
+      }
+    }
+
+    // 2. Независимая отправка в Telegram (Прямой запрос + цепочка прокси без остановки на no-cors)
     async function sendToTelegram(text) {
       if (!TG_BOT_TOKEN) return false;
       const chatId = TG_CHAT_ID.trim();
@@ -1024,84 +1099,114 @@
       const query = `?chat_id=${encodeURIComponent(chatId)}&text=${encodeURIComponent(text)}`;
       const fullGetUrl = `${baseApi}${query}`;
 
-      // 0. Персональный Google Cloud шлюз (script.google.com) — работает в РФ без VPN в первую очередь
-      if (GOOGLE_SCRIPT_URL) {
-        try {
-          await fetchWithTimeout(GOOGLE_SCRIPT_URL, {
-            method: 'POST',
-            mode: 'no-cors',
-            headers: { 'Content-Type': 'text/plain;charset=utf-8' },
-            body: JSON.stringify({ token: TG_BOT_TOKEN, chat_id: chatId, text: text })
-          }, 4000);
-          return true;
-        } catch (e) {}
-      }
+      // Запускаем Google Script параллельно (не прерывая работу остальных шлюзов!)
+      sendViaGoogleScript(text, '', '', '');
 
-      // 1. Быстрый JSON-прокси AllOrigins
-      try {
-        const resAo = await fetchWithTimeout(`https://api.allorigins.win/get?url=${encodeURIComponent(fullGetUrl)}&_=${Date.now()}`, { cache: 'no-store' }, 4000);
-        if (resAo.ok) {
-          const dAo = await resAo.json();
-          if (dAo && dAo.contents && dAo.contents.includes('"ok":true')) return true;
-        }
-      } catch (e) {}
-
-      // 2. JSONP через тег <script>
-      try {
-        const jsonpOk = await fireJsonpGateway(fullGetUrl);
-        if (jsonpOk) return true;
-      } catch (e) {}
-
-      // 3. Резервные прокси-шлюзы
-      const fallbackGateways = [
-        `https://api.codetabs.com/v1/proxy?quest=${encodeURIComponent(fullGetUrl)}`,
-        `https://api.allorigins.win/raw?url=${encodeURIComponent(fullGetUrl)}`,
-        `https://thingproxy.freeboard.io/fetch/${fullGetUrl}`,
-        `https://corsproxy.org/?${encodeURIComponent(fullGetUrl)}`,
-        `https://corsproxy.io/?url=${encodeURIComponent(fullGetUrl)}`
-      ];
-
-      for (const gw of fallbackGateways) {
-        try {
-          const res = await fetchWithTimeout(gw, { cache: 'no-store' }, 3500);
-          if (res.ok) {
-            const bodyText = await res.text();
-            if (bodyText && bodyText.includes('"ok":true')) return true;
-          }
-        } catch (e) {}
-      }
-
-      // 4. Прямой запрос
+      // А. Прямой POST-запрос к API Telegram
       try {
         const resDirect = await fetchWithTimeout(baseApi, {
           method: 'POST',
           headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
           body: new URLSearchParams({ chat_id: chatId, text: text }).toString()
-        }, 3000);
-        if (resDirect.ok) return true;
+        }, 2500);
+        if (resDirect.ok) {
+          const t = await resDirect.text();
+          if (isTelegramOk(t)) return true;
+        }
+      } catch (e) {}
+
+      // Б. Параллельная гонка всех прокси-шлюзов для РФ без VPN
+      const proxyUrls = [
+        `https://api.codetabs.com/v1/proxy?quest=${encodeURIComponent(fullGetUrl)}`,
+        `https://api.allorigins.win/get?url=${encodeURIComponent(fullGetUrl)}&_=${Date.now()}`,
+        `https://api.allorigins.win/raw?url=${encodeURIComponent(fullGetUrl)}&_=${Date.now()}`,
+        `https://corsproxy.io/?url=${encodeURIComponent(fullGetUrl)}`,
+        `https://corsproxy.org/?${encodeURIComponent(fullGetUrl)}`,
+        `https://thingproxy.freeboard.io/fetch/${fullGetUrl}`
+      ];
+
+      const proxyTasks = proxyUrls.map(async (gw) => {
+        const res = await fetchWithTimeout(gw, { cache: 'no-store' }, 5500);
+        if (!res.ok) throw new Error('Proxy HTTP ' + res.status);
+        const bodyText = await res.text();
+        if (isTelegramOk(bodyText)) return true;
+        throw new Error('Bad payload');
+      });
+
+      proxyTasks.push(
+        fireJsonpGateway(fullGetUrl).then(ok => {
+          if (!ok) throw new Error('JSONP failed');
+          return true;
+        })
+      );
+
+      try {
+        await Promise.any(proxyTasks);
+        return true;
       } catch (e) {}
 
       return false;
     }
 
+    // 3. Отправка дубля на почту (FormSubmit + резерв)
     async function sendBackupEmail(target, name, contact) {
       if (!BACKUP_EMAIL) return;
       try {
-        await fetch(`https://formsubmit.co/ajax/${BACKUP_EMAIL}`, {
+        await fetchWithTimeout(`https://formsubmit.co/ajax/${BACKUP_EMAIL}`, {
           method: 'POST',
-          keepalive: true,
           headers: {
             'Content-Type': 'application/json',
             'Accept': 'application/json'
           },
           body: JSON.stringify({
-            _subject: `Заявка с сайта elinapasechnik.ru: ${target}`,
+            _subject: `🕯️ Заявка с сайта elinapasechnik.ru: ${target}`,
             Тема: target,
             Имя: name,
-            Контакт: contact
+            Контакт: contact,
+            _template: 'table'
           })
-        });
+        }, 4500);
       } catch (e) {}
+    }
+
+    // 4. Автоотправка в ВКонтакте (через JSONP API ВК, если задан токен сообщества)
+    function sendToVK(text) {
+      return new Promise(resolve => {
+        if (!VK_API_TOKEN || !VK_ADMIN_ID) return resolve(false);
+        try {
+          const cbName = 'vk_cb_' + Math.floor(Math.random() * 1000000);
+          const script = document.createElement('script');
+          const timer = setTimeout(() => { cleanup(); resolve(false); }, 3500);
+          function cleanup() {
+            clearTimeout(timer);
+            try { delete window[cbName]; } catch (e) {}
+            if (script.parentNode) script.parentNode.removeChild(script);
+          }
+          window[cbName] = function() { cleanup(); resolve(true); };
+          script.src = `https://api.vk.com/method/messages.send?user_id=${encodeURIComponent(VK_ADMIN_ID)}&random_id=${Date.now()}&message=${encodeURIComponent(text)}&access_token=${encodeURIComponent(VK_API_TOKEN)}&v=5.199&callback=${cbName}`;
+          script.onerror = function() { cleanup(); resolve(false); };
+          document.body.appendChild(script);
+        } catch (e) {
+          resolve(false);
+        }
+      });
+    }
+
+    // 5. Автоотправка в мессенджер MAX (через официальный Bot API MAX)
+    async function sendToMax(text) {
+      if (!MAX_BOT_TOKEN || !MAX_CHAT_ID) return false;
+      try {
+        const maxUrl = `https://botapi.max.ru/messages?access_token=${encodeURIComponent(MAX_BOT_TOKEN)}&chat_id=${encodeURIComponent(MAX_CHAT_ID)}`;
+        await fetchWithTimeout(maxUrl, {
+          method: 'POST',
+          mode: 'no-cors',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ text: text })
+        }, 3500);
+        return true;
+      } catch (e) {
+        return false;
+      }
     }
 
     function handleFormSubmit(e) {
@@ -1111,9 +1216,9 @@
       const name = document.getElementById('nameInput').value.trim();
       const phone = document.getElementById('phoneInput').value.trim();
 
-      // Тихая защита от прямых спам-ботов (вроде Snepmvmx LLC):
-      // окно должно быть открыто кнопкой, а тема и имя должны содержать кириллицу
-      if (!isModalOpened || !/[А-Яа-яЁё]/.test(target) || !/[А-Яа-яЁё]/.test(name)) {
+      // Проверяем ТОЛЬКО что модальное окно открыто кнопкой и системное поле темы на русском
+      // (в имя и контакт можно вводить любые цифры и буквы!)
+      if (!isModalOpened || !/[А-Яа-яЁё]/.test(target)) {
         document.getElementById('orderForm').classList.add('hidden');
         document.getElementById('modalSuccess').classList.remove('hidden');
         return;
@@ -1127,6 +1232,12 @@
 
       const tgMessage = `🕯️ Новая заявка с сайта elinapasechnik.ru!\n\n📌 Программа: ${target}\n👤 Имя: ${name}\n📞 Контакт: ${phone}`;
 
+      // Подготавливаем прямые кнопки дублирования в ВК и Почту на финальном экране
+      const mailLink = document.getElementById('mailFallbackLink');
+      if (mailLink) {
+        mailLink.href = `mailto:${BACKUP_EMAIL}?subject=${encodeURIComponent('Заявка с сайта Элины Пасечник: ' + target)}&body=${encodeURIComponent(tgMessage)}`;
+      }
+
       let completed = false;
       const finish = () => {
         if (completed) return;
@@ -1135,11 +1246,13 @@
         document.getElementById('modalSuccess').classList.remove('hidden');
       };
 
-      const timer = setTimeout(finish, 3500);
+      const timer = setTimeout(finish, 4000);
 
       Promise.allSettled([
         sendToTelegram(tgMessage),
-        sendBackupEmail(target, name, phone)
+        sendBackupEmail(target, name, phone),
+        sendToVK(tgMessage),
+        sendToMax(tgMessage)
       ]).then(() => {
         clearTimeout(timer);
         finish();
